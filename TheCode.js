@@ -2,14 +2,26 @@
 	
 	//ריסט במקרה של התחלה או ריסט ידני
 	function resetGame() {
-		votes=25689;
+		votes=2;
 		votesClickVal=1;
 		votesPerSec=0;
 		Gens[0] = new gen ("מצביע",10,0.2,0,"LVButton");
 		Gens[1] = new gen ("עוגיות",130,1,0,"CookiesButton");
 		Gens[2] = new gen ("קמפיין",810,7,0,"CampaignButton");
 		Gens[3] = new gen ("רב",8100,30,0,"RabiButton");
-		Gens[4] = new gen ("תא גאה",49500,150,0,"GaysButton");
+		//Gens[4] = new gen ("תא גאה",49500,150,0,"GaysButton");
+		
+		Upgraders[0] = new Upgrade("שדרוג קליק", "כל קליק שווה פי 2", 20, function () {
+			votesClickVal ++
+		})
+
+		for (i in Upgraders) {
+			upgrader = Upgraders[i]
+		    btn = document.createElement("a")
+			btn.text = upgrader.name
+			btn.onclick = upgrader.runFunction
+			document.getElementById("placeForUpgrades").appendChild(btn)
+		}
 	}
 	
 	//פונקצייה למספרים יפים
@@ -49,6 +61,7 @@
 	var votesClickVal;							//מספר קולות פר הקלקה ידנית
 	var votesPerSec							//מספר קולות לשנייה ממחוללים
 	var Gens = [];
+	var Upgraders = [];
 	
 	//אובייקט מחולל
 	function gen(name,price,lVotesperSec,numOfGen,buttonName){
@@ -66,14 +79,24 @@
 		}
 	}
 	
-	resetGame();
+	// Upgrader object
+	function Upgrade(name, description, price, func) {
+		this.name = name
+		this.description = description
+		this.price = price
+		
+		this.runFunction = func	
+	}
+
+
 	
+	resetGame();
 	//כינויים
 	var loneVoter=Gens[0];
 	var cookies=Gens[1];
 	var campaign=Gens[2];
 	var rabi=Gens[3];
-	var gays=Gens[4];
+	//var gays=Gens[4];
 	
 	//התנהגות כפתור ראשי
 	document.getElementById("noteImg").onmouseover=function(){
@@ -151,7 +174,7 @@
 		document.getElementById("votesPerSecText").innerHTML = "(" +   votesPerSec + " קולות לשנייה)";
 		
 		//עדכון כפתורי מחוללים
-		for (var i in Gens){
+		for (var i=0; i < Gens.length; i++){
 			document.getElementById(Gens[i].buttonName + "Num").innerHTML = Gens[i].numOfGen;
 			document.getElementById(Gens[i].buttonName + "Price").innerHTML = Gens[i].name + " - " + numNames(Gens[i].price) + "₪";
 			if (Gens[i].lVotesperSec<1){
@@ -165,14 +188,10 @@
 				document.getElementById(Gens[i].buttonName).style.color="gray";
 			else
 				document.getElementById(Gens[i].buttonName).style.color="white";
-			
-			//שבירה מוזרה. לעדכן לפי כמות הכפתורים בHTML
-			if (i>2) break;
 		}
 	}
 	
 	//פקודת הרצה
-	
 	Mainy();
 	setInterval(Mainy,40);
 }); 
