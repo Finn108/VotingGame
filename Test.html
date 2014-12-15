@@ -1,0 +1,126 @@
+﻿<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+	<meta charset="utf-8" />
+	<title> המרוץ לראשות </title>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+	<script src="TheCode.js"></script>
+</head>
+<style>
+	@font-face {
+		font-family: carmela;
+		src: url(carmela.ttf);
+	}
+	#noteImg{
+		position: absolute;
+		top: 150px;
+		left: 50%;
+		transform: translate(-50%,0) rotate(5deg);
+		display: block;
+		box-shadow: 0px 0px 5px;
+		outline-style: solid;
+		outline-width: 1px;
+		display: none;
+	}
+	#votesNumText{
+		font-family: carmela;
+		font-size: 48px;
+		display: none;
+		position: absolute;
+		top: 500px;
+		left: 50%;
+		transform: translate(-50%,0);
+		color: #00adc1;
+	}
+	#kolotBakalpi{
+		font-family: carmela;
+		font-size: 30px;
+		position: absolute;
+		top: 550px;
+		left: 50%;
+		transform: translate(-50%,0);
+		color: #00adc1;
+	}
+	#votesPerSecText{
+		font-family: carmela;
+		font-size: 14px;
+		position: absolute;
+		top: 585px;
+		left: 50%;
+		transform: translate(-50%,0);
+		color: #00adc1;
+	}
+	#GreenButton{
+		font-family: carmela;
+		width: 350px;
+		background-color: #00ff00;
+		position: absolute;
+		left: 0%;
+		background: url(pics/loneVoter.png),linear-gradient(#b5e655, #96ca2d);
+		cursor:pointer;
+	}
+	#BlackButton{
+		font-family: carmela;
+		width: 285px;
+		height: 65px;
+		background-color: black;
+		color: white;
+		position: absolute;
+		left: 0%;
+		opacity: 0.75;
+		translate(-50%,0);
+		text-align: center;
+	}
+	#placeFor
+	
+</style>
+<body bgcolor=#edf7f2>
+	<img src="pics/note.png" id="noteImg"></img>
+	<div id="votesNumText">dsfsdfsdf</div>
+	<div id="kolotBakalpi">קולות בקלפי</div>
+	<div id="votesPerSecText">(0 קולות לשנייה)</div>
+	
+	<div id="placeForButtons">
+	<div id="LVButton">
+		<div id="GreenButton" style="height: 65px; top: 150px; background: url(pics/loneVoter.png),linear-gradient(#b5e655, #96ca2d);">
+            <div id="LVButtonNum" style="font-size: 72px; position: absolute; left: 40px; transform: translate(-50%,-5px); opacity:0.5;letter-spacing: -5px;"></div>
+            <div id="LVButtonPrice" style="font-size: 30px; position: absolute ;top: 7px; right: 70px; transform: translate(0,-5px);"></div>
+            <div id="LVButtonTag" style="font-size: 14px; position: absolute ;top: 42px; right: 70px; transform: translate(0,-5px);line-height: 90%;">יצביע בשבילך כל 5 שניות לא משנה מה<br>תעשה. כמו אנשים אחרים שאתה מכיר.</div>
+            <div id="LVButtonBlackButton" style="display: none;"><div id="BlackButton"><div id="LVButtonBlackCont"></div></div></div>
+        </div>
+    </div>
+	
+	<div id="CookiesButton">
+		<div id="GreenButton" style="height: 65px; top: 215px; background: url(pics/cookies.png),linear-gradient(#b5e655, #96ca2d);">
+            <div id="CookiesButtonNum" style="font-size: 72px; position: absolute; left: 40px; transform: translate(-50%,-5px); opacity:0.5;letter-spacing: -5px;"></div>
+            <div id="CookiesButtonPrice" style="font-size: 30px; position: absolute ;top: 7px; right: 70px; transform: translate(0,-5px);"></div>
+            <div id="CookiesButtonTag" style="font-size: 14px; position: absolute ;top: 42px; right: 70px; transform: translate(0,-5px);line-height: 90%;">כולם אוהבים עוגיות. במיוחד הבוחרים.</div>
+            <div id="CookiesButtonBlackButton" style="display: none;"><div id="BlackButton"><div id="CookiesButtonBlackCont"></div></div></div>
+        </div>
+    </div>
+	
+	<div id="CampaignButton">
+		<div id="GreenButton" style="height: 65px; top: 280px; background: url(pics/campaign.png),linear-gradient(#b5e655, #96ca2d);">
+            <div id="CampaignButtonNum" style="font-size: 72px; position: absolute; left: 40px; transform: translate(-50%,-5px); opacity:0.5;letter-spacing: -5px;"></div>
+            <div id="CampaignButtonPrice" style="font-size: 30px; position: absolute ;top: 7px; right: 70px; transform: translate(0,-5px);"></div>
+            <div id="CampaignButtonTag" style="font-size: 14px; position: absolute ;top: 42px; right: 70px; transform: translate(0,-5px);line-height: 90%;">מאחורי כל אדם גדול עומד קמפיין גדול.</div>
+            <div id="CampaignButtonBlackButton" style="display: none;"><div id="BlackButton"><div id="CampaignButtonBlackCont"></div></div></div>
+        </div>
+    </div>
+	
+	<div id="RabiButton">
+		<div id="GreenButton" style="height: 65px; top: 345px; background: url(pics/rabi.png),linear-gradient(#b5e655, #96ca2d);">
+            <div id="RabiButtonNum" style="font-size: 72px; position: absolute; left: 40px; transform: translate(-50%,-5px); opacity:0.5;letter-spacing: -5px;"></div>
+            <div id="RabiButtonPrice" style="font-size: 30px; position: absolute ;top: 7px; right: 70px; transform: translate(0,-5px);"></div>
+            <div id="RabiButtonTag" style="font-size: 14px; position: absolute ;top: 42px; right: 70px; transform: translate(0,-5px);line-height: 90%;">כל ממשלה טובה צריכה אחד.<BR>ועוד אחד לספרדים.</div>
+            <div id="RabiButtonBlackButton" style="display: none;"><div id="BlackButton"><div id="RabiButtonBlackCont"></div></div></div>
+        </div>
+    </div>
+	</div>
+	
+	<div id="placeForUpgrades">
+		
+	</div>
+	
+</body>
+</html>
