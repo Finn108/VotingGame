@@ -1,0 +1,71 @@
+@font-face {
+  font-family: carmela;
+  src: url(../assets/carmela.ttf);
+}
+#noteImg{
+  position: absolute;
+  top: 150px;
+  left: 50%;
+  transform: translate(-50%,0) rotate(5deg);
+  display: block;
+  box-shadow: 0px 0px 5px;
+  outline-style: solid;
+  outline-width: 1px;
+  display: none;
+}
+#votesNumText{
+  font-family: carmela;
+  font-size: 48px;
+  display: none;
+  position: absolute;
+  top: 500px;
+  left: 50%;
+  transform: translate(-50%,0);
+  color: #00adc1;
+}
+#kolotBakalpi{
+  font-family: carmela;
+  font-size: 30px;
+  position: absolute;
+  top: 550px;
+  left: 50%;
+  transform: translate(-50%,0);
+  color: #00adc1;
+}
+#votesPerSecText{
+  font-family: carmela;
+  font-size: 14px;
+  position: absolute;
+  top: 585px;
+  left: 50%;
+  transform: translate(-50%,0);
+  color: #00adc1;
+}
+#GreenButton{
+  font-family: carmela;
+  width: 350px;
+  background-color: #00ff00;
+  position: absolute;
+  left: 0%;
+  background: url(pics/loneVoter.png),linear-gradient(#b5e655, #96ca2d);
+  cursor:pointer;
+}
+#BlackButton{
+  font-family: carmela;
+  width: 285px;
+  height: 65px;
+  background-color: black;
+  color: white;
+  position: absolute;
+  left: 0%;
+  opacity: 0.75;
+  translate(-50%,0);
+  text-align: center;
+}
+#placeForUpgrades{
+  background-color: white;
+  position: absolute;
+  top: 110px;
+  width: 350px;
+  height: 700px;
+}
