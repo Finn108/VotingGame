@@ -1,7 +1,14 @@
+/* Fonts: */
 @font-face {
   font-family: carmela;
   src: url(../assets/carmela.ttf);
 }
+
+/* General elements design */
+body {
+	background-color: #edf7f2;
+}
+
 #noteImg{
   position: absolute;
   top: 150px;
@@ -11,12 +18,12 @@
   box-shadow: 0px 0px 5px;
   outline-style: solid;
   outline-width: 1px;
-  display: none;
+  /*display: none; - Used for jQuery fade in. We'll remove for now... */
 }
 #votesNumText{
   font-family: carmela;
   font-size: 48px;
-  display: none;
+  /*display: none; -  Used for jQuery fade in. We'll remove for now... */
   position: absolute;
   top: 500px;
   left: 50%;
