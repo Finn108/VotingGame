@@ -4,10 +4,14 @@
   src: url(../assets/carmela.ttf);
 }
 
-/* General elements design */
+/* General elements */
 body {
 	background-color: #edf7f2;
+	font-family: carmela;
+	direction: rtl;
 }
+
+/* Vote note and counters text */
 
 #noteImg{
   position: absolute;
@@ -20,8 +24,8 @@ body {
   outline-width: 1px;
   /*display: none; - Used for jQuery fade in. We'll remove for now... */
 }
+
 #votesNumText{
-  font-family: carmela;
   font-size: 48px;
   /*display: none; -  Used for jQuery fade in. We'll remove for now... */
   position: absolute;
@@ -30,8 +34,8 @@ body {
   transform: translate(-50%,0);
   color: #00adc1;
 }
+
 #kolotBakalpi{
-  font-family: carmela;
   font-size: 30px;
   position: absolute;
   top: 550px;
@@ -40,7 +44,6 @@ body {
   color: #00adc1;
 }
 #votesPerSecText{
-  font-family: carmela;
   font-size: 14px;
   position: absolute;
   top: 585px;
@@ -48,8 +51,51 @@ body {
   transform: translate(-50%,0);
   color: #00adc1;
 }
+
+/* Generator buttons */
+
+#generators {
+	position: absolute;
+	top: 150px;
+	left: 0%;
+}
+
+.genBtn {
+	background: linear-gradient(#b5e655, #96ca2d);
+	width: 350px;
+	height: 65px;
+	left: 0%;
+	cursor: pointer;
+	position: relative;
+	color: grey;
+}
+
+.genBtn > * {
+	position: absolute;
+}
+
+.genBtnPrice {
+	font-size: 30px;
+	top: 2px;
+	right: 70px;
+}
+
+.genBtnDesc {
+	font-size: 14px;
+	top: 37px;
+	right: 70px;
+	line-height: 90%;
+	left: 50px;
+}
+
+.genBtnLvl {
+	font-size: 72px;
+	top: -5px;
+	left: 27px;
+	opacity: 0.5;
+}
+
 #GreenButton{
-  font-family: carmela;
   width: 350px;
   background-color: #00ff00;
   position: absolute;
@@ -58,7 +104,6 @@ body {
   cursor:pointer;
 }
 #BlackButton{
-  font-family: carmela;
   width: 285px;
   height: 65px;
   background-color: black;
