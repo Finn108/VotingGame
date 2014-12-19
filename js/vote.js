@@ -57,7 +57,53 @@ function numNames(num) {
 	return numInRange.toFixed(3) + " " + rangeNames[thousandsCount-1];
 }
 
-function Generator(generatorsDiv, details) {
+// Main Classes
+
+function VotesCounter(initialVotes, votesPerSecond) {
+	/*
+	Handles changing the number of votes and votes per second and displaying
+	them.
+	*/
+	var currentVotes = initialVotes || 0;
+	var votesPerSecond = votesPerSecond || 0;
+	var votesDisplay = $("#votesNumText");
+	var votesPSDisplay = $("#votesPerSecText");
+
+	// Used to configure the games 'tick' rate
+	var frameRate = 25;
+	var miliseconds = 40;
+
+	// Used to refrence VotesCounter in nested functions
+	var votesCounter = this;
+
+	function refreshDisplay() {
+		/*
+		Writes the current votes and votes-per-second count to the screen
+		*/
+		votesDisplay.text(numNames(currentVotes));
+		votesPSDisplay.text("(" + numNames(votesPerSecond) + " קולות לשנייה)");
+	}
+
+	function updateVotes () {
+		currentVotes += (votesPerSecond / frameRate);
+		refreshDisplay();
+	}
+
+	this.addVotes = function (numOfVotes) {
+		currentVotes += numOfVotes;
+		refreshDisplay();
+	}
+
+	this.addVotesPerSecond = function (numOfVotesPS) {
+		votesPerSecond += numOfVotesPS;
+		refreshDisplay();
+	}
+
+	setInterval(updateVotes, miliseconds);
+}
+
+
+function Generator(votesCounter, generatorsDiv, details) {
 	/*
 	generatorsDiv - jQuery of the generators container div ( $("#geneartors") )
 	details - an object with the necessary details about this generator.
@@ -121,19 +167,14 @@ function Generator(generatorsDiv, details) {
 function Game() {
 	"use strict";
 
-	var votes = 0;
-	var votesPerSecond = 0;
-	var votesClickValue = 1;
+	var votesCounter = new VotesCounter();
+
+	var votesClickValue = 500;
 	var generators = []
 
-	var displayVotes = function() {
-		$("#votesNumText").text(votes)
+	function clickEvent () {
+		votesCounter.addVotes(votesClickValue);
 	}
-	var clickEvent = function() {
-		votes += votesClickValue;
-		displayVotes();
-	}
-	
 
 	this.reset = function() {
 		console.log("reseting");
@@ -144,7 +185,7 @@ function Game() {
 		// Create generators:
 		var gensDiv = $("#generators");
 		generatorsDetails.forEach(function (item) {
-			generators.push(new Generator(gensDiv, item));
+			generators.push(new Generator(votesClickValue, gensDiv, item));
 		});
 		//$.getJSON("js/generators.json", function(data) {
 		//	console.log(data)
