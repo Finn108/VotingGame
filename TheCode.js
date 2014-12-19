@@ -2,7 +2,7 @@
 	
 	//ריסט במקרה של התחלה או ריסט ידני
 	function resetGame() {
-		votes=2;
+		votes=5;
 		votesClickVal=1;
 		votesPerSec=0;
 		Gens[0] = new gen ("מצביע",10,0.2,0,"LVButton");
@@ -11,16 +11,61 @@
 		Gens[3] = new gen ("רב",8100,30,0,"RabiButton");
 		//Gens[4] = new gen ("תא גאה",49500,150,0,"GaysButton");
 		
-		Upgraders[0] = new Upgrade("שדרוג קליק", "כל קליק שווה פי 2", 20, function () {
-			votesClickVal ++
+		Upgraders[0] = new Upgrade("שדרוג קליק", "כל קליק שווה פי 2", 10, function () {
+			votesClickVal++
+		})
+		Upgraders[1] = new Upgrade("שדרוג מצביע", "מצביעים עכשיו הולכים לקלפי כל שנייה", 9, function () {
+			Gens[0].lVotesperSec = 1
+		})
+		Upgraders[2] = new Upgrade("שדרוג אחר", "השדרוג עם השורה הכי ארוכה בתולדות הייקום, עוברת לשתי/שני שורות", 5, function () {
+			votesClickVal = 10
+		})
+		Upgraders[3] = new Upgrade("מאפס זמני", "מאפס את כל השינויים שעשית עם השדרוגים", 1, function () {
+			votesClickVal = 1
+			Gens[0].lVotesperSec = 0.2
 		})
 
 		for (i in Upgraders) {
-			upgrader = Upgraders[i]
-		    btn = document.createElement("a")
-			btn.text = upgrader.name
-			btn.onclick = upgrader.runFunction
-			document.getElementById("placeForUpgrades").appendChild(btn)
+/* 			 tempFunc = function (){                   //בודק אם השחקן יכול לשלם את המחיר. עושה בעיות
+				if (votes>=Upgraders[i].price){
+					votes-=Upgraders[i].price
+					Upgraders[i].bought=true
+					Upgraders[i].runFunction()
+				}
+			 } */
+			div1=document.createElement("div")
+			div1.id="upgradeCont"
+			div2=document.createElement("div")
+			div2.id="upgradeBoxBuy"
+			div3=document.createElement("div")
+			div3.id="upgradeBoxBuyText"
+			div3.textContent = "קנה!"
+			div2.style.cursor = 'pointer'
+			div2.onclick = Upgraders[i].runFunction
+			//div2.onclick = tempFunc
+ 			div2.onmouseover  = function(){
+				this.style.backgroundColor = "black"
+				this.style.color = "white"
+				}
+			div2.onmouseout  = function(){
+				this.style.backgroundColor = "white"
+				this.style.color = "black"
+				}
+			div4=document.createElement("div")
+			div4.id="upgradeBoxDesc"
+			div5=document.createElement("div")
+			div5.id="upgradeBoxDescTextUp"
+			var tempString = Upgraders[i].name + " - " + numNames(Upgraders[i].price) + "₪"
+			div5.textContent = tempString
+			div6=document.createElement("div")
+			div6.id="upgradeBoxDescTextDown"
+			div6.textContent = Upgraders[i].description
+			div2.appendChild(div3)
+			div1.appendChild(div2)
+			div4.appendChild(div6)
+			div4.appendChild(div5)
+			div1.appendChild(div4)
+			document.getElementById("placeForUpgrades").appendChild(div1)
 		}
 	}
 	
@@ -84,7 +129,7 @@
 		this.name = name
 		this.description = description
 		this.price = price
-		
+		var bought = false
 		this.runFunction = func	
 	}
 
@@ -171,7 +216,7 @@
 		
 		//וויזואליה
 		document.getElementById("votesNumText").innerHTML = numNames(votes); //Math.floor(votes);
-		document.getElementById("votesPerSecText").innerHTML = "(" +   votesPerSec + " קולות לשנייה)";
+		document.getElementById("votesPerSecText").innerHTML = "(" +   numNames(votesPerSec) + " קולות לשנייה)";
 		
 		//עדכון כפתורי מחוללים
 		for (var i=0; i < Gens.length; i++){
