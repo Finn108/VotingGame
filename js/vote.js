@@ -7,26 +7,77 @@ Copyright 2014 or something...
 
 Version 0.1.0
 */
+ 
+// Some small and helpful functions
+
+function addCommas(num) {
+	/*
+	Seperates big numbers with commas. For example:
+	> addCommas(2345262)
+	2,345,262
+	*/
+
+	var numStr = String(Math.floor(num));
+	var numSepRgx = /(\d+)(\d{3})/;
+	while (numSepRgx.test(numStr)) {
+		numStr = numStr.replace(numSepRgx, '$1' + ',' + '$2');
+	}
+	return numStr;
+}
+
+function numNames(num) {
+	/*
+	Converts a given number to a readable name. For example:
+	> numNames(10340210)
+	10.34 Million // (in hebrew)
+	*/
+
+	// Nothing to edit
+	if (num < 1000) return num;
+
+	// No need to add names, just commas
+	if (num < 1000000) return addCommas(num);
+
+	var rangeNames = [
+		"אלף",
+		"מיליון",
+		"מיליארד",
+		"ביליון",
+		"ביליארד",
+		"טריליון",
+		"טריליארד"
+	];
+	var thousandsCount = 0;
+	var numDivided = num;
+	while (numDivided > 1000) {
+		numDivided=numDivided/1000;
+		thousandsCount++;
+	}
+	var numInRange = num / Math.pow(1000, thousandsCount)
+	return numInRange.toFixed(3) + " " + rangeNames[thousandsCount-1];
+}
 
 function Generator(generatorsDiv, details) {
 	/*
 	generatorsDiv - jQuery of the generators container div ( $("#geneartors") )
 	details - an object with the necessary details about this generator.
-			  Example:
-			  {
-			 	id: "Voter",
-			 	name: "voter",
-			 	description: "He'll always vote for you!",
-			 	price: 5,
-			 	picture: "voter.png",
-			 	summary: "Adds +5 every second",
-		 	  }
+		Example:
+		{
+			id: "Voter",
+			name: "voter",
+			description: "He'll always vote for you!",
+			price: 5,
+			picture: "voter.png",
+			summary: "Adds +5 every second",
+		}
 	*/
-	console.log("started creating generator")
-	
+	console.log("creating generator: " + details.id)
 
-	/* Creates the html element for the generator */
 	this.init = function() {
+		/*
+		Creates the html element for the generator. Returns the button element
+		as a jQuery object.
+		*/
 		var btnElem = document.createElement("div");
 		var imgElem = document.createElement("img");
 		var priceElem = document.createElement("div");
@@ -34,6 +85,7 @@ function Generator(generatorsDiv, details) {
 		var levelElem = document.createElement("div");
 		var summaryElem = document.createElement("div");
 		var summaryTextElem = document.createElement("p");
+		var priceStr = numNames(details.price)
 
 		btnElem.id = "gen" + details.id;
 		btnElem.className = "genBtn";
@@ -42,10 +94,10 @@ function Generator(generatorsDiv, details) {
 		imgElem.className = "genBtnPic";
 
 		priceElem.className = "genBtnPrice";
-		priceElem.textContent = details.name + " - " + details.price + "₪";
+		priceElem.textContent = details.name + " - " + priceStr + "₪";
 
 		descElem.className = "genBtnDesc";
-		descElem.textContent = details.description;
+		descElem.innerHTML = details.description;
 
 		levelElem.className = "genBtnLvl";
 		levelElem.textContent = 0;
