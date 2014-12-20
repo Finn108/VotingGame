@@ -49,7 +49,7 @@ function numNames(num) {
 		numDivided=numDivided/1000;
 		thousandsCount++;
 	}
-	var numInRange = num / Math.pow(1000, thousandsCount)
+	var numInRange = num / Math.pow(1000, thousandsCount);
 	return numInRange.toFixed(3) + " " + rangeNames[thousandsCount-1];
 }
 
@@ -61,9 +61,9 @@ function VotesCounter(initialVotes, votesPerSecond) {
 	them.
 	*/
 	var currentVotes = initialVotes || 0;
-	var votesPerSecond = votesPerSecond || 0;
 	var votesDisplay = $("#votesNumText");
 	var votesPSDisplay = $("#votesPerSecText");
+	votesPerSecond = votesPerSecond || 0;
 
 	function refreshDisplay() {
 		/*
@@ -76,31 +76,31 @@ function VotesCounter(initialVotes, votesPerSecond) {
 	this.updateVotes = function(frameRate) {
 		currentVotes += (votesPerSecond / frameRate);
 		refreshDisplay();
-	}
+	};
 
 	this.addVotes = function(numOfVotes) {
 		currentVotes += numOfVotes;
 		refreshDisplay();
-	}
+	};
 
 	this.removeVotes = function(numOfVotes) {
 		currentVotes -= numOfVotes;
 		refreshDisplay();
-	}
+	};
 
 	this.getVotes = function() {
-		return currentVotes
-	}
+		return currentVotes;
+	};
 
 	this.addVotesPerSecond = function (numOfVPS) {
 		votesPerSecond += numOfVPS;
 		refreshDisplay();
-	}
+	};
 	
 	this.removeVotesPerSecond = function (numOfVPS) {
 		votesPerSecond -= numOfVPS;
 		refreshDisplay();
-	}
+	};
 }
 
 
@@ -119,12 +119,11 @@ function Generator(votesCounter, generatorsDiv, details) {
 			picture: "voter.png",
 		}
 	*/
-	console.log("creating generator: " + details.id)
+	console.log("creating generator: " + details.id);
 	// Private attributes
 	var button = initElement();
 	var price = details.price;
 	var name = details.name;
-	var votesCounter = votesCounter;
 	var level = 0;
 	var votesPerSecond = details.votesPerSec;
 	// Used to reference the Generator within nested functions
@@ -145,12 +144,18 @@ function Generator(votesCounter, generatorsDiv, details) {
 		var levelElem = document.createElement("div");
 		var summaryElem = document.createElement("div");
 		var summaryTextElem = document.createElement("p");
-		var priceStr = numNames(price)
+		var priceStr = numNames(price);
 
-		btnElem.id = "gen" + this.id;
+		btnElem.id = "gen" + details.id;
 		btnElem.className = "genBtn";
 
-		imgElem.src = "assets/" + details.picture;
+		// Used for testing
+		if (details.picture.indexOf("assets") === -1) {
+			imgElem.src = "assets/" + details.picture;
+		}
+		else {
+			imgElem.src = details.picture;
+		}
 		imgElem.className = "genBtnPic";
 
 		priceElem.className = "genBtnPrice";
@@ -178,13 +183,13 @@ function Generator(votesCounter, generatorsDiv, details) {
 		var totalVotesPerSecond = votesPerSecond * (level + 1);
 		button.find(".genBtnPrice").text(name + " - " + priceStr + "₪");
 		button.find(".genBtnLvl").text(level);
+		var message = "הצבעה כל " + waitTime + " שניות";
 		if (totalVotesPerSecond < 1) {
 			var waitTime = 1 / totalVotesPerSecond;
-			var message = "הצבעה כל " + waitTime + " שניות";
 			button.find(".genBtnSummary > p").text(message);
 		}
 		else {
-			var message = totalVotesPerSecond + " הצבעות לשנייה";
+			message = totalVotesPerSecond + " הצבעות לשנייה";
 			button.find(".genBtnSummary > p").text(message);
 		}
 	}
@@ -213,7 +218,7 @@ function Generator(votesCounter, generatorsDiv, details) {
 		else {
 			button.removeClass("genBtnAvailable");
 		}
-	}
+	};
 
 	this.updateVotesPerSecond = function (newVPS) {
 		/*
@@ -226,13 +231,13 @@ function Generator(votesCounter, generatorsDiv, details) {
 		votesCounter.addVotesPerSecond(newTotalVPS);
 		votesPerSecond = newVPS;
 		updateDisplay();
-	}
+	};
 
 	// Update immediately after creation
 	updateDisplay();
 	button.on("click", buy);
 
-};
+}
 
 function Upgrade(game, upgradersDiv, details) {
 	/*
@@ -333,7 +338,7 @@ function Game() {
 		game.votesCounter.updateVotes(frameRate);
 		game.generators.forEach(function (generator) {
 			generator.checkAvailability();
-		})
+		});
 	}
 
 	this.reset = function() {
@@ -355,12 +360,12 @@ function Game() {
 		upgradesDetails.forEach(function (item) {
 			this.upgrades.push(new Upgrade(this, upgDiv, item));
 		}, game);
-	}
+	};
 
 	this.start = function() {
 		console.log("starting");
 		setInterval(updateState, miliseconds);
-	}
+	};
 }
 
 $(document).ready(function() {

@@ -31,4 +31,4 @@ var generatorsDetails = [
 		price: 8100,
 		picture: "rabi.png",
 	}
-]
+];

@@ -21,4 +21,4 @@ var upgradesDetails = [
 			voterGenerator.updateVotesPerSecond(1);
 		},
 	},
-]
+];
