@@ -92,8 +92,13 @@ function VotesCounter(initialVotes, votesPerSecond) {
 		return currentVotes
 	}
 
-	this.addVotesPerSecond = function (numOfVotesPS) {
-		votesPerSecond += numOfVotesPS;
+	this.addVotesPerSecond = function (numOfVPS) {
+		votesPerSecond += numOfVPS;
+		refreshDisplay();
+	}
+	
+	this.removeVotesPerSecond = function (numOfVPS) {
+		votesPerSecond -= numOfVPS;
 		refreshDisplay();
 	}
 }
@@ -115,6 +120,18 @@ function Generator(votesCounter, generatorsDiv, details) {
 		}
 	*/
 	console.log("creating generator: " + details.id)
+	// Private attributes
+	var button = initElement();
+	var price = details.price;
+	var name = details.name;
+	var votesCounter = votesCounter;
+	var level = 0;
+	var votesPerSecond = details.votesPerSec;
+	// Used to reference the Generator within nested functions
+	var generator = this;
+
+	// Public attributes
+	this.id = details.id;
 
 	function initElement() {
 		/*
@@ -128,9 +145,9 @@ function Generator(votesCounter, generatorsDiv, details) {
 		var levelElem = document.createElement("div");
 		var summaryElem = document.createElement("div");
 		var summaryTextElem = document.createElement("p");
-		var priceStr = numNames(details.price)
+		var priceStr = numNames(price)
 
-		btnElem.id = "gen" + details.id;
+		btnElem.id = "gen" + this.id;
 		btnElem.className = "genBtn";
 
 		imgElem.src = "assets/" + details.picture;
@@ -155,16 +172,10 @@ function Generator(votesCounter, generatorsDiv, details) {
 		return jqBtn;
 	}
 
-	var button = initElement();
-	var price = details.price;
-	var name = details.name;
-	var level = 0;
-	var votesPerSecond = details.votesPerSec;
-	var votesCounter = votesCounter;
 
 	function updateDisplay() {
 		var priceStr = numNames(price);
-		var totalVotesPerSecond = votesPerSecond * (level + 1)
+		var totalVotesPerSecond = votesPerSecond * (level + 1);
 		button.find(".genBtnPrice").text(name + " - " + priceStr + "₪");
 		button.find(".genBtnLvl").text(level);
 		if (totalVotesPerSecond < 1) {
@@ -177,12 +188,10 @@ function Generator(votesCounter, generatorsDiv, details) {
 			button.find(".genBtnSummary > p").text(message);
 		}
 	}
-	// Update immediately after creation
-	updateDisplay();
 
 	function buy() {
 		/*
-		Buys a instance of the generator and updates the votesPerSecond,
+		Buys an instance of the generator and updates the votesPerSecond,
 		totalVotes and numberOfGenerators
 		*/
 		if (votesCounter.getVotes() < price) return;
@@ -192,8 +201,6 @@ function Generator(votesCounter, generatorsDiv, details) {
 		level += 1;
 		updateDisplay();
 	}
-
-	button.on("click", buy);
 
 	this.checkAvailability = function() {
 		/*
@@ -208,9 +215,26 @@ function Generator(votesCounter, generatorsDiv, details) {
 		}
 	}
 
+	this.updateVotesPerSecond = function (newVPS) {
+		/*
+		Changes the votes per second to the given value. Updates the global
+		votes per second accordingly.
+		*/
+		var currentTotalVPS = votesPerSecond * level;
+		var newTotalVPS = newVPS * level;
+		votesCounter.removeVotesPerSecond(currentTotalVPS);
+		votesCounter.addVotesPerSecond(newTotalVPS);
+		votesPerSecond = newVPS;
+		updateDisplay();
+	}
+
+	// Update immediately after creation
+	updateDisplay();
+	button.on("click", buy);
+
 };
 
-function Upgrader(game, upgradersDiv, details) {
+function Upgrade(game, upgradersDiv, details) {
 	/*
 	Changes different settings in the game when bought. For instance increasing
 	the value of each click.
@@ -229,49 +253,57 @@ function Upgrader(game, upgradersDiv, details) {
 			},
 		}
 	*/
-
 	console.log("creating upgrader: " + details.id);
+	var upgradeElem = initElement();
+	var upgradeBtn = upgradeElem.find(".upgradeBtnBuy");
+	var price = details.price;
+	var upgradeFunc = details.func;
 
 	function initElement() {
 		/*
 		Creates the html element for the upgrader. Returns the button element
 		as a jQuery object.
 		*/
-		var btnElem = document.createElement("div");
-		var imgElem = document.createElement("img");
-		var priceElem = document.createElement("div");
+		var upgradeElem = document.createElement("div");
+		upgradeElem.className = "upgrade";
+		upgradeElem.id = "upgrade" + details.id;
+
+		var buyBtnElem = document.createElement("div");
+		buyBtnElem.className = "upgradeBtnBuy";
+		buyBtnElem.textContent = "קנה!";
+
+		var boxElem = document.createElement("div");
+		boxElem.className = "upgradeBox";
+
+		var titleElem = document.createElement("div");
+		var priceStr = numNames(details.price);
+		titleElem.className = "upgradeBoxTitle";
+		titleElem.textContent = details.name + " - " + priceStr + "₪";
+		boxElem.appendChild(titleElem);
+
 		var descElem = document.createElement("div");
-		var levelElem = document.createElement("div");
-		var summaryElem = document.createElement("div");
-		var summaryTextElem = document.createElement("p");
-		var priceStr = numNames(details.price)
+		descElem.className = "upgradeBoxDesc";
+		descElem.textContent = details.description;
+		boxElem.appendChild(descElem);
 
-		btnElem.id = "gen" + details.id;
-		btnElem.className = "genBtn";
-
-		imgElem.src = "assets/" + details.picture;
-		imgElem.className = "genBtnPic";
-
-		priceElem.className = "genBtnPrice";
-		priceElem.textContent = details.name + " - " + priceStr + "₪";
-
-		descElem.className = "genBtnDesc";
-		descElem.innerHTML = details.description;
-
-		levelElem.className = "genBtnLvl";
-		levelElem.textContent = 0;
-
-		summaryElem.className = "genBtnSummary";
-		summaryTextElem.textContent = ""; // Will be added dynamically later
-		summaryElem.appendChild(summaryTextElem);
-
-		var jqBtn = $(btnElem);
-		jqBtn.append([imgElem, priceElem, descElem, levelElem, summaryElem]);
-		generatorsDiv.append(jqBtn);
-		return jqBtn;
+		var jqUpgrade = $(upgradeElem);
+		jqUpgrade.append([buyBtnElem, boxElem]);
+		upgradersDiv.append(jqUpgrade);
+		return jqUpgrade;
 	}
 
-	var button = initElement();
+	function buy() {
+		/*
+		Buys an instance of the generator and updates the votesPerSecond,
+		totalVotes and numberOfGenerators
+		*/
+		if (game.votesCounter.getVotes() < price) return;
+		game.votesCounter.removeVotes(price);
+		upgradeFunc(game);
+		upgradeElem.fadeOut();
+	}
+
+	upgradeBtn.on("click", buy);
 }
 
 
@@ -281,6 +313,7 @@ function Game() {
 	this.votesCounter = new VotesCounter();
 	this.votesClickValue = 1;
 	this.generators = [];
+	this.upgrades = [];
 
 	// Used to reference the game object from nested functions
 	var game = this;
@@ -315,6 +348,12 @@ function Game() {
 			this.generators.push(new Generator(this.votesCounter,
 											   gensDiv,
 											   item));
+		}, game);
+
+		// Create upgrades:
+		var upgDiv = $("#upgrades");
+		upgradesDetails.forEach(function (item) {
+			this.upgrades.push(new Upgrade(this, upgDiv, item));
 		}, game);
 	}
 

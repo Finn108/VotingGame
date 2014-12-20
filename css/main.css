@@ -12,6 +12,9 @@ body {
 }
 
 /* Vote note and counters text */
+/*******************/
+/* Center Elements */
+/*******************/
 
 #noteImg {
 	position: absolute;
@@ -130,4 +133,79 @@ body {
 
 .genBtn:hover > .genBtnSummary {
 	display: inline;
+}
+
+/*************/
+/* Upgraders */
+/*************/
+
+#upgrades {
+	background-color: #BABABA;
+	position: absolute;
+	right: 0%;
+	top: 140px;
+	height: 700px;
+	border-radius: 25px 0px 0px 20px;
+	border: 2px solid #8F8F8F;
+	width: 350px;
+	border-right-style: none;
+	padding-top: 18px;
+}
+
+.upgrade {
+	height: 60px;
+}
+
+.upgrade > div {
+	position: absolute;
+}
+
+.upgradeBtnBuy {
+	cursor: pointer;
+	background-color: white;
+	width: 50px;
+	height: 50px;
+	line-height: 50px; /* Used to center the button text */
+	right: 7px;
+	border: 2px solid #8F8F8F;
+	border-radius: 10px;
+	font-size: 20px;
+	text-align: center;
+}
+
+.upgradeBtnBuy:hover {
+	background-color: black;
+	color: white;
+}
+
+.upgradeBtnBuy:active {
+	background-color: white;
+	color: black;
+}
+
+.upgradeBox {
+	background-color: white;
+	width: 275px;
+	height: 50px;
+	right: 65px;
+	border: 2px solid #8F8F8F;
+	border-radius: 10px;
+}
+
+.upgradeBox > div {
+	position: absolute;
+}
+
+.upgradeBoxTitle {
+	font-size: 16px;
+	right: 7px;
+	top: 4px;
+	font-weight: bold;
+}
+
+.upgradeBoxDesc {
+	font-size: 13px;
+	right: 7px;
+	top: 25px;
+	line-height: 90%;
 }
