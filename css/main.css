@@ -62,7 +62,9 @@ body {
 	color: #00adc1;
 }
 
+/*********************/
 /* Generator buttons */
+/*********************/
 
 #generators {
 	position: absolute;
@@ -78,6 +80,11 @@ body {
 	cursor: pointer;
 	position: relative;
 	color: grey;
+}
+
+/* Button color when is purchasable */
+.genBtnAvailable {
+	color: white;
 }
 
 .genBtn > * {
@@ -123,16 +130,4 @@ body {
 
 .genBtn:hover > .genBtnSummary {
 	display: inline;
-}
-
-#BlackButton{
-	width: 285px;
-	height: 65px;
-	background-color: black;
-	color: white;
-	position: absolute;
-	left: 0%;
-	opacity: 0.75;
-	translate(-50%,0);
-	text-align: center;
 }

@@ -31,10 +31,6 @@ function numNames(num) {
 	> numNames(10340210)
 	10.34 Million // (in hebrew)
 	*/
-
-	// Nothing to edit
-	if (num < 1000) return num;
-
 	// No need to add names, just commas
 	if (num < 1000000) return addCommas(num);
 
@@ -69,37 +65,37 @@ function VotesCounter(initialVotes, votesPerSecond) {
 	var votesDisplay = $("#votesNumText");
 	var votesPSDisplay = $("#votesPerSecText");
 
-	// Used to configure the games 'tick' rate
-	var frameRate = 25;
-	var miliseconds = 40;
-
-	// Used to refrence VotesCounter in nested functions
-	var votesCounter = this;
-
 	function refreshDisplay() {
 		/*
 		Writes the current votes and votes-per-second count to the screen
 		*/
 		votesDisplay.text(numNames(currentVotes));
-		votesPSDisplay.text("(" + numNames(votesPerSecond) + " קולות לשנייה)");
+		votesPSDisplay.text("(" + votesPerSecond + " קולות לשנייה)");
 	}
 
-	function updateVotes () {
+	this.updateVotes = function(frameRate) {
 		currentVotes += (votesPerSecond / frameRate);
 		refreshDisplay();
 	}
 
-	this.addVotes = function (numOfVotes) {
+	this.addVotes = function(numOfVotes) {
 		currentVotes += numOfVotes;
 		refreshDisplay();
+	}
+
+	this.removeVotes = function(numOfVotes) {
+		currentVotes -= numOfVotes;
+		refreshDisplay();
+	}
+
+	this.getVotes = function() {
+		return currentVotes
 	}
 
 	this.addVotesPerSecond = function (numOfVotesPS) {
 		votesPerSecond += numOfVotesPS;
 		refreshDisplay();
 	}
-
-	setInterval(updateVotes, miliseconds);
 }
 
 
@@ -114,12 +110,11 @@ function Generator(votesCounter, generatorsDiv, details) {
 			description: "He'll always vote for you!",
 			price: 5,
 			picture: "voter.png",
-			summary: "Adds +5 every second",
 		}
 	*/
 	console.log("creating generator: " + details.id)
 
-	this.init = function() {
+	function initElement() {
 		/*
 		Creates the html element for the generator. Returns the button element
 		as a jQuery object.
@@ -149,7 +144,7 @@ function Generator(votesCounter, generatorsDiv, details) {
 		levelElem.textContent = 0;
 
 		summaryElem.className = "genBtnSummary";
-		summaryTextElem.textContent = details.summary;
+		summaryTextElem.textContent = ""; // Will be added dynamically later
 		summaryElem.appendChild(summaryTextElem);
 
 		var jqBtn = $(btnElem);
@@ -158,9 +153,59 @@ function Generator(votesCounter, generatorsDiv, details) {
 		return jqBtn;
 	}
 
-	this.btn = this.init()
+	var button = initElement();
+	var price = details.price;
+	var name = details.name;
+	var level = 0;
+	var votesPerSecond = details.votesPerSec;
+	var votesCounter = votesCounter;
 
-	console.log("finished creating generator")
+	function updateDisplay() {
+		var priceStr = numNames(price);
+		var totalVotesPerSecond = votesPerSecond * (level + 1)
+		button.find(".genBtnPrice").text(name + " - " + priceStr + "₪");
+		button.find(".genBtnLvl").text(level);
+		if (totalVotesPerSecond < 1) {
+			var waitTime = 1 / totalVotesPerSecond;
+			var message = "הצבעה כל " + waitTime + " שניות";
+			button.find(".genBtnSummary > p").text(message);
+		}
+		else {
+			var message = totalVotesPerSecond + " הצבעות לשנייה";
+			button.find(".genBtnSummary > p").text(message);
+		}
+	}
+	// Update immediately after creation
+	updateDisplay();
+
+	function buy() {
+		/*
+		Buys a instance of the generator and updates the votesPerSecond,
+		totalVotes and numberOfGenerators
+		*/
+		if (votesCounter.getVotes() < price) return;
+		votesCounter.removeVotes(price);
+		votesCounter.addVotesPerSecond(votesPerSecond);
+		price = Math.floor(price * 1.3);
+		level += 1;
+		updateDisplay();
+	}
+
+	button.on("click", buy);
+
+	this.checkAvailability = function() {
+		/*
+		See if this generator can be bought and change the button class if it
+		can be.
+		*/
+		if (votesCounter.getVotes() >= price) {
+			button.addClass("genBtnAvailable");
+		}
+		else {
+			button.removeClass("genBtnAvailable");
+		}
+	}
+
 };
 
 
@@ -168,12 +213,25 @@ function Game() {
 	"use strict";
 
 	var votesCounter = new VotesCounter();
-
-	var votesClickValue = 500;
+	var votesClickValue = 1;
 	var generators = []
+
+	// Used to configure the games 'tick' rate
+	var frameRate = 25;
+	var miliseconds = 40;
 
 	function clickEvent () {
 		votesCounter.addVotes(votesClickValue);
+	}
+
+	function updateState() {
+		/*
+		This is the main function that updates the current game state.
+		*/
+		votesCounter.updateVotes(frameRate);
+		generators.forEach(function (generator) {
+			generator.checkAvailability();
+		})
 	}
 
 	this.reset = function() {
@@ -185,16 +243,13 @@ function Game() {
 		// Create generators:
 		var gensDiv = $("#generators");
 		generatorsDetails.forEach(function (item) {
-			generators.push(new Generator(votesClickValue, gensDiv, item));
+			generators.push(new Generator(votesCounter, gensDiv, item));
 		});
-		//$.getJSON("js/generators.json", function(data) {
-		//	console.log(data)
-		//});
-
 	}
 
 	this.start = function() {
 		console.log("starting");
+		setInterval(updateState, miliseconds);
 	}
 }
 
