@@ -181,17 +181,14 @@ function Generator(votesCounter, generatorsDiv, details) {
 	function updateDisplay() {
 		var priceStr = numNames(price);
 		var totalVotesPerSecond = votesPerSecond * (level + 1);
+		var message = totalVotesPerSecond + " הצבעות לשנייה";
 		button.find(".genBtnPrice").text(name + " - " + priceStr + "₪");
 		button.find(".genBtnLvl").text(level);
-		var message = "הצבעה כל " + waitTime + " שניות";
 		if (totalVotesPerSecond < 1) {
 			var waitTime = 1 / totalVotesPerSecond;
-			button.find(".genBtnSummary > p").text(message);
+			message = "הצבעה כל " + waitTime + " שניות";
 		}
-		else {
-			message = totalVotesPerSecond + " הצבעות לשנייה";
-			button.find(".genBtnSummary > p").text(message);
-		}
+		button.find(".genBtnSummary > p").text(message);
 	}
 
 	function buy() {
