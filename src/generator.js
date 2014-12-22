@@ -80,7 +80,7 @@ function Generator(votesCounter, generatorsDiv, details) {
 	function updateDisplay() {
 		var priceStr = numNames(price);
 		var totalVotesPerSecond = votesPerSecond * (level + 1);
-		var message = totalVotesPerSecond + " הצבעות לשנייה";
+		var message = numNames(totalVotesPerSecond) + " הצבעות לשנייה";
 		button.find(".genBtnPrice").text(name + " - " + priceStr + "₪");
 		button.find(".genBtnLvl").text(level);
 		if (totalVotesPerSecond < 1) {

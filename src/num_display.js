@@ -46,5 +46,5 @@ function numNames(num) {
 		thousandsCount++;
 	}
 	var numInRange = num / Math.pow(1000, thousandsCount);
-	return numInRange.toFixed(3) + " " + rangeNames[thousandsCount-1];
+	return numInRange.toFixed(1) + " " + rangeNames[thousandsCount-1];
 }

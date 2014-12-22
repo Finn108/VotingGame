@@ -20,7 +20,7 @@ function VotesCounter(initialVotes, initialVotesPerSecond) {
 		Writes the current votes and votes-per-second count to the screen
 		*/
 		votesDisplay.text(numNames(currentVotes));
-		votesPSDisplay.text("(" + votesPerSecond + " קולות לשנייה)");
+		votesPSDisplay.text("(" + numNames(votesPerSecond) + " קולות לשנייה)");
 	}
 
 	// Public methods
