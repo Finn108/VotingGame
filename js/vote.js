@@ -50,7 +50,7 @@ function numNames(num) {
 		thousandsCount++;
 	}
 	var numInRange = num / Math.pow(1000, thousandsCount);
-	return numInRange.toFixed(3) + " " + rangeNames[thousandsCount-1];
+	return numInRange.toFixed(1) + " " + rangeNames[thousandsCount-1];
 }
 
 // Main Classes
@@ -70,7 +70,7 @@ function VotesCounter(initialVotes, votesPerSecond) {
 		Writes the current votes and votes-per-second count to the screen
 		*/
 		votesDisplay.text(numNames(currentVotes));
-		votesPSDisplay.text("(" + votesPerSecond + " קולות לשנייה)");
+		votesPSDisplay.text("(" + numNames(votesPerSecond) + " קולות לשנייה)");
 	}
 
 	this.updateVotes = function(frameRate) {
@@ -181,7 +181,7 @@ function Generator(votesCounter, generatorsDiv, details) {
 	function updateDisplay() {
 		var priceStr = numNames(price);
 		var totalVotesPerSecond = votesPerSecond * (level + 1);
-		var message = totalVotesPerSecond + " הצבעות לשנייה";
+		var message = numNames(totalVotesPerSecond) + " הצבעות לשנייה";
 		button.find(".genBtnPrice").text(name + " - " + priceStr + "₪");
 		button.find(".genBtnLvl").text(level);
 		if (totalVotesPerSecond < 1) {
