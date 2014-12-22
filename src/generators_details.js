@@ -1,3 +1,7 @@
+/*
+Initiation details for the generators. Hold basic but usefull information.
+*/
+
 var generatorsDetails = [
 	{
 		id: "Voter",

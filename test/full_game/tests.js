@@ -1,5 +1,13 @@
+function startGame() {
+	var game = new Game();
+	game.reset();
+	game.start();
+	return game;
+}
+
 QUnit.module("Click tests");
 QUnit.test("single click test", function(assert) {
+	var game = startGame();
 	var note = $("#noteImg");
 	var results = $("#votesNumText");
 	note.click();
@@ -8,6 +16,7 @@ QUnit.test("single click test", function(assert) {
 
 QUnit.test("10 clicks to get Voter", function(assert) {
 	var done = assert.async();
+	var game = startGame();
 	var note = $("#noteImg");
 	var voterBtn = $("#genVoter");
 	var results = $("#votesNumText");

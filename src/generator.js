@@ -1,19 +1,24 @@
-function Generator(votesCounter, generatorsDiv, details) {
-	/*
-	A purchasable item that constantly generates votes.
+/*
+A purchasable item that constantly generates votes.
 
-	- generatorsDiv: jQuery of the generators container div ( $("#geneartors") )
-	- details: an object with the necessary details about this generator.
-		Example:
-		{
-			id: "Voter",
-			name: "voter",
-			description: "He'll always vote for you!",
-			price: 5,
-			picture: "voter.png",
-		}
-	*/
+- votesCounter: The votes counter object that the generator will update
+- generatorsDiv: jQuery of the generators container div ( $("#geneartors") )
+- details: an object with the necessary details about this generator.
+	Example:
+	{
+		id: "Voter",
+		name: "voter",
+		description: "He'll always vote for you!",
+		price: 5,
+		picture: "voter.png",
+	}
+*/
+
+function Generator(votesCounter, generatorsDiv, details) {
+	"use strict";
+
 	console.log("creating generator: " + details.id);
+
 	// Private attributes
 	var button = initElement();
 	var price = details.price;
@@ -40,10 +45,16 @@ function Generator(votesCounter, generatorsDiv, details) {
 		var summaryTextElem = document.createElement("p");
 		var priceStr = numNames(price);
 
-		btnElem.id = "gen" + this.id;
+		btnElem.id = "gen" + details.id;
 		btnElem.className = "genBtn";
 
-		imgElem.src = "assets/" + details.picture;
+		// Used for testing
+		if (details.picture.indexOf("assets") === -1) {
+			imgElem.src = "assets/" + details.picture;
+		}
+		else {
+			imgElem.src = details.picture;
+		}
 		imgElem.className = "genBtnPic";
 
 		priceElem.className = "genBtnPrice";
@@ -69,17 +80,14 @@ function Generator(votesCounter, generatorsDiv, details) {
 	function updateDisplay() {
 		var priceStr = numNames(price);
 		var totalVotesPerSecond = votesPerSecond * (level + 1);
+		var message = totalVotesPerSecond + " הצבעות לשנייה";
 		button.find(".genBtnPrice").text(name + " - " + priceStr + "₪");
 		button.find(".genBtnLvl").text(level);
-		var message = "הצבעה כל " + waitTime + " שניות";
 		if (totalVotesPerSecond < 1) {
 			var waitTime = 1 / totalVotesPerSecond;
-			button.find(".genBtnSummary > p").text(message);
+			message = "הצבעה כל " + waitTime + " שניות";
 		}
-		else {
-			message = totalVotesPerSecond + " הצבעות לשנייה";
-			button.find(".genBtnSummary > p").text(message);
-		}
+		button.find(".genBtnSummary > p").text(message);
 	}
 
 	function buy() {

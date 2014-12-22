@@ -1,3 +1,8 @@
+/*
+Details for the different upgrades. Might be seperated to a few files in the
+future depends on how complex the upgrades will become.
+*/
+
 var upgradesDetails = [
 	{
 		id: "ClickPlus1",
