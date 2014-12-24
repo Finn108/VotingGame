@@ -46,6 +46,9 @@ module.exports = function(grunt) {
 					devDependencies: true,
 				},
 			},
+			task2: {
+				src: ['note_opening.html'],
+			}
 		},
 	});
 
