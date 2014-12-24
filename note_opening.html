@@ -88,13 +88,21 @@
 	</div>
 	<!-- bower:js -->
 	<script src="bower_components/jquery/dist/jquery.js"></script>
-	<script src="bower_components/jquery-rotate/jquery.rotate.js"></script>
 	<!-- endbower -->
 	<script>
+	(function($){
+		$.fn.disableSelection = function() {
+			return this
+					 .attr('unselectable', 'on')
+					 .css('user-select', 'none')
+					 .on('selectstart', false);
+		};
+	})(jQuery);
 	$(document).ready(function () {
 		$("#noteTitle").keydown(function (event) {
 			if (event.which === 13) {
 				this.readOnly = true;
+				$(this).disableSelection();
 				$("#noteSubtitle").focus();
 				event.preventDefault()
 			}
@@ -103,7 +111,7 @@
 		$("#noteSubtitle").keydown(function (event) {
 			if (event.which === 13) {
 				this.readOnly = true;
-				//$("#note").rotate(30);
+				$(this).disableSelection();
 				event.preventDefault();
 				$("#note").addClass("rot");
 			}
