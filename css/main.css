@@ -64,6 +64,13 @@ body {
 	box-shadow: 0px 0px 0px;
 }
 
+.noteHint {
+	position: absolute;
+	top: 20%;
+	left: 50%;
+	transform: translate(-50%);
+}
+
 #votesNumText {
 	font-size: 48px;
 	/*display: none; -  Used for jQuery fade in. We'll remove for now... */
