@@ -51,7 +51,7 @@ function VotesCounter(initialVotes, initialVotesPerSecond) {
 		votesPerSecond += numOfVPS;
 		refreshDisplay();
 	};
-	
+
 	this.removeVotesPerSecond = function (numOfVPS) {
 		votesPerSecond -= numOfVPS;
 		refreshDisplay();
