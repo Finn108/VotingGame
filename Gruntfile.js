@@ -60,5 +60,5 @@ module.exports = function(grunt) {
 
 
 	grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'wiredep']);
-	grunt.registerTask('test', ['concat', 'uglify', 'wiredep', 'qunit']);
+	grunt.registerTask('test', ['jshint', 'concat', 'uglify', 'wiredep', 'qunit']);
 };

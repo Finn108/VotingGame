@@ -19,7 +19,7 @@ Animation sequences used in the game
 	}
 	to {
 		-webkit-transform: translate(-50%, -50%) rotate(5deg);
-	}	
+	}
 }
 
 .anim.tilt {
@@ -30,5 +30,6 @@ Animation sequences used in the game
 }
 
 .noanim.tilt {
-	transform: translate(-50%, -50%) rotate(5deg);	
+	-webkit-transform: translate(-50%, -50%) rotate(5deg) !important;
+	transform: translate(-50%, -50%) rotate(5deg) !important;
 }

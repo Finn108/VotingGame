@@ -28,7 +28,7 @@ QUnit.test("card rotates after name and title input", function(assert) {
 	// Start the opening sequence
 	openingSequence();
 
-	setTimeout(function () {
+	setTimeout(function() {
 		assert.equal(
 			document.activeElement.id,
 			"noteTitle",
@@ -44,7 +44,7 @@ QUnit.test("card rotates after name and title input", function(assert) {
 
 		enterValue("description");
 
-		setTimeout( function () {
+		setTimeout( function() {
 			var note = $("#note");
 			assert.ok(
 				noteRotateMatrixRe.test(note.css("transform")),
@@ -65,7 +65,7 @@ QUnit.test("hints display", function(assert){
 
 	assert.ok(! noteHint.is(":visible"), "Hint should be invisible at first");
 
-	setTimeout(function () {
+	setTimeout(function() {
 		assert.equal(
 			noteHint.text(),
 			"בבקשה תרשום את אות (או אותיות) המפלגה שלך",
@@ -82,7 +82,7 @@ QUnit.test("hints display", function(assert){
 
 		}, 700);
 
-		setTimeout(function () {
+		setTimeout(function() {
 			assert.equal(
 				noteHint.text(),
 				"בבקשה תרשום את שם המפלגה שלך",
@@ -99,7 +99,7 @@ QUnit.test("hints display", function(assert){
 				);
 			}, 700);
 
-			setTimeout(function () {
+			setTimeout(function() {
 				assert.equal(
 					noteHint.text(),
 					"לחץ כדי להצביע",
@@ -110,7 +110,7 @@ QUnit.test("hints display", function(assert){
 
 				$("#note").click();
 
-				setTimeout(function () {
+				setTimeout(function() {
 					assert.ok(
 						! noteHint.is(":visible"),
 						"Third hint hide after note click"
@@ -120,4 +120,22 @@ QUnit.test("hints display", function(assert){
 			}, 2500);
 		}, 2500);
 	}, 3800);
+});
+
+QUnit.test("skip opening", function(assert){
+	"use strict";
+	var done = assert.async();
+	skipOpening();
+
+	setTimeout(function() {
+		assert.ok(! $("hintBox").is(":visible"), "No hints");
+		assert.ok(
+			noteRotateMatrixRe.test($("#note").css("transform")),
+			"Note tilted"
+		);
+		assert.ok($("#noteTitle").val().length !== 0);
+		assert.ok($("#noteSubtitle").val().length !== 0);
+		done();
+	}, 1200);
+
 });

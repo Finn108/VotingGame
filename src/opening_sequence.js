@@ -90,6 +90,8 @@ function openingSequence() {
 }
 
 function skipOpening() {
+	"use strict";
+
 	var note = $("#note");
 	var noteTitle = note.children().first();
 	var noteDesc = note.children().last();
@@ -97,4 +99,7 @@ function skipOpening() {
 	noteTitle.val("שקר");
 	noteDesc.val("מפלגת הכול שקרים");
 	note.addClass("noanim tilt");
+	note.children().attr("readonly", true);
+	note.children().disableSelection();
+	note.fadeIn();
 }
