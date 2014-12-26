@@ -37,9 +37,20 @@ function Game() {
 			generator.checkAvailability();
 		});
 	}
-
-	this.reset = function() {
+	
+	this.reset = function(skipIntro) {
+		/*
+		Reset the game state
+		
+		-skipIntro: whether to show the intro or not
+		*/
 		console.log("reseting");
+		
+		if (!skipIntro) {
+			openingSequence();
+		}
+		else skipOpening();
+		
 
 		// Attach click event to vote note
 		$("#noteImg").on("click", clickEvent);

@@ -16,24 +16,51 @@ body {
 /* Center Elements */
 /*******************/
 
-#noteImg {
+#note {
+	width: 208px;
+	height: 296px;
+	background-color: white;
+	box-shadow: 0px 0px 10px;
 	position: absolute;
-	top: 150px;
+	top: 50%;
 	left: 50%;
-	transform: translate(-50%,0) rotate(5deg);
-	display: block;
-	box-shadow: 0px 0px 5px;
-	outline-style: solid;
-	outline-width: 1px;
-	box-shadow: 0px 0px 5px;
-	/*display: none; - Used for jQuery fade in. We'll remove for now... */
+	margin-right: -50%;
+	-webkit-transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%);
 }
 
-#noteImg:hover {
+#note > input,
+#note > textarea {
+	font-family: carmela;
+	width: 200px;
+	direction: rtl;
+	position: absolute;
+	text-align: center;
+	border-style: none;
+}
+
+#note > *:focus {
+	outline: 0;
+}
+
+#noteTitle {
+	font-size: 80px;
+	top: 30%;
+	left: 4px;
+}
+
+#noteSubtitle {
+	font-size: 25px;
+	bottom: 10px;
+	resize: none;
+	left: 2px;
+}
+
+#note:hover {
 	box-shadow: 0px 0px 10px;
 }
 
-#noteImg:active {
+#note:active {
 	box-shadow: 0px 0px 0px;
 }
 
