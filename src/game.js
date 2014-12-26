@@ -19,13 +19,32 @@ function Game() {
 
 	// Used to reference the game object from nested functions
 	var game = this;
+	var reachedLastvoteEvent = false;
 
 	// Used to configure the games 'tick' rate
 	var frameRate = 25;
 	var miliseconds = 40;
 
-	function clickEvent () {
+	function clickEvent() {
 		game.votesCounter.addVotes(game.votesClickValue);
+	}
+
+	function votesChangedEvent() {
+		if (reachedLastvoteEvent) return;
+
+		if (voteEvents.length === 0) {
+			console.log("reached final vote events");
+			reachedLastvoteEvent = true;
+			return;
+		}
+
+		var currentVotes = game.votesCounter.getVotes();
+
+		if (currentVotes >= voteEvents[0].vote) {
+			var currentEvent = voteEvents[0];
+			voteEvents.shift();
+			currentEvent.func(game);
+		}
 	}
 
 	function updateState() {
@@ -54,6 +73,10 @@ function Game() {
 
 		// Attach click event to vote note
 		$("#note").on("click", clickEvent);
+		$(this.votesCounter).on("votesChanged", votesChangedEvent);
+
+		// Attach votes changed event
+		//votesCounter.
 
 		// Create generators:
 		var gensDiv = $("#generators");

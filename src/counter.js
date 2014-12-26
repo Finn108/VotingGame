@@ -10,9 +10,13 @@ function VotesCounter(initialVotes, initialVotesPerSecond) {
 
 	// Private attributes
 	var currentVotes = initialVotes || 0;
+	var previousVotes = currentVotes; // Used for event triggers
 	var votesPerSecond = initialVotesPerSecond || 0;
 	var votesDisplay = $("#votesNumText");
 	var votesPSDisplay = $("#votesPerSecText");
+
+	// Reference self from nested functions
+	var counter = this;
 
 	// Private methods
 	function refreshDisplay() {
@@ -21,6 +25,11 @@ function VotesCounter(initialVotes, initialVotesPerSecond) {
 		*/
 		votesDisplay.text(numNames(currentVotes));
 		votesPSDisplay.text("(" + numNames(votesPerSecond) + " קולות לשנייה)");
+		if (previousVotes !== currentVotes) {
+			$(counter).trigger("votesChanged");
+			previousVotes = currentVotes;
+		}
+
 	}
 
 	// Public methods
