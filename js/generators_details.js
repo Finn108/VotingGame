@@ -30,6 +30,7 @@
 		description: "כל ממשלה צריכה אחד.<br>ועוד אחד לספרדים.",
 		price: 8100,
 		picture: "rabi.png",
+<<<<<<< HEAD
 	},
 	{
 		id: "Gays",
@@ -86,5 +87,7 @@
 		description: "אל תשאל.",
 		price: 345000000000,
 		picture: "owl.png",
+=======
+>>>>>>> parent of eb39365... Added new generators, tweaked CSS and applied numNamers
 	}
-];
+]
