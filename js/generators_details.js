@@ -1,9 +1,9 @@
-var generatorsDetails = [
+﻿var generatorsDetails = [
 	{
 		id: "Voter",
 		name: "מצביע",
 		votesPerSec: 0.2,
-		description: "יצביע בשבילך כל 5 שניות לא משנה מה תעשה. כמו אנשים אחרים שאתה מכיר",
+		description: "יצביע בשבילך כל 5 שניות לא משנה מה תעשה. כמו אנשים אחרים שאתה מכיר.",
 		price: 10,
 		picture: "loneVoter.png",
 	},
@@ -27,7 +27,7 @@ var generatorsDetails = [
 		id: "Rabi",
 		name: "רב",
 		votesPerSec: 30,
-		description: "כל ממשלה צריכה אחד.<br>ועוד אחד לספרדים",
+		description: "כל ממשלה צריכה אחד.<br>ועוד אחד לספרדים.",
 		price: 8100,
 		picture: "rabi.png",
 	},
@@ -43,7 +43,7 @@ var generatorsDetails = [
 		id: "Survey",
 		name: "סקר",
 		votesPerSec: 1250,
-		description: "מינה צמח קוראת בקלפי(ם)",
+		description: "מינה צמח קוראת בקלפי(ם).",
 		price: 750000,
 		picture: "survey.png",
 	},
@@ -75,7 +75,7 @@ var generatorsDetails = [
 		id: "Satan",
 		name: "עסקה עם השטן",
 		votesPerSec: 66666666,
-		description: "היישות השנייה בגודלה...",
+		description: "היישות השנייה בעוצמתה...",
 		price: 66000000,
 		picture: "satan.png",
 	},
