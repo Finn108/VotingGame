@@ -1,9 +1,9 @@
-﻿var generatorsDetails = [
+var generatorsDetails = [
 	{
 		id: "Voter",
 		name: "מצביע",
 		votesPerSec: 0.2,
-		description: "יצביע בשבילך כל 5 שניות לא משנה מה תעשה. כמו אנשים אחרים שאתה מכיר.",
+		description: "יצביע בשבילך כל 5 שניות לא משנה מה תעשה. כמו אנשים אחרים שאתה מכיר",
 		price: 10,
 		picture: "loneVoter.png",
 	},
@@ -27,10 +27,9 @@
 		id: "Rabi",
 		name: "רב",
 		votesPerSec: 30,
-		description: "כל ממשלה צריכה אחד.<br>ועוד אחד לספרדים.",
+		description: "כל ממשלה צריכה אחד.<br>ועוד אחד לספרדים",
 		price: 8100,
 		picture: "rabi.png",
-<<<<<<< HEAD
 	},
 	{
 		id: "Gays",
@@ -44,7 +43,7 @@
 		id: "Survey",
 		name: "סקר",
 		votesPerSec: 1250,
-		description: "מינה צמח קוראת בקלפי(ם).",
+		description: "מינה צמח קוראת בקלפי(ם)",
 		price: 750000,
 		picture: "survey.png",
 	},
@@ -76,7 +75,7 @@
 		id: "Satan",
 		name: "עסקה עם השטן",
 		votesPerSec: 66666666,
-		description: "היישות השנייה בעוצמתה...",
+		description: "היישות השנייה בגודלה...",
 		price: 66000000,
 		picture: "satan.png",
 	},
@@ -87,7 +86,5 @@
 		description: "אל תשאל.",
 		price: 345000000000,
 		picture: "owl.png",
-=======
->>>>>>> parent of eb39365... Added new generators, tweaked CSS and applied numNamers
 	}
-]
+];

@@ -95,20 +95,14 @@ body {
 }
 
 .genBtnPrice {
-<<<<<<< HEAD
-	font-size: 18px;
-	font-weight: bold;
-	top: 8px;
-=======
-	font-size: 30px;
-	top: 2px;
->>>>>>> parent of eb39365... Added new generators, tweaked CSS and applied numNamers
+	font-size: 24px;
+	top: 5px;
 	right: 70px;
 }
 
 .genBtnDesc {
 	font-size: 14px;
-	top: 37px;
+	top: 35px;
 	right: 70px;
 	line-height: 90%;
 	left: 50px;
@@ -119,7 +113,6 @@ body {
 	top: -5px;
 	left: 27px;
 	opacity: 0.5;
-	transform: translate(-40%,0);
 }
 
 .genBtnSummary {
