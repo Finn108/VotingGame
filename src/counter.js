@@ -73,4 +73,11 @@ function VotesCounter(initialVotes, initialVotesPerSecond) {
     */
     votesDisplay.parent().fadeIn();
   };
+
+  this.revealVPS = function() {
+    /*
+    Fades the votes per second in.
+    */
+    votesPSDisplay.fadeIn();
+  };
 }

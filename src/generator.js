@@ -23,7 +23,7 @@ function Generator(votesCounter, generatorsDiv, details) {
 	var button = initElement();
 	var price = details.price;
 	var name = details.name;
-	var level = 0;
+  var level = 0;
 	var votesPerSecond = details.votesPerSec;
 	// Used to reference the Generator within nested functions
 	var generator = this;
@@ -102,6 +102,7 @@ function Generator(votesCounter, generatorsDiv, details) {
 		price = Math.floor(price * 1.3);
 		level += 1;
 		updateDisplay();
+    $(generator).trigger("buy", generator);
 	}
 
 	this.checkAvailability = function() {
@@ -144,6 +145,10 @@ function Generator(votesCounter, generatorsDiv, details) {
     */
     button.animate({left: "0%"}, 2000, "easeOutCubic");
     generator.visible = true;
+  };
+
+  this.getLevel = function () {
+    return level;
   };
 
 	// Update immediately after creation

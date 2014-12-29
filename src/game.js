@@ -47,6 +47,17 @@ function Game() {
 		}
 	}
 
+  function generatorBuyEvent(event, gen) {
+    /*
+    Runs the relevant 
+    */
+    var genId = gen.id;
+    var level = gen.getLevel();
+    if (genId in genBuyEvents && level in genBuyEvents[genId]) {
+      genBuyEvents[genId][level](game);
+    }
+  }
+
 	function updateState() {
 		/*
 		This is the main function that updates the current game state.
@@ -81,9 +92,10 @@ function Game() {
 		// Create generators:
 		var gensDiv = $("#generators");
 		generatorsDetails.forEach(function (item) {
-			this.generators.push(new Generator(this.votesCounter,
-											   gensDiv,
-											   item));
+      var gen = new Generator(this.votesCounter, gensDiv, item);
+			this.generators.push(gen);
+      $(gen).on("buy", generatorBuyEvent);
+
 		}, game);
 
 		// Create upgrades:
