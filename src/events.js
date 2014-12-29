@@ -5,12 +5,11 @@ The event class and its derivitives. These objects are in charge of finding new 
 // Events that happen because of points change
 var voteEvents = [
 	{
-		vote: 1,
+		vote: 3,
 		func: function (game) {
-			var voterGenerator = $.grep(game.generators, function(item) {
-					return item.id === "Voter";
-			})[0];
-			console.log("event for 1 vote");
+			console.log("event for 3 votes");
+      console.log(game.votesCounter);
+      game.votesCounter.revealCounter();
 		}
 	}
 ];

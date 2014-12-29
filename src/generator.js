@@ -30,6 +30,8 @@ function Generator(votesCounter, generatorsDiv, details) {
 
 	// Public attributes
 	this.id = details.id;
+  this.peekedIn = false;
+  this.visible = false;
 
 	function initElement() {
 		/*
@@ -75,7 +77,6 @@ function Generator(votesCounter, generatorsDiv, details) {
 		generatorsDiv.append(jqBtn);
 		return jqBtn;
 	}
-
 
 	function updateDisplay() {
 		var priceStr = numNames(price);
@@ -129,8 +130,37 @@ function Generator(votesCounter, generatorsDiv, details) {
 		updateDisplay();
 	};
 
+  this.peekIn = function () {
+    /*
+    Moves the button to the screen just a tiny bit
+    */
+    button.animate({left: "+=20px"}, 1000, "easeOutCubic");
+    generator.peekedIn = true;
+  };
+
+  this.reveal = function () {
+    /*
+    Moves the entire button to the screen
+    */
+    button.animate({left: "0%"}, 2000, "easeOutCubic");
+    generator.visible = true;
+  };
+
 	// Update immediately after creation
 	updateDisplay();
 	button.on("click", buy);
+  $(votesCounter).on("votesChanged", function () {
+    if (generator.visible) return;
+
+    var currentVotes = votesCounter.getVotes();
+
+    // Peek in when the current number of votes reaches 70%
+    if (! generator.peekedIn && currentVotes >= (price * 7) / 10) {
+      generator.peekIn();
+    }
+
+    if (currentVotes >= price) generator.reveal();
+
+  });
 
 }

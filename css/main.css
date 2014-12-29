@@ -113,7 +113,7 @@ body {
 	background: linear-gradient(#b5e655, #96ca2d);
 	width: 350px;
 	height: 65px;
-	left: 0%;
+	left: -100%;
 	cursor: pointer;
 	position: relative;
 	color: grey;

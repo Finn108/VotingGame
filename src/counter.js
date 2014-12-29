@@ -65,4 +65,12 @@ function VotesCounter(initialVotes, initialVotesPerSecond) {
 		votesPerSecond -= numOfVPS;
 		refreshDisplay();
 	};
+
+  this.revealCounter = function() {
+    /*
+    Fades the counter in. Uses the votesDisplay parent since there are
+    two different parts
+    */
+    votesDisplay.parent().fadeIn();
+  };
 }

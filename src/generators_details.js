@@ -64,7 +64,7 @@ var generatorsDetails = [
 		name: "מבצע צבאי",
 		votesPerSec: 40000,
 		description: "תראו שם! הסחת דעת!<BR> (אמור לעלות 7 מצביעים, לא שקלים)",
-		price: 7,
+		price: 40000000,
 		picture: "army.png",
 	},
 		{
