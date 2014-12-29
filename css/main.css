@@ -95,14 +95,14 @@ body {
 }
 
 .genBtnPrice {
-	font-size: 24px;
-	top: 5px;
+	font-size: 30px;
+	top: 2px;
 	right: 70px;
 }
 
 .genBtnDesc {
 	font-size: 14px;
-	top: 35px;
+	top: 37px;
 	right: 70px;
 	line-height: 90%;
 	left: 50px;
