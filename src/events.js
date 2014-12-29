@@ -17,7 +17,7 @@ var voteEvents = [
 // They are arranged: genBuyEvents[genId][numOfBuys]
 var genBuyEvents = {
   Voter: {
-    4: function (game) {
+    5: function (game) {
       console.log("got buy trigger");
       game.votesCounter.revealVPS();
     }
