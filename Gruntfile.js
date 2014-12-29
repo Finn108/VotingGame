@@ -56,5 +56,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-wiredep');
 
 
-	grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'wiredep', 'qunit']);
+	grunt.registerTask('test', ['jshint', 'concat', 'uglify', 'wiredep', 'qunit']);
+	grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'wiredep']);
 };
