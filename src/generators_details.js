@@ -8,7 +8,7 @@ var generatorsDetails = [
 		name: "מצביע",
 		votesPerSec: 0.2,
 		description: "יצביע בשבילך כל 5 שניות לא משנה מה תעשה. כמו אנשים אחרים שאתה מכיר",
-		price: 10,
+		price: 20,
 		picture: "loneVoter.png",
 	},
 	{
