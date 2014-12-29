@@ -6,19 +6,19 @@ Animation sequences used in the game
 /* Slightly rotates the note element to the right */
 @keyframes noteTilt {
 	from {
-		transform: translate(-50%, -50%) rotate(0deg);
+		transform: translate(-50%, 0) rotate(0deg);
 	}
 	to {
-		transform: translate(-50%, -50%) rotate(5deg);
+		transform: translate(-50%, 0) rotate(5deg);
 	}
 }
 
 @-webkit-keyframes noteTilt {
 	from {
-		-webkit-transform: translate(-50%, -50%) rotate(0deg);
+		-webkit-transform: translate(-50%, 0) rotate(0deg);
 	}
 	to {
-		-webkit-transform: translate(-50%, -50%) rotate(5deg);
+		-webkit-transform: translate(-50%, 0) rotate(5deg);
 	}
 }
 
@@ -30,6 +30,6 @@ Animation sequences used in the game
 }
 
 .noanim.tilt {
-	-webkit-transform: translate(-50%, -50%) rotate(5deg) !important;
-	transform: translate(-50%, -50%) rotate(5deg) !important;
+	-webkit-transform: translate(-50%, 0) rotate(5deg) !important;
+	transform: translate(-50%, 0) rotate(5deg) !important;
 }

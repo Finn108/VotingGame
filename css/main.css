@@ -22,11 +22,11 @@ body {
 	background-color: white;
 	box-shadow: 0px 0px 10px;
 	position: absolute;
-	top: 50%;
+	top: 130px;
 	left: 50%;
 	margin-right: -50%;
-	-webkit-transform: translate(-50%, -50%);
-	transform: translate(-50%, -50%);
+	/*-webkit-transform: translate(-50%, -50%); */
+	transform: translate(-50%, 0);
 }
 
 #note > input,
@@ -66,7 +66,7 @@ body {
 
 .noteHint {
 	position: absolute;
-	top: 20%;
+	top: 90px;
 	left: 50%;
 	transform: translate(-50%);
 }
@@ -107,6 +107,8 @@ body {
 	position: absolute;
 	top: 150px;
 	left: 0%;
+  /*  Prevents scrolling outside of page size */
+  overflow: hidden;
 }
 
 .genBtn {

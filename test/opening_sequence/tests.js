@@ -1,4 +1,4 @@
-var noteRotateMatrixRe = /matrix\(0.99619\d+\, 0\.08715\d+\, -0\.08715\d+\, 0\.99619\d+\, -104\, -148\)/;
+var noteRotateMatrixRe = /matrix\(0.99619\d+\, 0\.08715\d+\, -0\.08715\d+\, 0\.99619\d+\, -104\, 0\)/;
 
 function enterValue(field) {
 	/*
