@@ -11,7 +11,13 @@ function addCommas(num) {
 	*/
 	"use strict";
 
-	var numStr = String(Math.floor(num));
+  var numStr = "";
+  if (num > 1) {
+	  numStr += String(Math.floor(num));
+  }
+  else {
+    numStr += num;
+  }
 	var numSepRgx = /(\d+)(\d{3})/;
 	while (numSepRgx.test(numStr)) {
 		numStr = numStr.replace(numSepRgx, '$1' + ',' + '$2');

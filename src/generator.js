@@ -46,9 +46,17 @@ function Generator(votesCounter, generatorsDiv, details) {
 		var summaryElem = document.createElement("div");
 		var summaryTextElem = document.createElement("p");
 		var priceStr = numNames(price);
+		var vpsText = numNames(details.votesPerSec) + " הצבעות לשנייה";
+
+    // Change the votes per second text
+		if (votesPerSecond < 1) {
+			var waitTime = 1 / votesPerSecond;
+			vpsText = "הצבעה כל " + waitTime + " שניות";
+		}
 
 		btnElem.id = "gen" + details.id;
 		btnElem.className = "genBtn";
+
 
 		// Used for testing
 		if (details.picture.indexOf("assets") === -1) {
@@ -69,7 +77,7 @@ function Generator(votesCounter, generatorsDiv, details) {
 		levelElem.textContent = 0;
 
 		summaryElem.className = "genBtnSummary";
-		summaryTextElem.textContent = ""; // Will be added dynamically later
+		summaryTextElem.textContent = vpsText;
 		summaryElem.appendChild(summaryTextElem);
 
 		var jqBtn = $(btnElem);
@@ -81,14 +89,8 @@ function Generator(votesCounter, generatorsDiv, details) {
 	function updateDisplay() {
 		var priceStr = numNames(price);
 		var totalVotesPerSecond = votesPerSecond * (level + 1);
-		var message = numNames(totalVotesPerSecond) + " הצבעות לשנייה";
 		button.find(".genBtnPrice").text(name + " - " + priceStr + "₪");
 		button.find(".genBtnLvl").text(level);
-		if (totalVotesPerSecond < 1) {
-			var waitTime = 1 / totalVotesPerSecond;
-			message = "הצבעה כל " + waitTime + " שניות";
-		}
-		button.find(".genBtnSummary > p").text(message);
 	}
 
 	function buy() {
