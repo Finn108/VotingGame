@@ -49,7 +49,7 @@ function Game() {
 
   function generatorBuyEvent(event, gen) {
     /*
-    Runs the relevant 
+    Runs the relevant
     */
     var genId = gen.id;
     var level = gen.getLevel();
@@ -108,5 +108,18 @@ function Game() {
 	this.start = function() {
 		console.log("starting");
 		setInterval(updateState, miliseconds);
+	};
+
+	this.getGenById = function(genId) {
+		/*
+		Returns the generator with the given ID
+		*/
+		var generator = $.grep(
+			game.generators,
+			function(item) {
+				return item.id === genId;
+			}
+		)[0];
+		return generator;
 	};
 }

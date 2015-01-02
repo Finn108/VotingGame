@@ -57,3 +57,10 @@ QUnit.test("VPS counter appears after 4 Voters", function(assert) {
     }, 50);
   }, 50);
 });
+
+QUnit.module("Game object function tests");
+QUnit.test("getGenById", function(assert) {
+	var game = startGame();
+	var voterGen = game.getGenById("Voter");
+	assert.equal(voterGen.id, "Voter");
+});
