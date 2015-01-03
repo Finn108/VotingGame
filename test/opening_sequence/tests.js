@@ -68,36 +68,20 @@ QUnit.test("hints display", function(assert){
 	setTimeout(function() {
 		assert.equal(
 			noteHint.text(),
-			"בבקשה תרשום את אות (או אותיות) המפלגה שלך",
+			"הקלד את אותיות המפלגה החדשה שלך",
 			"First hint text"
 		);
 		assert.ok(noteHint.is(":visible"), "First hint visible");
 		enterValue("title");
 
 		setTimeout(function() {
-			assert.ok(
-				! noteHint.is(":visible"),
-				"Hint should hide after enter"
-			);
-
-		}, 700);
-
-		setTimeout(function() {
 			assert.equal(
 				noteHint.text(),
-				"בבקשה תרשום את שם המפלגה שלך",
+				"הקלד את שם המפלגה החדשה שלך",
 				"Second hint text"
 			);
 
-			assert.ok(noteHint.is(":visible"), "Second hint visible");
-
-			enterValue("description");
-			setTimeout(function() {
-				assert.ok(
-					! noteHint.is(":visible"),
-					"Second hint hide after enter"
-				);
-			}, 700);
+      enterValue("description");
 
 			setTimeout(function() {
 				assert.equal(
@@ -105,8 +89,6 @@ QUnit.test("hints display", function(assert){
 					"לחץ כדי להצביע",
 					"Third hint text"
 				);
-
-				assert.ok(noteHint.is(":visible"), "Third hint visible");
 
 				$("#note").click();
 
@@ -117,8 +99,8 @@ QUnit.test("hints display", function(assert){
 					);
 					done();
 				}, 700);
-			}, 2500);
-		}, 2500);
+			}, 1500);
+		}, 1000);
 	}, 3800);
 });
 

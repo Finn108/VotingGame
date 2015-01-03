@@ -28,6 +28,9 @@ function Upgrade(game, upgradersDiv, details) {
 	var upgradeBtn = upgradeElem.find(".upgradeBtnBuy");
 	var price = details.price;
 	var upgradeFunc = details.func;
+  // Reference this in nested functions:
+  var upgrade = this;
+
 
 	function initElement() {
 		/*
@@ -60,7 +63,7 @@ function Upgrade(game, upgradersDiv, details) {
 		return jqUpgrade;
 	}
 
-	function buy() {
+  this.buy = function () {
 		/*
 		Buys an instance of the generator and updates the votesPerSecond,
 		totalVotes and numberOfGenerators
@@ -69,7 +72,7 @@ function Upgrade(game, upgradersDiv, details) {
 		game.votesCounter.removeVotes(price);
 		upgradeFunc(game);
 		upgradeElem.fadeOut();
-	}
+	};
 
-	upgradeBtn.on("click", buy);
+	upgradeBtn.on("click", upgrade.buy);
 }
