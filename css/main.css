@@ -177,72 +177,40 @@ body {
 /*************/
 
 #upgrades {
-	background-color: #BABABA;
+	background-color: #d1d6d3;
 	position: absolute;
 	right: 0%;
-	top: 140px;
-	height: 700px;
-	border-radius: 25px 0px 0px 20px;
-	border: 2px solid #8F8F8F;
-	width: 350px;
+	top: 122px;
+	height: 510px;
+	border-radius: 25px 0px 0px 25px;
+	border: 3px solid #959595;
+	width: 315px;
 	border-right-style: none;
 	padding-top: 18px;
+	box-shadow: 0 0 10px 2px;
 }
 
 .upgrade {
-	height: 60px;
+	height: 47px;
+	width: 290px;
+	background-color: white;
+	margin-top: 14px;
+	margin-right: 14px;
+	border-radius: 9px;
 }
 
 .upgrade > div {
 	position: absolute;
+	font-size: 15px;
+	padding-top: 5px;
+	margin-right: 26px;
+	margin-left: 4px;
 }
 
-.upgradeBtnBuy {
-	cursor: pointer;
-	background-color: white;
-	width: 50px;
-	height: 50px;
-	line-height: 50px; /* Used to center the button text */
-	right: 7px;
-	border: 2px solid #8F8F8F;
-	border-radius: 10px;
-	font-size: 20px;
-	text-align: center;
-}
-
-.upgradeBtnBuy:hover {
-	background-color: black;
-	color: white;
-}
-
-.upgradeBtnBuy:active {
-	background-color: white;
-	color: black;
-}
-
-.upgradeBox {
-	background-color: white;
-	width: 275px;
-	height: 50px;
-	right: 65px;
-	border: 2px solid #8F8F8F;
-	border-radius: 10px;
-}
-
-.upgradeBox > div {
-	position: absolute;
-}
-
-.upgradeBoxTitle {
-	font-size: 16px;
-	right: 7px;
-	top: 4px;
+/*
+First div under upgrade button is the bolded price
+*/
+.upgrade > div > div:first-child {
 	font-weight: bold;
-}
-
-.upgradeBoxDesc {
-	font-size: 13px;
-	right: 7px;
-	top: 25px;
-	line-height: 90%;
+	margin-bottom: 8px;
 }

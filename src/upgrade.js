@@ -36,26 +36,19 @@ function Upgrade(game, upgradersDiv, details) {
 		upgradeElem.className = "upgrade";
 		upgradeElem.id = "upgrade" + details.id;
 
-		var buyBtnElem = document.createElement("div");
-		buyBtnElem.className = "upgradeBtnBuy";
-		buyBtnElem.textContent = "קנה!";
-
-		var boxElem = document.createElement("div");
-		boxElem.className = "upgradeBox";
+		var containerDivElem = document.createElement("div");
+		upgradeElem.appendChild(containerDivElem);
 
 		var titleElem = document.createElement("div");
 		var priceStr = numNames(details.price);
-		titleElem.className = "upgradeBoxTitle";
 		titleElem.textContent = details.name + " - " + priceStr + "₪";
-		boxElem.appendChild(titleElem);
+		containerDivElem.appendChild(titleElem);
 
 		var descElem = document.createElement("div");
-		descElem.className = "upgradeBoxDesc";
 		descElem.textContent = details.description;
-		boxElem.appendChild(descElem);
+		containerDivElem.appendChild(descElem);
 
 		var jqUpgrade = $(upgradeElem);
-		jqUpgrade.append([buyBtnElem, boxElem]);
 		upgradersDiv.append(jqUpgrade);
 		return jqUpgrade;
 	}
