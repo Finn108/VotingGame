@@ -218,13 +218,26 @@ body {
 	margin-left: 4px;
 }
 
+.upgrade.deactivated {
+  color: grey;
+}
+
+.upgrade.activated:hover {
+  background-color: #EFED4A;
+}
+
+.upgrade.activated:active {
+  background-color: white;
+}
+
 /*
-First div under upgrade button is the bolded price
+First text div under upgrade button is the bolded price
 */
 .upgrade > div > div:first-child {
 	font-weight: bold;
 	margin-bottom: 8px;
 }
+
 
 .upgrade > img {
 	position: absolute;

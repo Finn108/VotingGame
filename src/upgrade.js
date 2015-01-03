@@ -25,9 +25,10 @@ function Upgrade(game, upgradersDiv, details) {
 	console.log("creating upgrader: " + details.id);
 
 	var upgradeElem = initElement();
-	var upgradeBtn = upgradeElem.find(".upgradeBtnBuy");
 	var price = details.price;
 	var upgradeFunc = details.func;
+  var displayed = false;
+  var purchaseable = false;
   // Reference this in nested functions:
   var upgrade = this;
 
@@ -63,7 +64,35 @@ function Upgrade(game, upgradersDiv, details) {
 		return jqUpgrade;
 	}
 
-  this.buy = function () {
+  function checkPurchasable() {
+    /*
+    Checks if the upgrade can be purchased and changes the class accordingly
+    */
+    if (price >= game.votesCounter.getVotes()) {
+      upgradeElem.removeClass("activated");
+      upgradeElem.addClass("deactivated");
+    }
+    else {
+      upgradeElem.removeClass("deactivated");
+      upgradeElem.addClass("activated");
+    }
+  }
+
+  function show() {
+    /*
+    Display the upgrade. Will be a lot more dramatic
+    */
+    upgradeElem.fadeIn();
+  }
+
+  function hide() {
+    /*
+    Hides the upgrade. Will be a lot more dramatic
+    */
+    upgradeElem.fadeOut();
+  }
+
+  this.buy = function() {
 		/*
 		Buys an instance of the generator and updates the votesPerSecond,
 		totalVotes and numberOfGenerators
@@ -71,8 +100,25 @@ function Upgrade(game, upgradersDiv, details) {
 		if (game.votesCounter.getVotes() < price) return;
 		game.votesCounter.removeVotes(price);
 		upgradeFunc(game);
-		upgradeElem.fadeOut();
+    hide();
 	};
 
-	upgradeBtn.on("click", upgrade.buy);
+  this.display = function(game) {
+    /*
+    Sets the upgrade to display once additional dependencies have been met
+    */
+    upgrade.displayed = true;
+    show();
+    return;
+  };
+
+  this.wasDisplayed = function() {
+    /*
+    Returns whether the upgrade was ever displayed or not. 
+    */
+    return displayed;
+  };
+
+	upgradeElem.on("click", upgrade.buy);
+  $(game.votesCounter).on("votesChanged", checkPurchasable);
 }

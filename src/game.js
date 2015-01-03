@@ -68,11 +68,12 @@ function Game() {
 		});
 	}
 
-	this.reset = function(skipIntro) {
+	this.reset = function(skipIntro, startingPoints) {
 		/*
 		Reset the game state
 
 		-skipIntro: whether to show the intro or not
+    -startingPoints: How many points to start the game with
 		*/
 		console.log("reseting");
 
@@ -84,10 +85,9 @@ function Game() {
 
 		// Attach click event to vote note
 		$("#note").on("click", clickEvent);
-		$(this.votesCounter).on("votesChanged", votesChangedEvent);
 
-		// Attach votes changed event
-		//votesCounter.
+    // Attach event to vote change
+		$(this.votesCounter).on("votesChanged", votesChangedEvent);
 
 		// Create generators:
 		var gensDiv = $("#generators");
@@ -103,6 +103,11 @@ function Game() {
 		upgradesDetails.forEach(function (item) {
 			this.upgrades.push(new Upgrade(this, upgDiv, item));
 		}, game);
+
+    // Adds the starting points
+    startingPoints = startingPoints || 0;
+    console.log("starting with " + startingPoints + " points");
+    this.votesCounter.addVotes(startingPoints);
 	};
 
 	this.start = function() {

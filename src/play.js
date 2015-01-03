@@ -3,6 +3,7 @@ Starts the game
 */
 
 $(document).ready(function() {
+  "use string";
 	var game = new Game();
 	var queryString = (function () {
 	  // This function is anonymous, is executed immediately and
@@ -27,7 +28,7 @@ $(document).ready(function() {
 	    return qs;
 	})();
 	
-	// This is for the background. Don't kill me if this is the worng place to put it :(
+  // Background creation
 	var c=document.getElementById("bgCanvas");
 	var B=c.getContext("2d");
 	var ww = window.innerWidth;
@@ -54,10 +55,13 @@ $(document).ready(function() {
 	B.closePath();
 	B.fillStyle="#edf7f2";
 	B.fill();
+  // Finished background creation
 
 	console.log(queryString);
 
-	skipIntro = "skipIntro" in queryString;
-	game.reset(skipIntro);
+	var skipIntro = "skipIntro" in queryString;
+  var startingPoints = Number(queryString.points) || 0;
+
+	game.reset(skipIntro, startingPoints);
 	game.start();
 });
