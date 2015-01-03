@@ -8,7 +8,7 @@ var voteEvents = [
 	{
 		vote: 3,
 		func: function (game) {
-      game.votesCounter.revealCounter();
+			game.votesCounter.revealCounter();
 		}
 	}
 ];
@@ -16,14 +16,20 @@ var voteEvents = [
 // Events that occur after a purchase of a generator
 // They are arranged: genBuyEvents[genId][numOfBuys]
 var genBuyEvents = {
-  Voter: {
-    1: function (game) {
-      game.votesCounter.revealVPS();
-    },
-  },
-  Cookie: {
-    3: function (game) {
-      alert("Yeah!");
-    }
-  }
+	Voter: {
+		1: function (game) {
+			game.votesCounter.revealVPS();
+		},
+		6: function (game) {
+            /*
+            Display the upgrades sidebar
+            */
+			$("#upgrades").toggle("drop", {direction:"down"}, 1000);
+		}
+	},
+	Cookie: {
+		3: function (game) {
+			alert("Yeah!");
+		}
+	}
 };

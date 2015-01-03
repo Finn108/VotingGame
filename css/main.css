@@ -214,3 +214,11 @@ First div under upgrade button is the bolded price
 	font-weight: bold;
 	margin-bottom: 8px;
 }
+
+.upgrade > img {
+	position: absolute;
+	margin-top: -5px;
+	margin-right: -85px;
+	height: 55px;
+	-webkit-filter: drop-shadow(-3px 0px 3px rgba(0, 0, 0, 0.4));
+}

@@ -17,6 +17,8 @@ the value of each click.
 	}
 */
 
+var isTest = false;
+
 function Upgrade(game, upgradersDiv, details) {
 	"use strict";
 
@@ -47,6 +49,11 @@ function Upgrade(game, upgradersDiv, details) {
 		var descElem = document.createElement("div");
 		descElem.textContent = details.description;
 		containerDivElem.appendChild(descElem);
+
+		var envelopeElem = document.createElement("img");
+		envelopeElem.src = "assets/upgradeEnvelope.png";
+		if (isTest) envelopeElem.src = "../../assets/upgradeEnvelope.png";
+		upgradeElem.appendChild(envelopeElem);
 
 		var jqUpgrade = $(upgradeElem);
 		upgradersDiv.append(jqUpgrade);
