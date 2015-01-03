@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>Counter Test</title>
+		<!-- bower:css -->
+		<link rel="stylesheet" href="../../bower_components/qunit/qunit/qunit.css" />
+		<!-- endbower -->
+		<link href="../../css/main.css" rel="stylesheet">
+		<style>
+		/* Fix bad direction thingy */
+		#qunit {
+			direction: ltr;
+		}
+		</style>
+	</head>
+<body>
+	<div id="qunit"></div>
+	<div id="qunit-fixture">
+		<div id="center">
+			<div class="noteHint" id="hintBox" style="display: none"></div>
+			<div id="note" style="display: none">
+				<input type="text" id="noteTitle" maxlength=4></input>
+				<textarea rows=2 maxlength=28 id="noteSubtitle"></textarea>
+			</div>
+			<div id="votesNumContainer" style="display: none">
+				<div id="votesNumText">0</div>
+				<div id="kolotBakalpi">קולות בקלפי</div>
+			</div>
+			<div id="votesPerSecText" style="display: none">(0 קולות לשניה)</div>
+		</div>
+
+	</div>
+
+	<!-- bower:js -->
+	<script src="../../bower_components/jquery/dist/jquery.js"></script>
+	<script src="../../bower_components/jquery-ui/jquery-ui.js"></script>
+	<script src="../../bower_components/qunit/qunit/qunit.js"></script>
+	<!-- endbower -->
+	<script src="../../js/pre_vote.js"></script>
+	<script src="tests.js"></script>
+</body>
+</html>

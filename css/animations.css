@@ -1,0 +1,35 @@
+/*
+Animation sequences used in the game
+*/
+
+
+/* Slightly rotates the note element to the right */
+@keyframes noteTilt {
+	from {
+		transform: translate(-50%, 0) rotate(0deg);
+	}
+	to {
+		transform: translate(-50%, 0) rotate(5deg);
+	}
+}
+
+@-webkit-keyframes noteTilt {
+	from {
+		-webkit-transform: translate(-50%, 0) rotate(0deg);
+	}
+	to {
+		-webkit-transform: translate(-50%, 0) rotate(5deg);
+	}
+}
+
+.anim.tilt {
+	-webkit-animation: noteTilt 1s;
+	-webkit-animation-fill-mode: forwards;
+	animation: noteTilt 1s;
+	animation-fill-mode: forwards;
+}
+
+.noanim.tilt {
+	-webkit-transform: translate(-50%, 0) rotate(5deg) !important;
+	transform: translate(-50%, 0) rotate(5deg) !important;
+}

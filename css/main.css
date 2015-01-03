@@ -3,48 +3,93 @@
 	font-family: carmela;
 	src: url(../assets/carmela.ttf);
 }
+@font-face {
+	font-family: frankruehl;
+	src: url(../assets/frankruehlclm-medium-webfont.woff);
+}
 
 /* General elements */
 body {
 	background-color: #edf7f2;
 	font-family: carmela;
 	direction: rtl;
+	margin:0;
+	padding:0;
 }
+
+
 
 /* Vote note and counters text */
 /*******************/
 /* Center Elements */
 /*******************/
 
-#noteImg {
-	position: absolute;
-	top: 150px;
-	left: 50%;
-	transform: translate(-50%,0) rotate(5deg);
-	display: block;
-	box-shadow: 0px 0px 5px;
+#note {
+	width: 208px;
+	height: 296px;
+	background-color: white;
 	outline-style: solid;
 	outline-width: 1px;
-	box-shadow: 0px 0px 5px;
-	/*display: none; - Used for jQuery fade in. We'll remove for now... */
+	box-shadow: 0px 0px 10px;
+	position: absolute;
+	top: 130px;
+	left: 50%;
+	margin-right: -50%;
+	/*-webkit-transform: translate(-50%, -50%); */
+	transform: translate(-50%, 0);
 }
 
-#noteImg:hover {
+#note > input,
+#note > textarea {
+	font-family: frankruehl;
+	width: 200px;
+	direction: rtl;
+	position: absolute;
+	text-align: center;
+	border-style: none;
+  	overflow: hidden;
+}
+
+#note > *:focus {
+	outline: 0;
+}
+
+#noteTitle {
+	font-size: 120px;
+	top: 20%;
+	left: 4px;
+}
+
+#noteSubtitle {
+	font-size: 25px;
+	bottom: 10px;
+	resize: none;
+	left: 2px;
+}
+
+#note:hover {
 	box-shadow: 0px 0px 10px;
 }
 
-#noteImg:active {
+#note:active {
 	box-shadow: 0px 0px 0px;
+}
+
+.noteHint {
+	position: absolute;
+	top: 90px;
+	left: 50%;
+	transform: translate(-50%);
+	color: white;
 }
 
 #votesNumText {
 	font-size: 48px;
-	/*display: none; -  Used for jQuery fade in. We'll remove for now... */
 	position: absolute;
 	top: 500px;
 	left: 50%;
 	transform: translate(-50%,0);
-	color: #00adc1;
+	color: white;
 }
 
 #kolotBakalpi {
@@ -53,7 +98,7 @@ body {
 	top: 550px;
 	left: 50%;
 	transform: translate(-50%,0);
-	color: #00adc1;
+	color: white;
 }
 
 #votesPerSecText {
@@ -62,7 +107,7 @@ body {
 	top: 585px;
 	left: 50%;
 	transform: translate(-50%,0);
-	color: #00adc1;
+	color: #6fcaff;
 }
 
 /*********************/
@@ -73,13 +118,16 @@ body {
 	position: absolute;
 	top: 150px;
 	left: 0%;
+	
+  /*  Prevents scrolling outside of page size */
+  overflow: hidden;
 }
 
 .genBtn {
-	background: linear-gradient(#b5e655, #96ca2d);
+	background: linear-gradient(#a1cfe5, #65a8c9);
 	width: 350px;
 	height: 65px;
-	left: 0%;
+	left: -100%;
 	cursor: pointer;
 	position: relative;
 	color: grey;
@@ -95,14 +143,15 @@ body {
 }
 
 .genBtnPrice {
-	font-size: 30px;
-	top: 2px;
+	font-size: 18px;
+	font-weight: bold;
+	top: 8px;
 	right: 70px;
 }
 
 .genBtnDesc {
 	font-size: 14px;
-	top: 37px;
+	top: 35px;
 	right: 70px;
 	line-height: 90%;
 	left: 50px;
@@ -113,6 +162,7 @@ body {
 	top: -5px;
 	left: 27px;
 	opacity: 0.5;
+	transform: translate(-40%,0);
 }
 
 .genBtnSummary {
@@ -140,72 +190,64 @@ body {
 /*************/
 
 #upgrades {
-	background-color: #BABABA;
+	background-color: #d1d6d3;
 	position: absolute;
 	right: 0%;
-	top: 140px;
-	height: 700px;
-	border-radius: 25px 0px 0px 20px;
-	border: 2px solid #8F8F8F;
-	width: 350px;
+	top: 122px;
+	height: 510px;
+	border-radius: 25px 0px 0px 25px;
+	border: 3px solid #959595;
+	width: 315px;
 	border-right-style: none;
 	padding-top: 18px;
+	box-shadow: 0 0 10px 2px;
 }
 
 .upgrade {
-	height: 60px;
+  margin-top: 14px;
 }
 
 .upgrade > div {
 	position: absolute;
-}
-
-.upgradeBtnBuy {
-	cursor: pointer;
+	height: 47px;
+	width: 290px;
 	background-color: white;
-	width: 50px;
-	height: 50px;
-	line-height: 50px; /* Used to center the button text */
-	right: 7px;
-	border: 2px solid #8F8F8F;
-	border-radius: 10px;
-	font-size: 20px;
-	text-align: center;
+	border-radius: 9px;
+	font-size: 15px;
+	padding-top: 5px;
+	margin-right: 14px;
+	margin-left: 4px;
 }
 
-.upgradeBtnBuy:hover {
-	background-color: black;
-	color: white;
+.upgrade.deactivated {
+  color: grey;
 }
 
-.upgradeBtnBuy:active {
-	background-color: white;
-	color: black;
+.upgrade.activated > div:hover {
+  background-color: #EFED4A;
 }
 
-.upgradeBox {
-	background-color: white;
-	width: 275px;
-	height: 50px;
-	right: 65px;
-	border: 2px solid #8F8F8F;
-	border-radius: 10px;
+.upgrade.activated > div:active {
+  background-color: white;
 }
 
-.upgradeBox > div {
-	position: absolute;
+.upgrade > div > div {
+  margin-right: 38px;
 }
 
-.upgradeBoxTitle {
-	font-size: 16px;
-	right: 7px;
-	top: 4px;
+/*
+First text div under upgrade button is the bolded price
+*/
+.upgrade > div > div:first-child {
 	font-weight: bold;
+	margin-bottom: 8px;
+  margin-top: 3px;
 }
 
-.upgradeBoxDesc {
-	font-size: 13px;
-	right: 7px;
-	top: 25px;
-	line-height: 90%;
+.upgrade > img {
+	position: absolute;
+	margin-top: -2px;
+	margin-right: -70px;
+	height: 56px;
+	-webkit-filter: drop-shadow(-3px 0px 3px rgba(0, 0, 0, 0.4));
 }
