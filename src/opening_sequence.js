@@ -47,7 +47,7 @@ function openingSequence() {
 	noteTitle.keydown(function (event) {
 		if (event.which === 13) {
 			event.preventDefault();
-
+			$(this).disableSelection();
 			clearTimeout(titleHintTimeout);
 			clearHint();
 
@@ -58,7 +58,7 @@ function openingSequence() {
 			);
 
 			this.readOnly = true;
-			$(this).disableSelection();
+			
 
 			noteDesc.focus();
 		}

@@ -85,7 +85,6 @@ body {
 
 #votesNumText {
 	font-size: 48px;
-	/*display: none; -  Used for jQuery fade in. We'll remove for now... */
 	position: absolute;
 	top: 500px;
 	left: 50%;
@@ -119,6 +118,7 @@ body {
 	position: absolute;
 	top: 150px;
 	left: 0%;
+	
   /*  Prevents scrolling outside of page size */
   overflow: hidden;
 }
@@ -143,8 +143,9 @@ body {
 }
 
 .genBtnPrice {
-	font-size: 24px;
-	top: 5px;
+	font-size: 18px;
+	font-weight: bold;
+	top: 8px;
 	right: 70px;
 }
 
@@ -161,6 +162,7 @@ body {
 	top: -5px;
 	left: 27px;
 	opacity: 0.5;
+	transform: translate(-40%,0);
 }
 
 .genBtnSummary {
