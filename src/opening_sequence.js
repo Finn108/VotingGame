@@ -1,4 +1,4 @@
-/*
+﻿/*
 Creates the dramatic opening in which the user writes the name of his party
 */
 function openingSequence() {
@@ -37,8 +37,8 @@ function openingSequence() {
 			noteTitle.focus();
 			titleHintTimeout = setTimeout(
 				showHint,
-				2000,
-				"בבקשה תרשום את אות (או אותיות) המפלגה שלך"
+				500,
+				"הקלד את אותיות המפלגה החדשה שלך"
 			);
 		}, 1000);
 	}
@@ -53,8 +53,8 @@ function openingSequence() {
 
 			descHintTimeout = setTimeout(
 				showHint,
-				2000,
-				"בבקשה תרשום את שם המפלגה שלך"
+				500,
+				"הקלד את שם המפלגה החדשה שלך"
 			);
 
 			this.readOnly = true;
@@ -74,7 +74,7 @@ function openingSequence() {
 
 			clickHintTimeout = setTimeout(
 				showHint,
-				2000,
+				500,
 				"לחץ כדי להצביע"
 			);
 
