@@ -204,19 +204,18 @@ body {
 }
 
 .upgrade {
-	height: 47px;
-	width: 290px;
-	background-color: white;
-	margin-top: 14px;
-	margin-right: 14px;
-	border-radius: 9px;
+  margin-top: 14px;
 }
 
 .upgrade > div {
 	position: absolute;
+	height: 47px;
+	width: 290px;
+	background-color: white;
+	border-radius: 9px;
 	font-size: 15px;
 	padding-top: 5px;
-	margin-right: 26px;
+	margin-right: 14px;
 	margin-left: 4px;
 }
 
@@ -224,12 +223,16 @@ body {
   color: grey;
 }
 
-.upgrade.activated:hover {
+.upgrade.activated > div:hover {
   background-color: #EFED4A;
 }
 
-.upgrade.activated:active {
+.upgrade.activated > div:active {
   background-color: white;
+}
+
+.upgrade > div > div {
+  margin-right: 38px;
 }
 
 /*
@@ -238,12 +241,13 @@ First text div under upgrade button is the bolded price
 .upgrade > div > div:first-child {
 	font-weight: bold;
 	margin-bottom: 8px;
+  margin-top: 3px;
 }
 
 .upgrade > img {
 	position: absolute;
-	margin-top: -5px;
-	margin-right: -85px;
-	height: 55px;
+	margin-top: -2px;
+	margin-right: -70px;
+	height: 56px;
 	-webkit-filter: drop-shadow(-3px 0px 3px rgba(0, 0, 0, 0.4));
 }

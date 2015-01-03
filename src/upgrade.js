@@ -85,7 +85,18 @@ function Upgrade(game, upgradersDiv, details) {
     /*
     Display the upgrade. Will be a lot more dramatic
     */
-    upgradeElem.fadeIn();
+    var innerNote = upgradeElem.children().first();
+    var envelope = upgradeElem.children().last();
+    innerNote.css("right", "-100%");
+    envelope.css("right", "-100%");
+    upgradeElem.css("display", "");
+
+    envelope.animate({right: "34px"}, 900, "easeOutQuad", function () {
+      innerNote.animate({right: "0%"}, 1200, "easeInOutCubic");
+      setTimeout(function () {
+        envelope.animate({right: "0%"}, 600);
+      }, 700);
+    });
     // Listen to click and vote change events
 	  upgradeElem.on("click", upgrade.buy);
     $(game.votesCounter).on("votesChanged", checkPurchasable);
@@ -95,7 +106,14 @@ function Upgrade(game, upgradersDiv, details) {
     /*
     Hides the upgrade. Will be a lot more dramatic
     */
-    upgradeElem.fadeOut();
+    var innerNote = upgradeElem.children().first();
+    var envelope = upgradeElem.children().last();
+
+    envelope.animate({right: "+=53px"}, 400, "swing", function () {
+      innerNote.animate({right: "-100%"}, 1200, "easeInOutQuad", function (){
+        envelope.animate({right: "-100%"}, 600);
+      });
+    });
     /*
     No reason to keep listening after we're out -
     BUT currently afraid it will mess shit up...
