@@ -127,4 +127,14 @@ function Game() {
 		)[0];
 		return generator;
 	};
+
+  this.getUpgById = function(upgId) {
+    var upgrade = $.grep(
+      game.upgrades,
+      function(item) {
+        return item.id === upgId;
+      }
+    )[0];
+    return upgrade;
+  };
 }

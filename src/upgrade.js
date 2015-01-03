@@ -31,6 +31,8 @@ function Upgrade(game, upgradersDiv, details) {
   var purchaseable = false;
   // Reference this in nested functions:
   var upgrade = this;
+  // Public varriables
+  this.id = details.id;
 
 
 	function initElement() {
@@ -40,6 +42,7 @@ function Upgrade(game, upgradersDiv, details) {
 		*/
 		var upgradeElem = document.createElement("div");
 		upgradeElem.className = "upgrade";
+    upgradeElem.style.display = "none";
 		upgradeElem.id = "upgrade" + details.id;
 
 		var containerDivElem = document.createElement("div");
@@ -83,6 +86,9 @@ function Upgrade(game, upgradersDiv, details) {
     Display the upgrade. Will be a lot more dramatic
     */
     upgradeElem.fadeIn();
+    // Listen to click and vote change events
+	  upgradeElem.on("click", upgrade.buy);
+    $(game.votesCounter).on("votesChanged", checkPurchasable);
   }
 
   function hide() {
@@ -90,6 +96,12 @@ function Upgrade(game, upgradersDiv, details) {
     Hides the upgrade. Will be a lot more dramatic
     */
     upgradeElem.fadeOut();
+    /*
+    No reason to keep listening after we're out -
+    BUT currently afraid it will mess shit up...
+    */
+	  //upgradeElem.off("click", upgrade.buy);
+    //$(game.votesCounter).off("votesChanged", checkPurchasable);
   }
 
   this.buy = function() {
@@ -119,6 +131,4 @@ function Upgrade(game, upgradersDiv, details) {
     return displayed;
   };
 
-	upgradeElem.on("click", upgrade.buy);
-  $(game.votesCounter).on("votesChanged", checkPurchasable);
 }

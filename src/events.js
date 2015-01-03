@@ -22,9 +22,12 @@ var genBuyEvents = {
 		},
 		6: function (game) {
             /*
-            Display the upgrades sidebar
+            Display the upgrades sidebar + add the first upgrade
             */
 			$("#upgrades").toggle("drop", {direction:"down"}, 1000);
+      var upgrade = game.getUpgById("ClickPlus1");
+      // wait for the upgrades bar to load
+      setTimeout(upgrade.display, 1500);
 		}
 	},
 	Cookie: {

@@ -16,6 +16,9 @@ QUnit.test("buy basic upgrade", function(assert) {
   game.reset(true, 5);
   game.start();
 
+  var myUp = game.getUpgById("Upg1");
+  myUp.display();
+  
   $("#upgradeUpg1").click();
   assert.equal(
     $("#votesNumText").text(),
