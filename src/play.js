@@ -26,6 +26,34 @@ $(document).ready(function() {
 	 }
 	    return qs;
 	})();
+	
+	// This is for the background. Don't kill me if this is the worng place to put it :(
+	var c=document.getElementById("bgCanvas");
+	var B=c.getContext("2d");
+	var ww = window.innerWidth;
+	var wh = window.innerHeight;
+	B.canvas.width = ww;
+	B.canvas.height = wh;
+	B.beginPath();
+	B.rect(0,0,ww/3,wh);
+	B.fillStyle="#1c809e";
+	B.fill();
+	B.beginPath();
+	B.rect(ww/3,0,ww/3,wh);
+	B.fillStyle="#2199bc";
+	B.fill();
+	B.beginPath();
+	B.rect((ww/3)*2,0,ww/3,wh);
+	B.fillStyle="#27b3dc";
+	B.fill();
+	B.beginPath();
+	B.moveTo(0,0);
+	B.lineTo(ww/3,60);
+	B.lineTo((ww/3)*2,60);
+	B.lineTo(ww,0);
+	B.closePath();
+	B.fillStyle="#edf7f2";
+	B.fill();
 
 	console.log(queryString);
 
