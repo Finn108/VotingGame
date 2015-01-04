@@ -124,12 +124,27 @@ function Generator(votesCounter, generatorsDiv, details) {
 		/*
 		Changes the votes per second to the given value. Updates the global
 		votes per second accordingly.
+    - newVPS can be either a number to set the votes per second to or a
+      statement to run with the current votesPerSecond. For example:
+      > generator.updateVotesPerSecond("- 3");
 		*/
 		var currentTotalVPS = votesPerSecond * level;
-		var newTotalVPS = newVPS * level;
+
+    if (typeof(newVPS) === "number") {
+      votesPerSecond = newVPS;
+    }
+    else if (typeof(newVPS) === "string") {
+      /* jshint -W061 */
+      votesPerSecond = eval(votesPerSecond + newVPS);
+    }
+    else {
+      console.log("couldn't update votes on " + generator.id);
+      return;
+    }
+
+		var newTotalVPS = votesPerSecond * level;
 		votesCounter.removeVotesPerSecond(currentTotalVPS);
 		votesCounter.addVotesPerSecond(newTotalVPS);
-		votesPerSecond = newVPS;
 		updateDisplay();
 	};
 

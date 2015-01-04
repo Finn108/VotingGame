@@ -66,6 +66,10 @@ function VotesCounter(initialVotes, initialVotesPerSecond) {
 		refreshDisplay();
 	};
 
+  this.getVotesPerSecond = function () {
+    return votesPerSecond;
+  };
+
   this.revealCounter = function() {
     /*
     Fades the counter in. Uses the votesDisplay parent since there are
