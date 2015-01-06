@@ -10,11 +10,11 @@
 
 /* General elements */
 body {
-	background-color: #edf7f2;
 	font-family: carmela;
 	direction: rtl;
-	margin:0;
-	padding:0;
+	background: url(../assets/bg.svg);
+	background-size: 100vw 100vh;
+	background-repeat: no-repeat;
 }
 
 
