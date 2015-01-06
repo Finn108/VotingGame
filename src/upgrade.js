@@ -124,8 +124,8 @@ function Upgrade(game, upgradersDiv, details) {
 
   this.buy = function() {
 		/*
-		Buys an instance of the generator and updates the votesPerSecond,
-		totalVotes and numberOfGenerators
+		Buys an instance of the upgrade and runs the upgrade function on the game
+    object
 		*/
 		if (game.votesCounter.getVotes() < price) return;
 		game.votesCounter.removeVotes(price);
