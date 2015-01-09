@@ -20,7 +20,9 @@ function Game() {
 
 	// Used to reference the game object from nested functions
 	var game = this;
+
 	var reachedLastvoteEvent = false;
+  var currentLevel = -1;
 
 	// Used to configure the games 'tick' rate
 	var frameRate = 25;
@@ -142,9 +144,9 @@ function Game() {
   };
 
   this.goUpLevel = function() {
-    var details = levelsDetails[0];
+    currentLevel++;
+    var details = levelsDetails[currentLevel];
     console.log("Moving to level " + details.title);
-    levelsDetails.shift();
     this.levelCtrl.changeLevel(details.title, details.targetDesc);
   };
 }

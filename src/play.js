@@ -3,7 +3,7 @@ Starts the game
 */
 
 $(document).ready(function() {
-  "use string";
+  "use strict";
 	var game = new Game();
 	var queryString = (function () {
 	  // This function is anonymous, is executed immediately and
