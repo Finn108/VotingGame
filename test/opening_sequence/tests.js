@@ -118,6 +118,10 @@ QUnit.test("level title display", function(assert) {
     enterValue("title");
     setTimeout(function() {
       enterValue("description");
+      assert.ok(
+        ! titleBox.is(":visible"),
+        "Title should still be invisible"
+      );
       setTimeout(function() {
         assert.ok(
           titleBox.is(":visible"),
