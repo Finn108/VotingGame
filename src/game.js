@@ -13,6 +13,7 @@ function Game() {
 	"use strict";
 
 	this.votesCounter = new VotesCounter();
+  this.levelCtrl = new LevelController();
 	this.votesClickValue = 1;
 	this.generators = [];
 	this.upgrades = [];
@@ -77,6 +78,8 @@ function Game() {
 		*/
 		console.log("reseting");
 
+    this.goUpLevel();
+
 		if (!skipIntro) {
 			openingSequence();
 		}
@@ -136,5 +139,12 @@ function Game() {
       }
     )[0];
     return upgrade;
+  };
+
+  this.goUpLevel = function() {
+    var details = levelsDetails[0];
+    console.log("Moving to level " + details.title);
+    levelsDetails.shift();
+    this.levelCtrl.changeLevel(details.title, details.targetDesc);
   };
 }

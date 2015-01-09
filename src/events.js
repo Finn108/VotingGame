@@ -10,7 +10,13 @@ var voteEvents = [
 		func: function (game) {
 			game.votesCounter.revealCounter();
 		}
-	}
+	},
+  {
+    vote: 170,
+    func: function (game) {
+      game.goUpLevel();
+    }
+  }
 ];
 
 // Events that occur after a purchase of a generator

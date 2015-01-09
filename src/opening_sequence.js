@@ -29,6 +29,11 @@ function openingSequence() {
 		note.off("click", clearClickHint);
 	}
 
+  function showTitle() {
+    var titleBox = $("#levelTitle");
+    titleBox.fadeIn();
+  }
+
 	function fadeNoteIn() {
 		/*
 		Enter the note and after a few seconds focus on the text box
@@ -58,6 +63,7 @@ function openingSequence() {
 				"הקלד את שם המפלגה החדשה שלך"
 			);
 
+
 			this.readOnly = true;
 			
 
@@ -79,6 +85,8 @@ function openingSequence() {
 				"לחץ כדי להצביע"
 			);
 
+      setTimeout(showTitle, 1300);
+      
 			this.readOnly = true;
 			$(this).disableSelection();
 
@@ -99,6 +107,7 @@ function skipOpening() {
 	var note = $("#note");
 	var noteTitle = note.children().first();
 	var noteDesc = note.children().last();
+  var titleBox = $("#levelTitle");
 
 	noteTitle.val("שקר");
 	noteDesc.val("מפלגת הכול שקרים");
@@ -106,4 +115,5 @@ function skipOpening() {
 	note.children().attr("readonly", true);
 	note.children().disableSelection();
 	note.fadeIn();
+  titleBox.fadeIn();
 }
