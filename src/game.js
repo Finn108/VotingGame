@@ -22,7 +22,7 @@ function Game() {
 	var game = this;
 
 	var reachedLastvoteEvent = false;
-  var currentLevel = -1;
+  var currentLevel = 0;
 
 	// Used to configure the games 'tick' rate
 	var frameRate = 25;
@@ -79,8 +79,6 @@ function Game() {
     -startingPoints: How many points to start the game with
 		*/
 		console.log("reseting");
-
-    this.goUpLevel();
 
 		if (!skipIntro) {
 			openingSequence();

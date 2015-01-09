@@ -18,16 +18,21 @@
 <body>
 	<div id="qunit"></div>
 	<div id="qunit-fixture">
-	<div id="center">
-		<div class="noteHint" id="hintBox" style="display: none"></div>
-		<div id="note" style="display: none">
-			<input type="text" id="noteTitle" maxlength=4></input>
-			<textarea rows=2 maxlength=28 id="noteSubtitle"></textarea>
-		</div>
-		<div id="votesNumText">0</div>
-		<div id="kolotBakalpi">קולות בקלפי</div>
-		<div id="votesPerSecText">(0 קולות לשניה)</div>
-	</div>
+    <div id="center">
+      <div class="noteHint" id="hintBox" style="display: none"></div>
+      <div id="note" style="display: none">
+        <input type="text" id="noteTitle" maxlength=4></input>
+        <textarea rows=2 maxlength=28 id="noteSubtitle"></textarea>
+      </div>
+      <div id="votesNumText">0</div>
+      <div id="kolotBakalpi">קולות בקלפי</div>
+      <div id="votesPerSecText">(0 קולות לשניה)</div>
+      <div id="levelTitle" style="display: none">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+  </div>
 	
 	<!-- bower:js -->
 	<script src="../../bower_components/jquery/dist/jquery.js"></script>
@@ -35,6 +40,7 @@
 	<script src="../../bower_components/qunit/qunit/qunit.js"></script>
 	<!-- endbower -->
 	<script src="../../src/jquery_addons.js"></script>
+	<script src="../../src/levels_details.js"></script>
 	<script src="../../src/opening_sequence.js"></script>
 	<script src="tests.js"></script>
 </body>
