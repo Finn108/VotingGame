@@ -28,7 +28,7 @@ function Upgrade(game, upgradersDiv, details) {
 	var price = details.price;
 	var upgradeFunc = details.func;
   var displayed = false;
-  var purchaseable = false;
+  var bought = false;
   // Reference this in nested functions:
   var upgrade = this;
   // Public varriables
@@ -128,7 +128,9 @@ function Upgrade(game, upgradersDiv, details) {
 		Buys an instance of the upgrade and runs the upgrade function on the game
     object
 		*/
+    if (bought) return;
 		if (game.votesCounter.getVotes() < price) return;
+    bought = true;
 		game.votesCounter.removeVotes(price);
 		upgradeFunc(game);
     hide();
