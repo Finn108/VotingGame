@@ -11,6 +11,7 @@ function openingSequence() {
 	var titleHintTimeout;
 	var descHintTimeout;
 	var clickHintTimeout;
+  var tabOrEnter = [9, 13];
 
 
 	function showHint(hint) {
@@ -45,7 +46,7 @@ function openingSequence() {
 
 	// Change the enter key for the note title
 	noteTitle.keydown(function (event) {
-		if (event.which === 13) {
+		if ($.inArray(event.which, tabOrEnter) > -1) {
 			event.preventDefault();
 			$(this).disableSelection();
 			clearTimeout(titleHintTimeout);
@@ -66,7 +67,7 @@ function openingSequence() {
 
 	// Change the enter key for the note description
 	noteDesc.keydown(function (event) {
-		if (event.which === 13) {
+		if ($.inArray(event.which, tabOrEnter) > -1) {
 			event.preventDefault();
 
 			clearTimeout(descHintTimeout);
@@ -86,6 +87,9 @@ function openingSequence() {
 		}
 	});
 
+  // Remove existing values (in case autocomplete is on)
+  noteTitle.val("");
+  noteDesc.val("");
 	setTimeout(fadeNoteIn, 600);
 }
 

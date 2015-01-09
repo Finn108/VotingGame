@@ -176,8 +176,8 @@ function Generator(votesCounter, generatorsDiv, details) {
 
     var currentVotes = votesCounter.getVotes();
 
-    // Peek in when the current number of votes reaches 40%
-    if (! generator.peekedIn && currentVotes >= (price * 4) / 10) {
+    // Peek in when the current number of votes reaches 70%
+    if (! generator.peekedIn && currentVotes >= (price * 7) / 10) {
       generator.peekIn();
     }
 
