@@ -82,6 +82,8 @@ function Generator(votesCounter, generatorsDiv, details) {
 
 		var jqBtn = $(btnElem);
 		jqBtn.append([imgElem, priceElem, descElem, levelElem, summaryElem]);
+    // Prevent annoying selection markers on generators
+    jqBtn.disableSelection();
 		generatorsDiv.append(jqBtn);
 		return jqBtn;
 	}

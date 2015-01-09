@@ -63,6 +63,7 @@ function Upgrade(game, upgradersDiv, details) {
 		upgradeElem.appendChild(envelopeElem);
 
 		var jqUpgrade = $(upgradeElem);
+    jqUpgrade.disableSelection();
 		upgradersDiv.append(jqUpgrade);
 		return jqUpgrade;
 	}
