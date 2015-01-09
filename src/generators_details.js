@@ -60,12 +60,12 @@ var generatorsDetails = [
 		picture: "army.png",
 	},
 		{
-		id: "Another",
-		name: "משהו אחר",
+		id: "propaganda",
+		name: "פרופגנדה",
 		votesPerSec: 105000,
-		description: "עדיין לא החלטתי מה.",
+		description: "הכלי החביב על גבלס, עכשיו בשירות<BR>המדינה (שלך).",
 		price: 65000000,
-		picture: "cookies.png",
+		picture: "propaganda.png",
 	},
 		{
 		id: "Baby",
