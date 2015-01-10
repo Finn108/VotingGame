@@ -18,6 +18,30 @@ var voteEvents = [
     }
   },
   {
+    vote: 26216,
+    func: function (game) {
+      game.goUpLevel();
+    }
+  },
+  {
+    vote: 8268400,
+    func: function (game) {
+      game.goUpLevel();
+    }
+  },
+  {
+    vote: 7284000000,
+    func: function (game) {
+      game.goUpLevel();
+    }
+  },
+  {
+    vote: 1000000000000,
+    func: function (game) {
+      game.goUpLevel();
+    }
+  },
+  {
     // Increase generators div size by a bit to prevent scrollbar intervention
     vote: 45500000,
     func: function (game) {
