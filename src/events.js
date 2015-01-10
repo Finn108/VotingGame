@@ -16,7 +16,15 @@ var voteEvents = [
     func: function (game) {
       game.goUpLevel();
     }
-  }
+  },
+  {
+    // Increase generators div size by a bit to prevent scrollbar intervention
+    vote: 45500000,
+    func: function (game) {
+      console.log("got to new stuff maybe thingy");
+      $("#generators").css({width: "362px"});
+    }
+  },
 ];
 
 // Events that occur after a purchase of a generator

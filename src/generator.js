@@ -154,6 +154,7 @@ function Generator(votesCounter, generatorsDiv, details) {
     /*
     Moves the button to the screen just a tiny bit
     */
+    button.show();
     button.animate({left: "+=20px"}, 1000, "easeOutCubic");
     generator.peekedIn = true;
   };

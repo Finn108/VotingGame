@@ -43,7 +43,7 @@ function Game() {
 
 		var currentVotes = game.votesCounter.getVotes();
 
-		if (currentVotes >= voteEvents[0].vote) {
+		while (voteEvents.length > 0 && currentVotes >= voteEvents[0].vote) {
 			var currentEvent = voteEvents[0];
 			voteEvents.shift();
 			currentEvent.func(game);
