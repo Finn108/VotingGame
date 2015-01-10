@@ -9,9 +9,10 @@ function LevelController () {
   var levelTargetVotes = levelTitleBox.children().last();
 
   this.changeLevel = function (title, targetDesc) {
-    levelTitleBox.fadeOut();
-    levelTitle.text("במרוץ ל" + title);
-    levelTargetVotes.text(targetDesc);
-    levelTitleBox.fadeIn();
+    levelTitleBox.fadeOut(400, function () {
+      levelTitle.text("במרוץ ל" + title);
+      levelTargetVotes.text(targetDesc);
+      levelTitleBox.fadeIn();
+    });
   };
 }
