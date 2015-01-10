@@ -278,3 +278,22 @@ First text div under upgrade button is the bolded price
   height: 56px;
   -webkit-filter: drop-shadow(-3px 0px 3px rgba(0, 0, 0, 0.4));
 }
+
+/**********/
+/* Footer */
+/**********/
+
+#footer {
+  position: fixed;
+  bottom: 0;
+  right: 0%;
+  padding-right: 10px;
+  background-color: orange;
+  width: 100%;
+  text-align: center;
+}
+
+#footer > span {
+  padding-left: 150px;
+  padding-right: 150px;
+}
