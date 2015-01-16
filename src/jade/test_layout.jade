@@ -1,0 +1,30 @@
+extends ./base_layout.jade
+
+block vars
+  - var mainPath = "../../main/"
+  - var bowerPath = mainPath + "/bower_components/"
+
+append linkCSS
+  link(href=bowerPath + "qunit/qunit/qunit.css", rel="stylesheet")
+
+  style.
+    #qunit {
+      direction: ltr;
+    }
+
+block bodyMain
+  div#qunit
+  div#qunit-fixture
+    include ./game_elements.jade
+
+append linkJSDeps
+  script(src= bowerPath + "qunit/qunit/qunit.js")
+
+block linkJSProject
+  script(src=mainPath + "js/pre_vote.js")
+  script.
+    var isTest = true;
+    generatorsDetails.forEach(function(item) {
+      item.picture = "#{mainPath}assets/" + item.picture;
+    });
+  script(src="tests.js")

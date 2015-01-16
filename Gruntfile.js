@@ -41,7 +41,7 @@ module.exports = function(grunt) {
           pretty: true
         },
         files: {
-          '_build/tests/full_game/index.html': 'test/full_game/index.jade',
+          '_build/test/full_game/index.html': 'test/full_game/index.jade',
           '_build/tests/opening_sequence/index.html':
             'test/opening_sequence/index.jade',
           // Add additional test index.jade files here
@@ -98,12 +98,17 @@ module.exports = function(grunt) {
             src: ['bower_components/**'],
             dest: '_build/main/'
           },
+          {
+            expand: true,
+            src: ['test/*/tests.js'],
+            dest: '_build/',
+          }
         ]
       }
     },
 
 		qunit: {
-			files: ['_build/test*/index.html'],
+			files: ['_build/test-*/index.html'],
 		},
 
 		watch: {
@@ -128,7 +133,15 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-copy');
 
 
-	grunt.registerTask('test', ['jshint', 'concat', 'uglify', 'wiredep', 'qunit']);
+	grunt.registerTask('test', [
+    'jshint',
+    'jshint',
+    'jade',
+    'concat',
+    'uglify',
+    'copy',
+    'qunit',
+  ]);
 	grunt.registerTask('default', [
     'jshint',
     'jade',

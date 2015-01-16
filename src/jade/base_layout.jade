@@ -1,0 +1,24 @@
+doctype html
+
+block vars
+  - var mainPath = "./";
+  - var bowerPath = mainPath + "bower_components/";
+
+html
+  head
+    meta(charset="utf-8")
+    title המרוץ לראשות
+    block linkCSS
+      link(href=mainPath + "css/main.css", rel="stylesheet")
+      link(href=mainPath + "css/addons.css", rel="stylesheet")
+      link(href=mainPath + "css/animations.css", rel="stylesheet")
+  body
+    block bodyMain
+    
+    block linkJSDeps
+      script(src=bowerPath + "jquery/dist/jquery.min.js")
+      script(src=bowerPath + "jquery-ui/jquery-ui.min.js")
+      script(src=bowerPath + "jquery-cookie/jquery.cookie.js")
+
+    block linkJSProject
+      script(src=mainPath + "js/vote.js")

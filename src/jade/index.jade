@@ -1,40 +1,4 @@
-doctype html
+extends ./base_layout.jade
 
-html
-  head
-    meta(charset="utf-8")
-    title המרוץ לראשות
-    link(href="css/main.css", rel="stylesheet")
-    link(href="css/addons.css", rel="stylesheet")
-    link(href="css/animations.css", rel="stylesheet")
-
-  body
-    div#center
-      div.noteHint#hintBox(style="display: none")
-
-      div#note(style="display: none")
-        input#noteTitle(type="text", maxlength=3)
-        textarea#noteSubtitle(rows=2, maxlength=28)
-
-      div#votesNumContainer(style="display: none")
-        div#votesNumText 0
-        div#kolotBakalpi קולות בקלפי
-
-      div#votesPerSecText(style="display: none") (0 קולות לשניה)
-      div#levelTitle(style="display: none")
-        div
-        div
-
-    div#generators
-
-    div#upgrades(style="display: none")
-
-    div#footer
-      span המרוץ לראשות
-      span= "גרסא " + version
-      span נכתב ע"יFinn108 & nice-shot
-    
-    script(src="bower_components/jquery/dist/jquery.min.js")
-    script(src="bower_components/jquery-ui/jquery-ui.min.js")
-    script(src="bower_components/jquery-cookie/jquery.cookie.js")
-    script(src="js/vote.js")
+block bodyMain
+  include ./game_elements.jade
