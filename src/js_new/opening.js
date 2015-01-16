@@ -28,7 +28,7 @@ var VotingGame = (function (VG) {
     }
 
     function showTitle() {
-      var details = levelsDetails[0];
+      var details = VG.getLevelDetails();
       var titleBox = $("#levelTitle");
       titleBox.children().first().text("במרוץ ל" + details.title);
       titleBox.children().last().text(details.targetDesc);
@@ -110,7 +110,7 @@ var VotingGame = (function (VG) {
     var noteTitle = note.children().first();
     var noteDesc = note.children().last();
     var titleBox = $("#levelTitle");
-    var details = levelsDetails[0];
+    var details = VG.getLevelDetails();
 
     noteTitle.val(titleText || "שקר");
     noteDesc.val(descText || "מפלגת הכול שקרים");

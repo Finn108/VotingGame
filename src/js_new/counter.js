@@ -20,7 +20,7 @@ var VotingGame = (function (VG) {
 		votesDisplay.text(VG.numNames(currentVotes));
 		votesPSDisplay.text("(" + VG.numNames(votesPerSecond) + " קולות לשנייה)");
 		if (previousVotes !== currentVotes) {
-			$(counter).trigger("votesChanged");
+			$(VC).trigger("votesChanged");
 			previousVotes = currentVotes;
 		}
 
@@ -39,6 +39,10 @@ var VotingGame = (function (VG) {
 		currentVotes += (votesPerSecond / frameRate);
 		refreshDisplay();
 	};
+
+  VC.getVotes = function () {
+    return currentVotes;
+  };
   
   //TODO Remove this thing the minute all of the vote counter's attributes are
   //in place

@@ -22,6 +22,7 @@ var VotingGame = (function (VG) {
     VG.clickValue = 1;
     VG._generators = [];
     VG._upgrades = [];
+    VG._level = gameState.level || 0;
 
     if (! gameState.skipIntro) {
       var nameDetails = VG._opening();
@@ -52,7 +53,8 @@ var VotingGame = (function (VG) {
 
 		setInterval(function () {
       VG.votesCounter.updateVotes(frameRate);
-      VG._save();
+      //TODO Write the save function!!!
+      //VG._save();
     }, miliseconds);
   };
 
