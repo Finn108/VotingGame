@@ -80,8 +80,8 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				files: {
-					'_build/main/js/pre_vote.min.js': 'js/pre_vote.js',
-					'_build/main/js/vote.min.js': 'js/vote.js'
+					'_build/main/js/pre_vote.min.js': '_build/main/js/pre_vote.js',
+					'_build/main/js/vote.min.js': '_build/main/js/vote.js'
 				}
 			}
 		},
