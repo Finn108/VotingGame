@@ -4,7 +4,4 @@ block linkJSProject
   script(src=mainPath + "js/pre_vote.min.js")
   script.
     var isTest = true;
-    generatorsDetails.forEach(function(item) {
-      item.picture = "#{mainPath}assets/" + item.picture;
-    });
   script(src="tests.js")

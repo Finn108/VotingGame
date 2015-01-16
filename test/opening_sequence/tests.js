@@ -26,7 +26,8 @@ QUnit.test("card rotates after name and title input", function(assert) {
   var done = assert.async();
 
   // Start the opening sequence
-  openingSequence();
+  VotingGame.reset();
+  VotingGame._opening();
 
   setTimeout(function() {
     assert.equal(
@@ -61,7 +62,8 @@ QUnit.test("hints display", function(assert){
   var done = assert.async();
   var noteHint = $("#hintBox");
 
-  openingSequence();
+  VotingGame.reset();
+  VotingGame._opening();
 
   assert.ok(! noteHint.is(":visible"), "Hint should be invisible at first");
 
@@ -108,9 +110,9 @@ QUnit.test("level title display", function(assert) {
   "use strict";
   var done = assert.async();
   var titleBox = $("#levelTitle");
-  console.log(titleBox);
 
-  openingSequence();
+  VotingGame.reset();
+  VotingGame._opening();
 
   assert.ok(! titleBox.is(":visible"), "Title should be invisible at first");
 
@@ -142,7 +144,8 @@ QUnit.test("level title display", function(assert) {
 QUnit.test("skip opening", function(assert) {
   "use strict";
   var done = assert.async();
-  skipOpening();
+  VotingGame.reset();
+  VotingGame._openingSkip();
 
   setTimeout(function() {
     assert.ok(! $("hintBox").is(":visible"), "No hints");

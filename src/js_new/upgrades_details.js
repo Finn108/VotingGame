@@ -1,8 +1,9 @@
 var VotingGame = (function (VG) {
   "use strict";
 
-  // Details for all the different upgrades
-  var upgradesDetails = [
+  // Details for all the different upgrades (assigned to VG so we could play
+  // with them in tests)
+  VG._upgradesDetails = [
     {
       id: "ClickPlus1",
       name: "שדרוג קליק",
@@ -28,7 +29,7 @@ var VotingGame = (function (VG) {
     var upgsState = upgradesState || {};
 		var upgsDiv = $("#upgrades");
 
-		upgradesDetails.forEach(function (item) {
+		VG._upgradesDetails.forEach(function (item) {
       var upgrade = new VG._Upgrade(item, VG, upgsDiv);
       VG._upgrades.push(upgrade);
       if (item.id in upgsState && upgsState[item.id]) {

@@ -11,30 +11,28 @@ var generatorsDetails = [
 
 
 QUnit.test("Check generator VPS change", function(assert) {
-  var game = new Game();
-  game.reset(false, 5);
-  game.start();
+  VotingGame.reset({skipIntro: true, votes: 13});
 	var note = $("#note");
   var genButton = $("#genVoter");
-  var generator = game.getGenById("Voter");
+  var generator = VotingGame.getGenById("Voter");
 
   genButton.click();
   assert.equal(
-    game.votesCounter.getVotesPerSecond(),
+    VotingGame.votesCounter.getVotesPerSecond(),
     0.2,
     "VPS should be equal to single voter"
   );
 
   generator.updateVotesPerSecond(3);
   assert.equal(
-    game.votesCounter.getVotesPerSecond(),
+    VotingGame.votesCounter.getVotesPerSecond(),
     3,
     "VPS should be equal to voter's change"
   );
 
   generator.updateVotesPerSecond("*3");
   assert.equal(
-    game.votesCounter.getVotesPerSecond(),
+    VotingGame.votesCounter.getVotesPerSecond(),
     9,
     "VPS should be equal to voter's second change"
   );

@@ -1,5 +1,5 @@
 // Replace the actual upgrades with some silly custom ones
-var upgradesDetails = [
+VotingGame._upgradesDetails = [
   {
     id: "Upg1",
     name: "Add one more vote",
@@ -15,17 +15,15 @@ var upgradesDetails = [
     description: "",
     price: 5,
     func: function (game) {
-      game.votesClickValue += 2;
+      game.clickValue += 2;
     }
   }
 ];
 
 QUnit.test("buy basic upgrade", function(assert) {
-  var game = new Game();
-  game.reset(true, 5);
-  game.start();
+  VotingGame.reset({skipIntro: true, votes: 5});
 
-  var myUp = game.getUpgById("Upg1");
+  var myUp = VotingGame.getUpgById("Upg1");
   myUp.display();
   
   $("#upgradeUpg1").click();
@@ -37,15 +35,14 @@ QUnit.test("buy basic upgrade", function(assert) {
 });
 
 QUnit.test("can't buy more than once", function(assert) {
-  var game = new Game();
-  game.reset(true, 20);
+  VotingGame.reset({skipIntro: true, votes: 20});
   var votesDisplay = $("#votesNumText");
   var note = $("#note");
 
   note.click();
   assert.equal(votesDisplay.text(), "21", "One click is one vote");
 
-  var myUp = game.getUpgById("Upg2");
+  var myUp = VotingGame.getUpgById("Upg2");
   myUp.display();
 
   for (var i=0; i < 4; i++) {
