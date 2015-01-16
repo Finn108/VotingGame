@@ -63,12 +63,14 @@ module.exports = function(grunt) {
 			},
 			test: {
 				// The details scripts must be first singe game.js needs them
-				src: ['src/js/**/*.js', '!src/js/play.js'],
+				//src: ['src/js/**/*.js', '!src/js/play.js'],
+				src: ['src/js_new/**/*.js', '!src/js_new/play.js'],
 				dest: '_build/main/js/pre_vote.js',
 			},
 			dist: {
 				// Make sure the play script will be the last one
-				src: ['src/js/**/*.js', '!src/js/play.js', 'src/js/play.js'],
+				//src: ['src/js/**/*.js', '!src/js/play.js', 'src/js/play.js'],
+				src: ['src/js_new/**/*.js', '!src/js_new/play.js', 'src/js_new/play.js'],
 				dest: '_build/main/js/vote.js'
 			},
       //TODO Combind CSS here as well

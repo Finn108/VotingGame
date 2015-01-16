@@ -1,7 +1,7 @@
 var VotingGame = (function (VG) {
   "use strict";
 
-  VG._Generator = function (details, level, votesCounter, generatorsDiv) {
+  VG._Generator = function (details, votesCounter, generatorsDiv) {
     /*
     A purchasable item that constantly generates votes.
 
@@ -49,8 +49,8 @@ var VotingGame = (function (VG) {
       var levelElem = document.createElement("div");
       var summaryElem = document.createElement("div");
       var summaryTextElem = document.createElement("p");
-      var priceStr = numNames(price);
-      var vpsText = numNames(details.votesPerSec) + " הצבעות לשנייה";
+      var priceStr = VG.numNames(price);
+      var vpsText = VG.numNames(details.votesPerSec) + " הצבעות לשנייה";
 
       // Change the votes per second text
       if (votesPerSecond < 1) {
@@ -93,7 +93,7 @@ var VotingGame = (function (VG) {
     }
 
     function updateDisplay() {
-      var priceStr = numNames(price);
+      var priceStr = VG.numNames(price);
       var totalVotesPerSecond = votesPerSecond * (level + 1);
       button.find(".genBtnPrice").text(name + " - " + priceStr + "₪");
       button.find(".genBtnLvl").text(level);
@@ -193,4 +193,6 @@ var VotingGame = (function (VG) {
     });
 
   };
+
+  return VG;
 })(VotingGame || {});

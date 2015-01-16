@@ -29,11 +29,13 @@ var VotingGame = (function (VG) {
 		var upgsDiv = $("#upgrades");
 
 		upgradesDetails.forEach(function (item) {
-      var upgrade = new VG._Upgrade(item, VG, upgDiv);
+      var upgrade = new VG._Upgrade(item, VG, upgsDiv);
       VG._upgrades.push(upgrade);
       if (item.id in upgsState && upgsState[item.id]) {
         upgrade.activate();
       }
     });
   };
+
+  return VG;
 })(VotingGame || {});

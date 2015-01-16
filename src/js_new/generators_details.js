@@ -118,4 +118,6 @@ var VotingGame = (function (VG) {
 
     });
   };
+
+  return VG;
 })(VotingGame || {});

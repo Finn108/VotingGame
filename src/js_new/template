@@ -1,0 +1,7 @@
+var VotingGame = (function (VG) {
+  "use strict";
+  
+  <You code here>
+
+  return VG;
+})(VotingGame || {});
