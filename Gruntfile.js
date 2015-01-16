@@ -1,59 +1,119 @@
 module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-		concat: {
-			options: {
-				seperator: ';',
-			},
-			test: {
-				// The details scripts must be first singe game.js needs them
-				//src: ['src/**/*details.js', 'src/**/*.js', '!src/play.js'],
-				src: ['src/**/*.js', '!src/play.js'],
-				dest: 'js/pre_vote.js',
-			},
-			dist: {
-				// Make sure the play script will be the last one
-				src: ['src/**/*.js', '!src/play.js', 'src/play.js'],
-				dest: 'js/vote.js'
-			}
-		},
+
+    // Make sure the JS is normal
+
 		jshint: {
-			files: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js'],
+			files: [
+        'Gruntfile.js',
+        'bower.json',
+        'package.json',
+        'src/js/**/*.js',
+        'test/**/*.js',
+      ],
 			options: {
 				globals: {
 					jQuery: true,
 				}
 			}
 		},
+
+    // Compile the HTML
+
+    jade: {
+      // Build main index.html
+      debug: {
+        options: {
+          pretty: true,
+          data: {
+            version: '<%= pkg.version %>',
+            authors: '<%= pkg.contributors %>',
+          }
+        },
+        files: {
+          '_build/main/index.html': 'src/jade/index.jade'
+        }
+      },
+      // Build test folders
+      tests: {
+        options: {
+          pretty: true
+        },
+        files: {
+          '_build/tests/full_game/index.html': 'test/full_game/index.jade',
+          '_build/tests/opening_sequence/index.html':
+            'test/opening_sequence/index.jade',
+          // Add additional test index.jade files here
+        }
+      }
+    },
+
+    // Compile the JS
+
+		concat: {
+			options: {
+				seperator: ';',
+			},
+			test: {
+				// The details scripts must be first singe game.js needs them
+				src: ['src/js/**/*.js', '!src/js/play.js'],
+				dest: '_build/main/js/pre_vote.js',
+			},
+			dist: {
+				// Make sure the play script will be the last one
+				src: ['src/js/**/*.js', '!src/js/play.js', 'src/js/play.js'],
+				dest: '_build/main/js/vote.js'
+			},
+      //TODO Combind CSS here as well
+		},
+
 		uglify: {
 			options: {
-				banner: '/*! <%= pkg.name %>.<%= pkg.version %> <%= grunt.template.today("dd-mm-yyy") %> */\n',
+				banner: '/*! <%= pkg.name %>.<%= pkg.version %> ' +
+                '<%= grunt.template.today("dd-mm-yyy") %> */\n',
 			},
 			dist: {
 				files: {
-					'js/pre_vote.min.js': 'js/pre_vote.js',
-					'js/vote.min.js': 'js/vote.js'
+					'_build/main/js/pre_vote.min.js': 'js/pre_vote.js',
+					'_build/main/js/vote.min.js': 'js/vote.js'
 				}
 			}
 		},
+
+    // Copy assets, css and bower_components
+
+    copy: {
+      build: {
+        files: [
+          { expand: true, src: ['assets/**'], dest: '_build/main/' },
+          { 
+            expand: true,
+            cwd: 'src',
+            src: ['css/*.css'],
+            dest: '_build/main/'
+          },
+          {
+            expand: true,
+            src: ['bower_components/**'],
+            dest: '_build/main/'
+          },
+        ]
+      }
+    },
+
 		qunit: {
-			files: ['test/**/*.html'],
+			files: ['_build/test*/index.html'],
 		},
-		wiredep: {
-			task: {
-				src: ['test/**/*.html'],
-				options: {
-					devDependencies: true,
-				},
-			},
-			task2: {
-				src: ['note_opening.html'],
-			}
-		},
+
 		watch: {
 			scripts: {
-				files: ['assets/*', '<%= jshint.files %>', 'css/*.css',
-						'index.html'],
+				files: [
+          'assets/*',
+          '<%= jshint.files %>',
+          'src/css/*.css',
+          'src/jade/*',
+        ],
 				tasks: ['default']
 			}
 		}
@@ -64,9 +124,16 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-concat');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-wiredep');
+  grunt.loadNpmTasks('grunt-contrib-jade');
+  grunt.loadNpmTasks('grunt-contrib-copy');
 
 
 	grunt.registerTask('test', ['jshint', 'concat', 'uglify', 'wiredep', 'qunit']);
-	grunt.registerTask('default', ['jshint', 'concat', 'uglify', 'wiredep']);
+	grunt.registerTask('default', [
+    'jshint',
+    'jade',
+    'concat',
+    'uglify',
+    'copy'
+  ]);
 };
