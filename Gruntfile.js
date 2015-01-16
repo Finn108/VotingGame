@@ -12,6 +12,7 @@ module.exports = function(grunt) {
         'bower.json',
         'package.json',
         'src/js/**/*.js',
+        'src/js_new/**/*.js',
         'test/**/*.js',
       ],
 			options: {
@@ -140,7 +141,6 @@ module.exports = function(grunt) {
 
 
 	grunt.registerTask('test', [
-    'jshint',
     'jshint',
     'jade',
     'concat',
