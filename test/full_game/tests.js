@@ -50,13 +50,11 @@ QUnit.test("VPS counter appears after 4 Voters", function(assert) {
 	assert.ok(! vpsDisplay.is(":visible"), "VPS invisible at start");
   for (i = 0; i < 175; i++) {
     note.click();
-    console.log(votesDisplay.text());
   }
   setTimeout(function () {
     assert.ok(! vpsDisplay.is(":visible"), "VPS invisible after many clicks");
     for (c = 0; c < 5; c++) voterBtn.click();
     setTimeout(function () {
-      console.log(vpsDisplay.text());
       assert.ok(
         vpsDisplay.is(":visible"),
         "VPS visible at 1VPS"

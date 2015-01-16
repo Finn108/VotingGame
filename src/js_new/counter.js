@@ -26,6 +26,17 @@ var VotingGame = (function (VG) {
 
 	}
   
+  VC.reset = function () {
+    /*
+    Resets all the parameters. Necessary for VotingGame.reset method
+    */
+    currentVotes = 0;
+    previousVotes = currentVotes;
+    votesPerSecond = 0;
+    votesDisplay = $("#votesNumText");
+    votesPSDisplay = $("#votesPerSecText");
+  };
+  
   VC.addVotes = function (numOfVotes) {
 		currentVotes += numOfVotes || 0;
 		refreshDisplay();

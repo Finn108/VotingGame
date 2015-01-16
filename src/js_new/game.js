@@ -14,10 +14,16 @@ var VotingGame = (function (VG) {
     upgrades: {},
   };
   
+  var updateInterval = -1;
+
+  // Used in 'tick' function
+  var frameRate = 25;
+  
   VG.reset = function (gameState) {
     /*
     Creates all the different elements in the game according to the gameState.
     */
+    clearInterval(updateInterval);
     gameState = gameState || defaultGameState;
     VG.clickValue = 1;
     VG._generators = [];
@@ -43,15 +49,16 @@ var VotingGame = (function (VG) {
     VG._createUpgrades(gameState.upgrades);
 
     // Return the number of votes to the given game state
-    VG.votesCounter.addVotes(gameState.votes);
+    VG.votesCounter.reset();
+    VG.votesCounter.addVotes(gameState.votes || 0);
+    VG.votesCounter.updateVotes(frameRate);
   };
 
   VG.start = function () {
     // Used to configure the games 'tick' rate
     var miliseconds = 40;
-    var frameRate = 25;
 
-		setInterval(function () {
+		updateInterval = setInterval(function () {
       VG.votesCounter.updateVotes(frameRate);
       //TODO Write the save function!!!
       //VG._save();
