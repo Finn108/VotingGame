@@ -44,6 +44,8 @@ module.exports = function(grunt) {
         },
         files: {
           '_build/test/full_game/index.html': testJade,
+          '_build/test/full_game/index_minified.html':
+            'src/jade/test_minified.jade',
           '_build/test/counter/index.html': testJade,
           '_build/test/opening_sequence/index.html': testJade,
           '_build/test/upgrade/index.html': testJade,
@@ -111,7 +113,7 @@ module.exports = function(grunt) {
     },
 
 		qunit: {
-			files: ['_build/test/*/index.html'],
+			files: ['_build/test/*/*.html'],
 		},
 
 		watch: {

@@ -59,7 +59,7 @@ function Upgrade(game, upgradersDiv, details) {
 
 		var envelopeElem = document.createElement("img");
 		envelopeElem.src = "assets/upgradeEnvelope.png";
-		if (isTest) envelopeElem.src = "../../assets/upgradeEnvelope.png";
+		if (isTest) envelopeElem.src = "../../main/assets/upgradeEnvelope.png";
 		upgradeElem.appendChild(envelopeElem);
 
 		var jqUpgrade = $(upgradeElem);
