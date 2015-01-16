@@ -24,7 +24,5 @@ block linkJSProject
   script(src=mainPath + "js/pre_vote.js")
   script.
     var isTest = true;
-    generatorsDetails.forEach(function(item) {
-      item.picture = "#{mainPath}assets/" + item.picture;
-    });
+    VotingGame._cMainPath = "../../main/";
   script(src="tests.js")

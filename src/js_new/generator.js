@@ -72,7 +72,7 @@ var VotingGame = (function (VG) {
 
       // Used for testing
       if (details.picture.indexOf("assets") === -1) {
-        imgElem.src = "assets/" + details.picture;
+        imgElem.src = VG._cMainPath + "assets/" + details.picture;
       }
       else {
         imgElem.src = details.picture;

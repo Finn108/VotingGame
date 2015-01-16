@@ -72,14 +72,12 @@ var VotingGame = (function (VG) {
   };
 
   VG.getUpgById = function (upgId) {
-    console.debug("getting upgrade: " + upgId);
     var upgrade = $.grep(
       VG._upgrades,
       function(item) {
         return item.id === upgId;
       }
     )[0];
-    console.debug(upgrade);
     return upgrade;
   };
 

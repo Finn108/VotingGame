@@ -100,7 +100,6 @@ var VotingGame = (function (VG) {
     }
   ];
 
-
   VG._createGenerators = function (generatorsState) {
     var gensState = generatorsState || {};
     var gensDiv = $("#generators");
