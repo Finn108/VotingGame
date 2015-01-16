@@ -1,4 +1,6 @@
 module.exports = function(grunt) {
+  var testJade = 'src/jade/test_layout.jade';
+
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 
@@ -41,10 +43,11 @@ module.exports = function(grunt) {
           pretty: true
         },
         files: {
-          '_build/test/full_game/index.html': 'test/full_game/index.jade',
-          '_build/tests/opening_sequence/index.html':
-            'test/opening_sequence/index.jade',
-          // Add additional test index.jade files here
+          '_build/test/full_game/index.html': testJade,
+          '_build/test/counter/index.html': testJade,
+          '_build/test/opening_sequence/index.html': testJade,
+          '_build/test/upgrade/index.html': testJade,
+          '_build/test/generator/index.html': testJade,
         }
       }
     },
@@ -108,7 +111,7 @@ module.exports = function(grunt) {
     },
 
 		qunit: {
-			files: ['_build/test-*/index.html'],
+			files: ['_build/test/*/index.html'],
 		},
 
 		watch: {
@@ -118,6 +121,7 @@ module.exports = function(grunt) {
           '<%= jshint.files %>',
           'src/css/*.css',
           'src/jade/*',
+          'test/*/index.jade',
         ],
 				tasks: ['default']
 			}
