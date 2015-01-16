@@ -20,7 +20,7 @@ var VotingGame = (function (VG) {
 		votesDisplay.text(VG.numNames(currentVotes));
 		votesPSDisplay.text("(" + VG.numNames(votesPerSecond) + " קולות לשנייה)");
 		if (previousVotes !== currentVotes) {
-			$(VC).trigger("votesChanged");
+			$(VC).trigger("votesChanged", currentVotes);
 			previousVotes = currentVotes;
 		}
 
@@ -29,6 +29,11 @@ var VotingGame = (function (VG) {
   VC.addVotes = function (numOfVotes) {
 		currentVotes += numOfVotes;
 		refreshDisplay();
+  };
+
+  VC.removeVotes = function (numOfVotes) {
+      currentVotes -= numOfVotes;
+      refreshDisplay();
   };
 
   VC.updateVotes = function (frameRate) {
@@ -43,75 +48,45 @@ var VotingGame = (function (VG) {
   VC.getVotes = function () {
     return currentVotes;
   };
-  
+
+  VC.revealCounter = function () {
+    /*
+    Fades the counter in. Uses the votesDisplay parent since there are
+    two different parts
+    */
+    votesDisplay.parent().fadeIn();
+  };
+
+  VC.addVotesPerSecond = function (numOfVPS) {
+    votesPerSecond += numOfVPS;
+    refreshDisplay();
+  };
+
+  VC.removeVotesPerSecond = function (numOfVPS) {
+    votesPerSecond -= numOfVPS;
+    refreshDisplay();
+  };
+
+  VC.getVotesPerSecond = function () {
+    return votesPerSecond;
+  };
+
+  VC.revealVPS = function () {
+    /*
+    Fades the votes per second in.
+    */
+    votesPSDisplay.fadeIn();
+  }; 
+
+
   //TODO Remove this thing the minute all of the vote counter's attributes are
   //in place
   function VotesCounter(initialVotes, initialVotesPerSecond) {
 
-    // Private attributes
-    var currentVotes = initialVotes || 0;
-    var previousVotes = currentVotes; // Used for event triggers
-    var votesPerSecond = initialVotesPerSecond || 0;
-    var votesDisplay = $("#votesNumText");
-    var votesPSDisplay = $("#votesPerSecText");
-
-    // Reference self from nested functions
-    var counter = this;
-
     // Private methods
 
-    // Public methods
-    this.updateVotes = function(frameRate) {
-      /*
-      This method is supposed to run in every `tick` of the game to properly
-      update the votes number
-      */
-      currentVotes += (votesPerSecond / frameRate);
-      refreshDisplay();
-    };
 
-    this.addVotes = function(numOfVotes) {
-      currentVotes += numOfVotes;
-      refreshDisplay();
-    };
 
-    this.removeVotes = function(numOfVotes) {
-      currentVotes -= numOfVotes;
-      refreshDisplay();
-    };
-
-    this.getVotes = function() {
-      return currentVotes;
-    };
-
-    this.addVotesPerSecond = function (numOfVPS) {
-      votesPerSecond += numOfVPS;
-      refreshDisplay();
-    };
-
-    this.removeVotesPerSecond = function (numOfVPS) {
-      votesPerSecond -= numOfVPS;
-      refreshDisplay();
-    };
-
-    this.getVotesPerSecond = function () {
-      return votesPerSecond;
-    };
-
-    this.revealCounter = function() {
-      /*
-      Fades the counter in. Uses the votesDisplay parent since there are
-      two different parts
-      */
-      votesDisplay.parent().fadeIn();
-    };
-
-    this.revealVPS = function() {
-      /*
-      Fades the votes per second in.
-      */
-      votesPSDisplay.fadeIn();
-    };
   }
   
 

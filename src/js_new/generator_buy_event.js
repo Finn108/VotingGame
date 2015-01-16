@@ -8,8 +8,9 @@ var VotingGame = (function (VG) {
     */
     var genId = gen.id;
     var level = gen.getLevel();
-    if (genId in genBuyEvents && level in VG._events.genBuyEvents[genId]) {
-      VG._events.genBuyEvents[genId][level](game);
+    var genBuyEvents = VG._events.genBuyEvents;
+    if (genId in genBuyEvents && level in genBuyEvents[genId]) {
+      genBuyEvents[genId][level](game);
     }
   };
 

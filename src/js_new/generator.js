@@ -25,17 +25,25 @@ var VotingGame = (function (VG) {
     var price = details.price;
     var name = details.name;
     var votesPerSecond = details.votesPerSec;
-    var level = details.level || 0;
-    // Show the generator if the details state he was already revealed
-    if (details.shown) this.reveal();
+    var level = 0;
+    var peekedIn = false;
+    var visible = false;
 
     // Used to reference the Generator within nested functions
     var generator = this;
 
+    // Show the generator if the details state he was already revealed
+    if (details.shown) reveal();
+
+    // Update the level based on the given details
+    if (details.level) {
+      for (var i=0; i < details.level; i++) {
+        increaseLevel();
+      }
+    }
+
     // Public attributes
     this.id = details.id;
-    this.peekedIn = false;
-    this.visible = false;
 
     function initElement() {
       /*
@@ -99,13 +107,11 @@ var VotingGame = (function (VG) {
       button.find(".genBtnLvl").text(level);
     }
 
-    function buy() {
+    function increaseLevel() {
       /*
-      Buys an instance of the generator and updates the votesPerSecond,
-      totalVotes and numberOfGenerators
+      Increases the generator's level, change the VPS and triggers a "buy"
+      event
       */
-      if (votesCounter.getVotes() < price) return;
-      votesCounter.removeVotes(price);
       votesCounter.addVotesPerSecond(votesPerSecond);
       price = Math.floor(price * 1.3);
       level += 1;
@@ -113,18 +119,78 @@ var VotingGame = (function (VG) {
       $(generator).trigger("buy", generator);
     }
 
-    this.checkAvailability = function() {
+    function buy() {
+      /*
+      Buys an instance of the generator and updates the votesPerSecond,
+      totalVotes and numberOfGenerators
+      */
+      if (votesCounter.getVotes() < price) return;
+      votesCounter.removeVotes(price);
+      increaseLevel();
+    }
+
+    function checkAvailability (currentVotes) {
       /*
       See if this generator can be bought and change the button class if it
       can be.
       */
-      if (votesCounter.getVotes() >= price) {
+      if (currentVotes >= price) {
         button.addClass("genBtnAvailable");
       }
       else {
         button.removeClass("genBtnAvailable");
       }
-    };
+    }
+
+    function peekIn () {
+      /*
+      Moves the button to the screen just a tiny bit
+      */
+      button.show();
+      button.animate({left: "+=20px"}, 1000, "easeOutCubic");
+      peekedIn = true;
+    }
+
+    function reveal () {
+      /*
+      Moves the entire button to the screen
+      */
+      button.animate({left: "0%"}, 2000, "easeOutCubic");
+      visible = true;
+    }
+
+    /*******************************/
+    /* Run after creation + events */
+    /*******************************/
+
+    // Update the level and price immediatly after creation
+    updateDisplay();
+
+    button.on("click", buy);
+
+    $(votesCounter).on("votesChanged", function (event, currentVotes) {
+      /*
+      Whenever the vote changes we check if we should pop in or if we need to
+      change the buy visibality
+      */
+      checkAvailability(currentVotes);
+
+      // The rest is not relevant if we're already on the screen
+      if (visible) return;
+
+      // Peek in when the current number of votes reaches 70%
+      if (! peekedIn && currentVotes >= (price * 7) / 10) {
+        peekIn();
+      }
+
+      if (currentVotes >= price) reveal();
+
+    });
+
+    
+    /******************/
+    /* Public Methods */
+    /******************/
 
     this.updateVotesPerSecond = function (newVPS) {
       /*
@@ -154,43 +220,11 @@ var VotingGame = (function (VG) {
       updateDisplay();
     };
 
-    this.peekIn = function () {
-      /*
-      Moves the button to the screen just a tiny bit
-      */
-      button.show();
-      button.animate({left: "+=20px"}, 1000, "easeOutCubic");
-      generator.peekedIn = true;
-    };
-
-    this.reveal = function () {
-      /*
-      Moves the entire button to the screen
-      */
-      button.animate({left: "0%"}, 2000, "easeOutCubic");
-      generator.visible = true;
-    };
 
     this.getLevel = function () {
       return level;
     };
 
-    // Update immediately after creation
-    updateDisplay();
-    button.on("click", buy);
-    $(votesCounter).on("votesChanged", function () {
-      if (generator.visible) return;
-
-      var currentVotes = votesCounter.getVotes();
-
-      // Peek in when the current number of votes reaches 70%
-      if (! generator.peekedIn && currentVotes >= (price * 7) / 10) {
-        generator.peekIn();
-      }
-
-      if (currentVotes >= price) generator.reveal();
-
-    });
 
   };
 
