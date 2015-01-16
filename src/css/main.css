@@ -15,6 +15,7 @@ body {
   background: url(../assets/bg.svg);
   background-size: 100vw 100vh;
   background-repeat: no-repeat;
+  overflow: hidden; // Prevent scrollbars
 }
 
 
