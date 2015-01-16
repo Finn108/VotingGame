@@ -32,5 +32,6 @@ var VotingGame = (function (VG) {
     return levelsDetails[VG._level];
   };
 
+
   return VG;
 })(VotingGame || {});

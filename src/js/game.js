@@ -171,8 +171,7 @@ function Game() {
 
   this.goUpLevel = function() {
     currentLevel++;
-    var details = levelsDetails[currentLevel];
-    console.log("Moving to level " + details.title);
+    var details = VG.getLevelDetails(currentLevel);
     this.levelCtrl.changeLevel(details.title, details.targetDesc);
   };
 }
