@@ -1,18 +1,19 @@
-/*
-The level controller. This object is in charge of changing the current level
-title and theme.
-*/
+var VotingGame = (function (VG) {
+  "use strict";
 
-function LevelController () {
   var levelTitleBox = $("#levelTitle");
   var levelTitle = levelTitleBox.children().first();
   var levelTargetVotes = levelTitleBox.children().last();
 
-  this.changeLevel = function (title, targetDesc) {
+  VG.goUpLevel = function () {
+    VG._level++;
+    var details = VG.getLevelDetails(VG._level);
     levelTitleBox.fadeOut(400, function () {
-      levelTitle.text("במרוץ ל" + title);
-      levelTargetVotes.text(targetDesc);
+      levelTitle.text("במרוץ ל" + details.title);
+      levelTargetVotes.text(details.targetDesc);
       levelTitleBox.fadeIn();
     });
   };
-}
+
+  return VG;
+})(VotingGame || {});

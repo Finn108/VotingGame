@@ -2,9 +2,9 @@
 Starts the game
 */
 
-$(document).ready(function() {
+$(function() {
   "use strict";
-	var game = new Game();
+
 	var queryString = (function () {
 	  // This function is anonymous, is executed immediately and
 	  // the return value is assigned to QueryString!
@@ -28,11 +28,17 @@ $(document).ready(function() {
 	    return qs;
 	})();
 
-	console.log(queryString);
+  var gameState = {
+    skipIntro: "skipIntro" in queryString,
+    votes: Number(queryString.votes) || 0,
+  };
+  
+  if (debug) {
+    VotingGame.reset(gameState);
+  }
+  else {
+    VotingGame.reset();
+  }
 
-	var skipIntro = "skipIntro" in queryString;
-  var startingPoints = Number(queryString.points) || 0;
-
-	game.reset(skipIntro, startingPoints);
-	game.start();
+  VotingGame.start();
 });

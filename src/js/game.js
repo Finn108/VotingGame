@@ -1,167 +1,86 @@
-/*
-The main game object. This will hold all the votesCounter, generators,
-upgrades, events and whatever else the game will need.
+var VotingGame = (function (VG) {
+  "use strict";
 
-Most of its attributes are public so that upgraders could change them.
+  // Some usefull constants (sometimes used in tests)
+  VG._cMainPath = "./";
 
-> game = new Game();
-> game.reset(); // Prepare the game elements
-> game.start(); // Play :)
-*/
+  var defaultGameState = {
+    level: 0,
+    votes: 0,
+    skipIntro: false,
+    noteTitle: "",
+    noteDesc: "",
+    generators: {},
+    upgrades: {},
+  };
+  
+  var updateInterval = -1;
 
-function Game() {
-	"use strict";
-
-	this.votesCounter = new VotesCounter();
-  this.levelCtrl = new LevelController();
-	this.votesClickValue = 1;
-	this.generators = [];
-	this.upgrades = [];
-
-	// Used to reference the game object from nested functions
-	var game = this;
-
-	var reachedLastvoteEvent = false;
-  var currentLevel = 0;
-  var noteTitle = "";
-  var noteDesc = "";
-
-	// Used to configure the games 'tick' rate
-	var frameRate = 25;
-	var miliseconds = 40;
-
-	function clickEvent() {
-		game.votesCounter.addVotes(game.votesClickValue);
-	}
-
-	function votesChangedEvent() {
-		if (reachedLastvoteEvent) return;
-
-		if (voteEvents.length === 0) {
-			console.log("reached final vote events");
-			reachedLastvoteEvent = true;
-			return;
-		}
-
-		var currentVotes = game.votesCounter.getVotes();
-
-		while (voteEvents.length > 0 && currentVotes >= voteEvents[0].vote) {
-			var currentEvent = voteEvents[0];
-			voteEvents.shift();
-			currentEvent.func(game);
-		}
-	}
-
-  function generatorBuyEvent(event, gen) {
+  // Used in 'tick' function
+  var frameRate = 25;
+  
+  VG.reset = function (gameState) {
     /*
-    Runs the relevant
+    Creates all the different elements in the game according to the gameState.
     */
-    var genId = gen.id;
-    var level = gen.getLevel();
-    if (genId in genBuyEvents && level in genBuyEvents[genId]) {
-      genBuyEvents[genId][level](game);
+    clearInterval(updateInterval);
+    gameState = gameState || defaultGameState;
+    VG.clickValue = 1;
+    VG._generators = [];
+    VG._upgrades = [];
+    VG._level = gameState.level || 0;
+
+    if (! gameState.skipIntro) {
+      var nameDetails = VG._opening();
+      gameState.noteTitle = nameDetails[0];
+      gameState.noteDesc = nameDetails[1];
+
     }
-  }
-
-  function saveGame() {
-    /*
-    Saves the current state of the game to the cookie "gameState"
-    */
-    var currentGens = {};
-    game.generators.forEach(function (gen) {
-      currentGens[gen.id] = {
-        buys: gen.getLevel(),
-        visible: gen.visible,
-      };
+    else {
+      VG._openingSkip(gameState.noteTitle, gameState.noteDesc);
+    }
+    
+    // Increase the votes on each click
+    $("#note").click(function () {
+      VG.votesCounter.addVotes(VG.clickValue);
     });
-    var gameState = {
-      votes: game.votesCounter.getVotes(),
-      level: currentLevel,
-      noteTitle: noteTitle,
-      noteDesc: noteDesc,
-      generators: currentGens
-    };
-    $.cookie.json = true;
-    $.cookie("gameState", gameState);
-  }
 
-	function updateState() {
-		/*
-		This is the main function that updates the current game state.
-		*/
-		game.votesCounter.updateVotes(frameRate);
-		game.generators.forEach(function (generator) {
-			generator.checkAvailability();
-		});
-    saveGame();
-	}
+    VG._createGenerators(gameState.generators);
+    VG._createUpgrades(gameState.upgrades);
 
-	this.reset = function(skipIntro, startingPoints) {
-		/*
-		Reset the game state
-		*/
-		console.log("reseting");
-    var noteDetails = [];
+    // Return the number of votes to the given game state
+    VG.votesCounter.reset();
+    VG.votesCounter.addVotes(gameState.votes || 0);
+    VG.votesCounter.updateVotes(frameRate);
+  };
 
-		if (!skipIntro) {
-			noteDetails = openingSequence();
-		}
-		else {
-      noteDetails = skipOpening();
-    }
+  VG.start = function () {
+    // Used to configure the games 'tick' rate
+    var miliseconds = 40;
 
-    noteTitle = noteDetails[0];
-    noteDesc = noteDetails[1];
+		updateInterval = setInterval(function () {
+      VG.votesCounter.updateVotes(frameRate);
+      //TODO Write the save function!!!
+      //VG._save();
+    }, miliseconds);
+  };
 
-
-		// Attach click event to vote note
-		$("#note").on("click", clickEvent);
-
-    // Attach event to vote change
-		$(this.votesCounter).on("votesChanged", votesChangedEvent);
-
-		// Create generators:
-		var gensDiv = $("#generators");
-		generatorsDetails.forEach(function (item) {
-      var gen = new Generator(this.votesCounter, gensDiv, item);
-			this.generators.push(gen);
-      $(gen).on("buy", generatorBuyEvent);
-
-		}, game);
-
-		// Create upgrades:
-		var upgDiv = $("#upgrades");
-		upgradesDetails.forEach(function (item) {
-			this.upgrades.push(new Upgrade(this, upgDiv, item));
-		}, game);
-
-    // Adds the starting points
-    startingPoints = startingPoints || 0;
-    console.log("starting with " + startingPoints + " points");
-    this.votesCounter.addVotes(startingPoints);
-	};
-
-	this.start = function() {
-		console.log("starting");
-		setInterval(updateState, miliseconds);
-	};
-
-	this.getGenById = function(genId) {
+  VG.getGenById = function (genId) {
 		/*
 		Returns the generator with the given ID
 		*/
 		var generator = $.grep(
-			game.generators,
+			VG._generators,
 			function(item) {
 				return item.id === genId;
 			}
 		)[0];
 		return generator;
-	};
+  };
 
-  this.getUpgById = function(upgId) {
+  VG.getUpgById = function (upgId) {
     var upgrade = $.grep(
-      game.upgrades,
+      VG._upgrades,
       function(item) {
         return item.id === upgId;
       }
@@ -169,9 +88,5 @@ function Game() {
     return upgrade;
   };
 
-  this.goUpLevel = function() {
-    currentLevel++;
-    var details = VG.getLevelDetails(currentLevel);
-    this.levelCtrl.changeLevel(details.title, details.targetDesc);
-  };
-}
+  return VG;
+})(VotingGame || {});
