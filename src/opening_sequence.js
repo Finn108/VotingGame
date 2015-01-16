@@ -103,6 +103,7 @@ function openingSequence() {
   noteTitle.val("");
   noteDesc.val("");
   setTimeout(fadeNoteIn, 600);
+  return [noteTitle.text(), noteDesc.text()];
 }
 
 function skipOpening() {
@@ -123,4 +124,5 @@ function skipOpening() {
   titleBox.children().first().text("במרוץ ל" + details.title);
   titleBox.children().last().text(details.targetDesc);
   titleBox.fadeIn();
+  return [noteTitle.text(), noteDesc.text()];
 }

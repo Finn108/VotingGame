@@ -23,6 +23,8 @@ function Game() {
 
 	var reachedLastvoteEvent = false;
   var currentLevel = 0;
+  var noteTitle = "";
+  var noteDesc = "";
 
 	// Used to configure the games 'tick' rate
 	var frameRate = 25;
@@ -61,6 +63,28 @@ function Game() {
     }
   }
 
+  function saveGame() {
+    /*
+    Saves the current state of the game to the cookie "gameState"
+    */
+    var currentGens = {};
+    game.generators.forEach(function (gen) {
+      currentGens[gen.id] = {
+        buys: gen.getLevel(),
+        visible: gen.visible,
+      };
+    });
+    var gameState = {
+      votes: game.votesCounter.getVotes(),
+      level: currentLevel,
+      noteTitle: noteTitle,
+      noteDesc: noteDesc,
+      generators: currentGens
+    };
+    $.cookie.json = true;
+    $.cookie("gameState", gameState);
+  }
+
 	function updateState() {
 		/*
 		This is the main function that updates the current game state.
@@ -69,21 +93,42 @@ function Game() {
 		game.generators.forEach(function (generator) {
 			generator.checkAvailability();
 		});
+    saveGame();
 	}
 
-	this.reset = function(skipIntro, startingPoints) {
+	this.reset = function(gameState) {
 		/*
 		Reset the game state
 
-		-skipIntro: whether to show the intro or not
-    -startingPoints: How many points to start the game with
+    The gameState is an object that holds information about the game in the
+    following format:
+    {
+      skipIntro: <Boolean|Default = false>,
+      votes: <Number|Default = 0>,
+      level: <Number|Default = 0>,
+      noteTitle: <String|Default = "">,
+      noteDesc: <String|Default = "">,
+      generators: {
+        <GeneratorID>: {
+          buys: <Number|Default = 0>,
+          visible: <Boolean|Default = false>,
+        },
+      },
+    }
 		*/
 		console.log("reseting");
+    var noteDetails = [];
+    var skipIntro = noteDetails.skipIntro || false;
 
 		if (!skipIntro) {
-			openingSequence();
+			noteDetails = openingSequence();
 		}
-		else skipOpening();
+		else {
+      noteDetails = skipOpening();
+    }
+
+    noteTitle = noteDetails[0];
+    noteDesc = noteDetails[1];
 
 
 		// Attach click event to vote note
