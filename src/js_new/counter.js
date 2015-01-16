@@ -78,17 +78,5 @@ var VotingGame = (function (VG) {
     votesPSDisplay.fadeIn();
   }; 
 
-
-  //TODO Remove this thing the minute all of the vote counter's attributes are
-  //in place
-  function VotesCounter(initialVotes, initialVotesPerSecond) {
-
-    // Private methods
-
-
-
-  }
-  
-
   return VG;
 })(VotingGame || {});

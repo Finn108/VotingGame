@@ -10,7 +10,7 @@ var VotingGame = (function (VG) {
     var level = gen.getLevel();
     var genBuyEvents = VG._events.genBuyEvents;
     if (genId in genBuyEvents && level in genBuyEvents[genId]) {
-      genBuyEvents[genId][level](game);
+      genBuyEvents[genId][level](VG);
     }
   };
 
