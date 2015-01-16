@@ -27,7 +27,7 @@ var VotingGame = (function (VG) {
 	}
   
   VC.addVotes = function (numOfVotes) {
-		currentVotes += numOfVotes;
+		currentVotes += numOfVotes || 0;
 		refreshDisplay();
   };
 

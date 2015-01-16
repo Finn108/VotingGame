@@ -31,7 +31,7 @@ module.exports = function(grunt) {
           pretty: true,
           data: {
             version: '<%= pkg.version %>',
-            authors: '<%= pkg.contributors %>',
+            debug: true,
           }
         },
         files: {

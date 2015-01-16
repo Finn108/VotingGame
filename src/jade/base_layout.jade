@@ -20,5 +20,9 @@ html
       script(src=bowerPath + "jquery-ui/jquery-ui.min.js")
       script(src=bowerPath + "jquery-cookie/jquery.cookie.js")
 
+    if (debug)
+      script.
+        var debug = true;
+
     block linkJSProject
       script(src=mainPath + "js/vote.js")

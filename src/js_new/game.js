@@ -58,5 +58,30 @@ var VotingGame = (function (VG) {
     }, miliseconds);
   };
 
+  VG.getGenById = function (genId) {
+		/*
+		Returns the generator with the given ID
+		*/
+		var generator = $.grep(
+			VG._generators,
+			function(item) {
+				return item.id === genId;
+			}
+		)[0];
+		return generator;
+  };
+
+  VG.getUpgById = function (upgId) {
+    console.debug("getting upgrade: " + upgId);
+    var upgrade = $.grep(
+      VG._upgrades,
+      function(item) {
+        return item.id === upgId;
+      }
+    )[0];
+    console.debug(upgrade);
+    return upgrade;
+  };
+
   return VG;
 })(VotingGame || {});
