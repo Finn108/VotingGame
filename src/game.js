@@ -96,29 +96,12 @@ function Game() {
     saveGame();
 	}
 
-	this.reset = function(gameState) {
+	this.reset = function(skipIntro, startingPoints) {
 		/*
 		Reset the game state
-
-    The gameState is an object that holds information about the game in the
-    following format:
-    {
-      skipIntro: <Boolean|Default = false>,
-      votes: <Number|Default = 0>,
-      level: <Number|Default = 0>,
-      noteTitle: <String|Default = "">,
-      noteDesc: <String|Default = "">,
-      generators: {
-        <GeneratorID>: {
-          buys: <Number|Default = 0>,
-          visible: <Boolean|Default = false>,
-        },
-      },
-    }
 		*/
 		console.log("reseting");
     var noteDetails = [];
-    var skipIntro = noteDetails.skipIntro || false;
 
 		if (!skipIntro) {
 			noteDetails = openingSequence();
