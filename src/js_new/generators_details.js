@@ -100,6 +100,7 @@ var VotingGame = (function (VG) {
     }
   ];
 
+
   VG._createGenerators = function (generatorsState) {
     var gensState = generatorsState || {};
     var gensDiv = $("#generators");
@@ -114,7 +115,7 @@ var VotingGame = (function (VG) {
 
       var gen = new VG._Generator(genDetails, VG.votesCounter, gensDiv);
       VG._generators.push(gen);
-      $(gen).on("buy", VG._handleGenBuy);
+      $(gen).on("buy", VG._genBuyEvent);
 
     });
   };
