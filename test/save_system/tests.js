@@ -141,3 +141,24 @@ QUnit.test("upgrades that were bought shouldn't appear", function (assert) {
     done();
   }, 1000);
 });
+
+QUnit.test("check that things remain after save", function (assert) {
+  "use strict";
+  var gameState = {
+    noteTitle: "PAR",
+    noteDesc: "Best Party Ever!",
+    skipIntro: true,
+  };
+
+  VotingGame.reset(gameState);
+  VotingGame.start();
+
+  var loadedGameState = VotingGame.load();
+  assert.equal(loadedGameState.noteTitle, "PAR", "Note title remains");
+  assert.equal(
+      loadedGameState.noteDesc,
+      "Best Party Ever!",
+      "Note title remains"
+  );
+
+});

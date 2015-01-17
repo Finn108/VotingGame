@@ -55,6 +55,10 @@ var VotingGame = (function (VG) {
     noteTitle.keydown(function (event) {
       if ($.inArray(event.which, tabOrEnter) > -1) {
         event.preventDefault();
+
+        // Save the note title to the gameState
+        VG._gameState.noteTitle = noteTitle.val();
+
         $(this).disableSelection();
         clearTimeout(titleHintTimeout);
         clearHint();
@@ -77,6 +81,8 @@ var VotingGame = (function (VG) {
     noteDesc.keydown(function (event) {
       if ($.inArray(event.which, tabOrEnter) > -1) {
         event.preventDefault();
+        // Save the party name to the gameState
+        VG._gameState.noteDesc = noteDesc.val();
 
         clearTimeout(descHintTimeout);
         clearHint();
@@ -101,7 +107,6 @@ var VotingGame = (function (VG) {
     noteTitle.val("");
     noteDesc.val("");
     setTimeout(fadeNoteIn, 600);
-    return [noteTitle.text(), noteDesc.text()];
   };
   
   // Skip the crap and start the game with the given note
@@ -121,7 +126,6 @@ var VotingGame = (function (VG) {
     titleBox.children().first().text("במרוץ ל" + details.title);
     titleBox.children().last().text(details.targetDesc);
     titleBox.fadeIn();
-    return [noteTitle.text(), noteDesc.text()];
   };
 
   return VG;

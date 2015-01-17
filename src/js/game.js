@@ -21,9 +21,7 @@ var VotingGame = (function (VG) {
     VG._currentVoteEvent = 0;
 
     if (! gameState.skipIntro) {
-      var nameDetails = VG._opening();
-      gameState.noteTitle = nameDetails[0];
-      gameState.noteDesc = nameDetails[1];
+      VG._opening();
       gameState.skipIntro = true;
     }
     else {
