@@ -1,7 +1,7 @@
 ﻿var VotingGame = (function (VG) {
   "use strict";
 
-  VG._generatorsDetails = [
+  VG._generatorsDetails = VG._generatorsDetailsDefault = [
     {
       id: "Voter",
       name: "מצביע",

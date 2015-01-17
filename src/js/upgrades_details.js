@@ -3,7 +3,7 @@
 
   // Details for all the different upgrades (assigned to VG so we could play
   // with them in tests)
-  VG._upgradesDetails = [
+  VG._upgradesDetails = VG._upgradesDetailsDefault = [
     {
       id: "ClickPlus1",
       name: "שדרוג קליק",

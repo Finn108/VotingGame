@@ -1,7 +1,7 @@
 var VotingGame = (function (VG) {
   "use strict";
 
-  VG._events = {};
+  VG._events = VG._eventsDefault = {};
 
   // Events that happen because of points change
   VG._events.voteEvents = [
@@ -47,14 +47,7 @@ var VotingGame = (function (VG) {
       func: function (game) {
         game.goUpLevel();
       }
-    },
-    {
-      // Increase generators div size a bit to prevent scrollbar intervention
-      vote: 45500000,
-      func: function (game) {
-        $("#generators").css({width: "362px"});
-      }
-    },
+    }
   ];
 
   // Events that occur after a purchase of a generator

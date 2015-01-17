@@ -61,7 +61,6 @@ var VotingGame = (function (VG) {
     }, miliseconds);
   };
 
-
   VG.getGenById = function (genId) {
 		/*
 		Returns the generator with the given ID
@@ -83,6 +82,33 @@ var VotingGame = (function (VG) {
       }
     )[0];
     return upgrade;
+  };
+
+  VG.cleanUp = function () {
+    /*
+    Removes all the events, upgrades and generators from the basic
+    configuration of the game. Used mainly for testing.
+    After running this function you can run reset without things being totally
+    messed up.
+    */
+    VG._upgradesDetails = [];
+    VG._generatorsDetails = [];
+    VG._events = {
+      voteEvents: [],
+      genBuyEvents: [],
+    };
+  };
+
+  VG.restoreDefaults = function () {
+    /*
+    Returns the events configurations to the default values. Used mainly for
+    testing.
+    */
+    VG._upgradesDetails = VG._upgradesDetailsDefault;
+    VG._generatorsDetails = VG._generatorsDetailsDefault;
+    // Make sure that if you change events - you do VotingGame._events = <>
+    // and not VG._events.voteEvents = <>. Otherwise you'll change the default
+    VG._events = VG._eventsDefault;
   };
 
   return VG;
