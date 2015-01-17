@@ -33,7 +33,10 @@ var VotingGame = (function (VG) {
     var generator = this;
 
     // Show the generator if the details state he was already revealed
-    if (details.shown) reveal();
+    if (details.shown) {
+      peekIn();
+      reveal();
+    }
 
     // Update the level based on the given details
     if (details.level) {

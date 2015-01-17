@@ -13,6 +13,8 @@ var VotingGame = (function (VG) {
     if (genId in genBuyEvents && level in genBuyEvents[genId]) {
       genBuyEvents[genId][level](VG);
     }
+
+    // Add to gameState
     if (genId in VG._gameState.generators) {
       VG._gameState.generators[genId].level = level;
     }
@@ -40,7 +42,6 @@ var VotingGame = (function (VG) {
 
     VG._generatorsDetails.forEach(function (genDetails) {
       var genId = genDetails.id;
-      var level = 0;
       if (genId in gensState) {
         genDetails.level = gensState[genId].level;
         genDetails.shown = gensState[genId].shown;

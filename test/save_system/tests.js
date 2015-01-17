@@ -77,3 +77,27 @@ QUnit.test("remember state", function (assert) {
   }, 100);
 
 });
+
+QUnit.test("generator appearing at load", function (assert) {
+  var done = assert.async();
+  var gameState = {
+    skipIntro: true,
+    votes: 8,
+    generators: {
+      Voter: {
+        shown: true,
+        level: 3,
+      }
+    }
+  };
+
+  $.cookie("GS", gameState);
+  VotingGame.reset(VotingGame.load());
+
+  setTimeout(function () {
+    assert.ok($("#genVoter").is(":visible"));
+    done();
+  }, 100);
+
+
+});
