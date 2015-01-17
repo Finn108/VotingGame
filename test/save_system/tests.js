@@ -118,7 +118,8 @@ QUnit.test("upgrades that were bought shouldn't appear", function (assert) {
   ];
 
   VotingGame._upgradesDetails = upgradeDetails;
-
+  // Remove vote events to prevent annoying problems
+  VotingGame._events.voteEvents = [];
   var gameState = {
     skipIntro: true,
     upgrades: {

@@ -143,7 +143,7 @@ body {
   top: 65px;
   left: 0%;
   height: 810px;
-  
+
   /* Prevents scrolling outside of page size */
   overflow-x: hidden;
   /* Allow scrolling when we have too many generators */
@@ -233,6 +233,7 @@ body {
 
 .upgrade {
   margin-top: 14px;
+  height: 50px;
 }
 
 .upgrade > div {

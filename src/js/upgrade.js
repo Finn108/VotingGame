@@ -1,6 +1,6 @@
 var VotingGame = (function (VG) {
   "use strict";
-  
+
   VG._Upgrade = function (details, game, upgradersDiv) {
     var upgradeElem = initElement();
     var price = details.price;
@@ -42,7 +42,6 @@ var VotingGame = (function (VG) {
 
       var jqUpgrade = $(upgradeElem);
       jqUpgrade.disableSelection();
-      upgradersDiv.append(jqUpgrade);
       return jqUpgrade;
     }
 
@@ -64,6 +63,8 @@ var VotingGame = (function (VG) {
       /*
       Display the upgrade. Will be a lot more dramatic
       */
+      // Only add the upgrade to the upgraders on on display
+      upgradersDiv.append(upgradeElem);
       var innerNote = upgradeElem.children().first();
       var envelope = upgradeElem.children().last();
       innerNote.css("right", "-100%");
@@ -90,7 +91,9 @@ var VotingGame = (function (VG) {
 
       envelope.animate({right: "+=53px"}, 400, "swing", function () {
         innerNote.animate({right: "-100%"}, 1200, "easeInOutQuad", function (){
-          envelope.animate({right: "-100%"}, 600);
+          envelope.animate({right: "-100%"}, 600, "swing", function () {
+            upgradeElem.hide();
+          });
         });
       });
 
@@ -136,7 +139,7 @@ var VotingGame = (function (VG) {
 
     this.wasDisplayed = function() {
       /*
-      Returns whether the upgrade was ever displayed or not. 
+      Returns whether the upgrade was ever displayed or not.
       */
       return displayed;
     };

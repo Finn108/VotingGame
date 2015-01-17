@@ -1,6 +1,6 @@
 var VotingGame = (function (VG) {
   "use strict";
-  
+
 	function votesChangedEvent(event, currentVotes) {
     /*
     Every time the votes change we iterate over the configured vote events and
@@ -12,11 +12,11 @@ var VotingGame = (function (VG) {
     var voteEvents = VG._events.voteEvents;
     var pointer = VG._currentVoteEvent;
 
-    if (pointer > voteEvents.length) {
+    if (pointer >= voteEvents.length) {
 			return;
 		}
 
-		while (pointer <= voteEvents.length &&
+		while (pointer < voteEvents.length &&
            currentVotes >= voteEvents[pointer].vote) {
 			var currentEvent = voteEvents[pointer];
       VG._currentVoteEvent = ++pointer;

@@ -21,6 +21,7 @@ var upgradesDetails = [
 ];
 
 QUnit.test("buy basic upgrade", function(assert) {
+  var done = assert.async();
   var details = [];
   $.extend(true, details, upgradesDetails);
   VotingGame._upgradesDetails = details;
@@ -28,18 +29,26 @@ QUnit.test("buy basic upgrade", function(assert) {
 
   var myUp = VotingGame.getUpgById("Upg1");
   myUp.display();
-  
+
   $("#upgradeUpg1").click();
   assert.equal(
     $("#votesNumText").text(),
     "1",
     "Upgrade should leave one point"
   );
+  setTimeout(function () {
+    assert.ok(
+      ! $("#upgradeUpg1").is(":visible"),
+      "upgrade should disapear after bought"
+    );
+    done();
+  }, 500);
 });
 
 QUnit.test("can't buy more than once", function(assert) {
   var details = [];
   $.extend(true, details, upgradesDetails);
+  VotingGame._events.voteEvents = [];
   VotingGame._upgradesDetails = details;
   VotingGame.reset({skipIntro: true, votes: 20});
   var votesDisplay = $("#votesNumText");

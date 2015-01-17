@@ -1,6 +1,6 @@
 var VotingGame = (function (VG) {
   "use strict";
-  
+
   VG._events = {};
 
   // Events that happen because of points change
@@ -10,13 +10,13 @@ var VotingGame = (function (VG) {
       func: function (game) {
         game.votesCounter.revealCounter();
       }
-},
-{
+    },
+    {
       vote: 20,
       func: function (game) {
         var upgrade = game.getUpgById("VoterEachSecond");
-	upgrade.display();
-}
+        upgrade.display();
+      }
     },
     {
       vote: 170,
@@ -65,9 +65,9 @@ var VotingGame = (function (VG) {
         game.votesCounter.revealVPS();
       },
       3: function (game) {
-              /*
-              Display the upgrades sidebar + add the first upgrade
-              */
+        /*
+        Display the upgrades sidebar + add the first upgrade
+        */
         $("#upgrades").toggle("drop", {direction:"down"}, 1000);
         var upgrade = game.getUpgById("ClickPlus1");
         // wait for the upgrades bar to load
