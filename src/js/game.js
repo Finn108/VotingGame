@@ -30,17 +30,18 @@ var VotingGame = (function (VG) {
       VG._openingSkip(gameState.noteTitle, gameState.noteDesc);
     }
 
-
     // Increase the votes on each click
     $("#note").click(function () {
       VG.votesCounter.addVotes(VG.clickValue);
     });
 
-    VG._createGenerators(gameState.generators);
-    VG._createUpgrades(gameState.upgrades);
-
     // Return the number of votes to the given game state
     VG.votesCounter.reset();
+
+    VG._createGenerators();
+    VG._createUpgrades(gameState.upgrades);
+    VG._updateGeneratorsToState(gameState.generators);
+
     // The addVotes function must happen after the reset and the generators
     // and upgraders create. Otherwise the events related to the votes won't
     // work properly

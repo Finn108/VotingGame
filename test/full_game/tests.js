@@ -42,7 +42,7 @@ QUnit.test("20 clicks to get Voter", function(assert) {
 QUnit.module("Buy event tests");
 QUnit.test("VPS counter appears after 4 Voters", function(assert) {
 	var done = assert.async();
-  VG = startGame();
+  var VG = startGame();
 	var note = $("#note");
 	var voterBtn = $("#genVoter");
 	var votesDisplay = $("#votesNumText");
@@ -92,17 +92,36 @@ QUnit.test("Upgrades appear after a few voters", function(assert) {
 });
 
 QUnit.test("Generators and Counter appear from reset params", function (assert) {
-  VotingGame.reset({skipIntro: true, votes: 230000});
+  var gameState = {
+    skipIntro: true,
+    votes: 230000,
+    generators: {
+      Voter: {
+        level: 5,
+        shown: true,
+      }
+    }
+  };
+  VotingGame.reset(gameState);
   VotingGame.start();
 
   assert.ok($("#genVoter").is(":visible"));
   assert.ok($("#genCookie").is(":visible"));
   assert.ok($("#votesNumText").is(":visible"));
+  assert.ok(
+    $("#votesPerSecText").is(":visible"),
+    "VPS should be visible now"
+  );
+  assert.equal(
+    $("#votesPerSecText").text(),
+    "(1 קולות לשנייה)",
+    "We should have 5 voters which is one VPS"
+  );
 });
 
 QUnit.module("Game object function tests");
 QUnit.test("getGenById", function(assert) {
-  VG = startGame();
+  var VG = startGame();
 	var voterGen = VG.getGenById("Voter");
 	assert.equal(voterGen.id, "Voter");
 });

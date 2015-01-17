@@ -36,16 +36,27 @@ var VotingGame = (function (VG) {
     };
   }
   
-  VG._createGenerators = function (generatorsState) {
+  VG._updateGeneratorsToState = function (generatorsState) {
+    /*
+    Since there are a lot of dependencies between upgrades and generator. We'll
+    create both of them and only afterwords apply the current state. We run
+    reachTargetLevel after creation to catch its triggers
+    */
     var gensState = generatorsState || {};
+    for (var genId in gensState) {
+      var gen = VG.getGenById(genId);
+      var state = gensState[genId];
+      gen.reachTargetLevel(state.level);
+      if (state.shown) gen.showButton();
+    }
+  };
+
+  VG._createGenerators = function () {
     var gensDiv = $("#generators");
 
     VG._generatorsDetails.forEach(function (genDetails) {
       var genId = genDetails.id;
-      if (genId in gensState) {
-        genDetails.level = gensState[genId].level;
-        genDetails.shown = gensState[genId].shown;
-      }
+      var targetLevel = 0;
 
       var gen = new VG._Generator(genDetails, VG.votesCounter, gensDiv);
       VG._generators.push(gen);

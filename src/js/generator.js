@@ -32,19 +32,6 @@ var VotingGame = (function (VG) {
     // Used to reference the Generator within nested functions
     var generator = this;
 
-    // Show the generator if the details state he was already revealed
-    if (details.shown) {
-      peekIn();
-      reveal();
-    }
-
-    // Update the level based on the given details
-    if (details.level) {
-      for (var i=0; i < details.level; i++) {
-        increaseLevel();
-      }
-    }
-
     // Public attributes
     this.id = details.id;
 
@@ -223,6 +210,25 @@ var VotingGame = (function (VG) {
       updateDisplay();
     };
 
+    this.reachTargetLevel = function (targetLevel) {
+      /*
+      Updates the generator to reach the given level without executing a buy
+      so the votes won't change.
+      */
+      if (targetLevel) {
+        for (var i=0; i < targetLevel; i++) {
+          increaseLevel();
+        }
+      }
+    };
+
+    this.showButton = function () {
+      /*
+      Peeks and immediatly reveals the generator button
+      */
+      peekIn();
+      reveal();
+    };
 
     this.getLevel = function () {
       return level;

@@ -93,6 +93,7 @@ var VotingGame = (function (VG) {
           envelope.animate({right: "-100%"}, 600);
         });
       });
+
       /*
       No reason to keep listening after we're out -
       BUT currently afraid it will mess shit up...
@@ -106,6 +107,7 @@ var VotingGame = (function (VG) {
       Runs the upgrade function on the game. Removed from buy since it can
       sometimes be activated without removing points (like in game reset)
       */
+      bought = true;
       upgradeFunc(game);
       hide();
     };
@@ -117,7 +119,6 @@ var VotingGame = (function (VG) {
       */
       if (bought) return;
       if (game.votesCounter.getVotes() < price) return;
-      bought = true;
       game.votesCounter.removeVotes(price);
       $(upgrade).trigger("buy", upgrade);
       upgrade.activate();
