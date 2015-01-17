@@ -91,6 +91,14 @@ QUnit.test("Upgrades appear after a few voters", function(assert) {
 	);
 });
 
+QUnit.test("Generators appear from reset params", function (assert) {
+  VotingGame.reset({skipIntro: true, votes: 230000});
+  VotingGame.start();
+
+  assert.ok($("#genVoter").is(":visible"));
+  assert.ok($("#genCookie").is(":visible"));
+});
+
 QUnit.module("Game object function tests");
 QUnit.test("getGenById", function(assert) {
   VG = startGame();

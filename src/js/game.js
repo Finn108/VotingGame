@@ -4,9 +4,7 @@ var VotingGame = (function (VG) {
   // Some usefull constants (sometimes used in tests)
   VG._cMainPath = "./";
 
-  
   var updateInterval = -1;
-
   // Used in 'tick' function
   var frameRate = 25;
   
@@ -20,10 +18,7 @@ var VotingGame = (function (VG) {
     VG._generators = [];
     VG._upgrades = [];
     VG._level = gameState.level;
-
-    // Return the number of votes to the given game state
-    VG.votesCounter.reset();
-    VG.votesCounter.addVotes(gameState.votes);
+    VG._currentVoteEvent = -1;
 
     if (! gameState.skipIntro) {
       var nameDetails = VG._opening();
@@ -44,6 +39,12 @@ var VotingGame = (function (VG) {
     VG._createGenerators(gameState.generators);
     VG._createUpgrades(gameState.upgrades);
 
+    // Return the number of votes to the given game state
+    VG.votesCounter.reset();
+    // The addVotes function must happen after the reset and the generators
+    // and upgraders create. Otherwise the events related to the votes won't
+    // work properly
+    VG.votesCounter.addVotes(gameState.votes);
 
     VG.votesCounter.updateVotes(frameRate);
     VG.save();
