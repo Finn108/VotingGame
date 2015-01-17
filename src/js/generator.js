@@ -193,20 +193,20 @@ var VotingGame = (function (VG) {
       */
       var currentTotalVPS = votesPerSecond * level;
 
-      if (typeof(newVPS) === "number") {
-        votesPerSecond = newVPS;
-      }
-      else if (typeof(newVPS) === "string") {
-        /* jshint -W061 */
-        votesPerSecond = eval(votesPerSecond + newVPS);
-      }
-      else {
-        return;
-      }
+      votesPerSecond = VG.updateNumber(votesPerSecond, newVPS);
+      if (! votesPerSecond) return;
 
       var newTotalVPS = votesPerSecond * level;
       votesCounter.removeVotesPerSecond(currentTotalVPS);
       votesCounter.addVotesPerSecond(newTotalVPS);
+      updateDisplay();
+    };
+
+    this.updatePrice = function (newPrice) {
+      /*
+      Changes the price of the generator. Can be a number or a string like "/2"
+      */
+      price = VG.updateNumber(price, newPrice);
       updateDisplay();
     };
 
