@@ -23,7 +23,6 @@ var upgradesDetails = [
 QUnit.test("buy basic upgrade", function(assert) {
   var details = [];
   $.extend(true, details, upgradesDetails);
-  console.log(details);
   VotingGame._upgradesDetails = details;
   VotingGame.reset({skipIntro: true, votes: 5});
 
@@ -41,7 +40,6 @@ QUnit.test("buy basic upgrade", function(assert) {
 QUnit.test("can't buy more than once", function(assert) {
   var details = [];
   $.extend(true, details, upgradesDetails);
-  console.log(details);
   VotingGame._upgradesDetails = details;
   VotingGame.reset({skipIntro: true, votes: 20});
   var votesDisplay = $("#votesNumText");

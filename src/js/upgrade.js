@@ -109,7 +109,6 @@ var VotingGame = (function (VG) {
       */
       bought = true;
       upgradeFunc(game);
-      hide();
     };
 
     this.buy = function() {
@@ -122,12 +121,14 @@ var VotingGame = (function (VG) {
       game.votesCounter.removeVotes(price);
       upgrade.activate();
       $(upgrade).trigger("buy", upgrade);
+      hide();
     };
 
     this.display = function(game) {
       /*
       Sets the upgrade to display once additional dependencies have been met
       */
+      if (bought) return;
       upgrade.displayed = true;
       show();
       return;

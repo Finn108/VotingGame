@@ -101,3 +101,42 @@ QUnit.test("generator appearing at load", function (assert) {
 
 
 });
+
+QUnit.test("upgrades that were bought shouldn't appear", function (assert) {
+  "use strict";
+  var done = assert.async();
+  var upgradeDetails = [
+    {
+      id: "ClickPlus1",
+      name: "Click Upgrade",
+      price: 10,
+      description: "Every click is worth on more",
+      func: function(game) {
+        game.clickValue ++;
+      },
+    },
+  ];
+
+  VotingGame._upgradesDetails = upgradeDetails;
+
+  var gameState = {
+    skipIntro: true,
+    upgrades: {
+      "ClickPlus1": true
+    },
+    generators: {
+      Voter: {
+        shown: true,
+        level: 10,
+      }
+    },
+    votes: 30
+  };
+
+  VotingGame.reset(gameState);
+  VotingGame.start();
+  setTimeout(function () {
+    assert.ok(! $("#upgradeClickPlus1").is(":visible"));
+    done();
+  }, 1000);
+});
