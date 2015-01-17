@@ -31,7 +31,18 @@ module.exports = function(grunt) {
           pretty: true,
           data: {
             version: '<%= pkg.version %>',
-            debug: true,
+            debug: true, // used to allow cheats in the url
+          }
+        },
+        files: {
+          '_build/main/index.dbg.html': 'src/jade/index.jade'
+        }
+      },
+      dist: {
+        options: {
+          pretty: true,
+          data: {
+            version: '<%= pkg.version %>',
           }
         },
         files: {
@@ -41,7 +52,7 @@ module.exports = function(grunt) {
       // Build test folders
       tests: {
         options: {
-          pretty: true
+          pretty: true,
         },
         files: {
           '_build/test/full_game/index.html': testJade,

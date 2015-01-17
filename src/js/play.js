@@ -37,7 +37,8 @@ $(function() {
     VotingGame.reset(gameState);
   }
   else {
-    VotingGame.reset();
+    gameState = VotingGame.load();
+    VotingGame.reset(gameState);
   }
 
   VotingGame.start();

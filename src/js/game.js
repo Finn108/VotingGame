@@ -29,7 +29,7 @@ var VotingGame = (function (VG) {
       var nameDetails = VG._opening();
       gameState.noteTitle = nameDetails[0];
       gameState.noteDesc = nameDetails[1];
-
+      gameState.skipIntro = true;
     }
     else {
       VG._openingSkip(gameState.noteTitle, gameState.noteDesc);
@@ -46,7 +46,7 @@ var VotingGame = (function (VG) {
 
 
     VG.votesCounter.updateVotes(frameRate);
-    VG._save();
+    VG.save();
   };
 
   VG.start = function () {
@@ -55,7 +55,7 @@ var VotingGame = (function (VG) {
 
 		updateInterval = setInterval(function () {
       VG.votesCounter.updateVotes(frameRate);
-      VG._save();
+      VG.save();
     }, miliseconds);
   };
 

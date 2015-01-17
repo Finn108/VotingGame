@@ -35,14 +35,14 @@ var VotingGame = (function (VG) {
     return newGameState;
   };
 
-  VG._save = function () {
+  VG.save = function () {
     /*
     Saves the current game state to a cookie named 'GS'
     */
     $.cookie("GS", VG._gameState);
   };
 
-  VG._load = function () {
+  VG.load = function () {
     /*
     Loads the current game state from the cookie 'GS'. DOESN'T RESET THE GAME!
     Thie method only returns the loaded save details (should be passed on to

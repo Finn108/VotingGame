@@ -53,14 +53,14 @@ QUnit.test("cookie creation and load", function (assert) {
   var defaultGameState = {
     level: 0,
     votes: 0,
-    skipIntro: false,
+    skipIntro: true,
     noteTitle: "",
     noteDesc: "",
     generators: {},
     upgrades: {},
   };
 
-  assert.deepEqual(VotingGame._load(), defaultGameState);
+  assert.deepEqual(VotingGame.load(), defaultGameState);
 });
 
 QUnit.test("remember state", function (assert) {
@@ -72,7 +72,7 @@ QUnit.test("remember state", function (assert) {
   for (var i=0; i < 50; i++) $("#note").click();
 
   setTimeout(function () {
-    assert.equal(VotingGame._load().votes, 50);
+    assert.equal(VotingGame.load().votes, 50);
     done();
   }, 100);
 

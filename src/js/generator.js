@@ -157,6 +157,7 @@ var VotingGame = (function (VG) {
       */
       button.animate({left: "0%"}, 2000, "easeOutCubic");
       visible = true;
+      $(generator).trigger("revealed", generator);
     }
 
     /*******************************/

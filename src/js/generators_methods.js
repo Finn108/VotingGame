@@ -13,7 +13,25 @@ var VotingGame = (function (VG) {
     if (genId in genBuyEvents && level in genBuyEvents[genId]) {
       genBuyEvents[genId][level](VG);
     }
-    VG._gameState.generators[genId] = level;
+    if (genId in VG._gameState.generators) {
+      VG._gameState.generators[genId].level = level;
+    }
+    else {
+      VG._gameState.generators[genId] = {
+        level: level,
+        shown: true // We assume they only bought it after they saw it...
+      };
+    }
+  }
+
+  function genRevealedEvent (event, gen) {
+    /*
+    When a generator is first seen we add its details to the gameState
+    */
+    VG._gameState.generators[gen.id] = {
+      shown: true,
+      level: gen.getLevel(),
+    };
   }
   
   VG._createGenerators = function (generatorsState) {
@@ -31,6 +49,7 @@ var VotingGame = (function (VG) {
       var gen = new VG._Generator(genDetails, VG.votesCounter, gensDiv);
       VG._generators.push(gen);
       $(gen).on("buy", genBuyEvent);
+      $(gen).on("reveal", genRevealedEvent);
 
     });
   };
