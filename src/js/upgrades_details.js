@@ -1,4 +1,4 @@
-var VotingGame = (function (VG) {
+﻿var VotingGame = (function (VG) {
   "use strict";
 
   // Details for all the different upgrades (assigned to VG so we could play
@@ -10,7 +10,7 @@ var VotingGame = (function (VG) {
       price: 10,
       description: "כל קליק שווה פי 2",
       func: function(game) {
-        game.clickValue ++;
+        game.clickValue++;
       },
     },
     {

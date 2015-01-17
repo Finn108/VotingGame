@@ -10,6 +10,13 @@ var VotingGame = (function (VG) {
       func: function (game) {
         game.votesCounter.revealCounter();
       }
+},
+{
+      vote: 20,
+      func: function (game) {
+        var upgrade = game.getUpgById("VoterEachSecond");
+	upgrade.display();
+}
     },
     {
       vote: 170,
@@ -57,7 +64,7 @@ var VotingGame = (function (VG) {
       1: function (game) {
         game.votesCounter.revealVPS();
       },
-      6: function (game) {
+      3: function (game) {
               /*
               Display the upgrades sidebar + add the first upgrade
               */
@@ -67,11 +74,6 @@ var VotingGame = (function (VG) {
         setTimeout(upgrade.display, 1500);
       }
     },
-    Cookie: {
-      3: function (game) {
-        alert("Yeah!");
-      }
-    }
   };
 
   return VG;
