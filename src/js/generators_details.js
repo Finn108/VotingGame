@@ -1,4 +1,4 @@
-var VotingGame = (function (VG) {
+﻿var VotingGame = (function (VG) {
   "use strict";
 
   VG._generatorsDetails = [
@@ -59,12 +59,12 @@ var VotingGame = (function (VG) {
       picture: "army.png",
     },
     {
-      id: "Propaganda",
-      name: "פרופגנדה",
+      id: "Duck",
+      name: "ברווז אטומי",
       votesPerSec: 105000,
-      description: "הכלי החביב על גבלס, עכשיו בשירות<BR>המדינה (שלך).",
+      description: "נו בטח שהיה מבצע, יש ברווז אטומי!",
       price: 65000000,
-      picture: "propaganda.png",
+      picture: "duck.png",
     },
       {
       id: "Baby",
