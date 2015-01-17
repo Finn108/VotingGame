@@ -120,8 +120,8 @@ var VotingGame = (function (VG) {
       if (bought) return;
       if (game.votesCounter.getVotes() < price) return;
       game.votesCounter.removeVotes(price);
-      $(upgrade).trigger("buy", upgrade);
       upgrade.activate();
+      $(upgrade).trigger("buy", upgrade);
     };
 
     this.display = function(game) {

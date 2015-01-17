@@ -59,6 +59,6 @@ QUnit.test("can't buy more than once", function(assert) {
 
   assert.equal(votesDisplay.text(), "16", "Upgrade is only bought once");
   note.click();
-  assert.equal(votesDisplay.text(), "19", "One click is three vote");
+  assert.equal(votesDisplay.text(), "19", "One click is three votes");
 
 });
