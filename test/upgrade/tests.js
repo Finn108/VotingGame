@@ -1,5 +1,5 @@
 // Replace the actual upgrades with some silly custom ones
-VotingGame._upgradesDetails = [
+var upgradesDetails = [
   {
     id: "Upg1",
     name: "Add one more vote",
@@ -21,6 +21,10 @@ VotingGame._upgradesDetails = [
 ];
 
 QUnit.test("buy basic upgrade", function(assert) {
+  var details = [];
+  $.extend(true, details, upgradesDetails);
+  console.log(details);
+  VotingGame._upgradesDetails = details;
   VotingGame.reset({skipIntro: true, votes: 5});
 
   var myUp = VotingGame.getUpgById("Upg1");
@@ -35,6 +39,10 @@ QUnit.test("buy basic upgrade", function(assert) {
 });
 
 QUnit.test("can't buy more than once", function(assert) {
+  var details = [];
+  $.extend(true, details, upgradesDetails);
+  console.log(details);
+  VotingGame._upgradesDetails = details;
   VotingGame.reset({skipIntro: true, votes: 20});
   var votesDisplay = $("#votesNumText");
   var note = $("#note");

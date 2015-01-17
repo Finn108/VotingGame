@@ -51,6 +51,7 @@ module.exports = function(grunt) {
           '_build/test/opening_sequence/index.html': testJade,
           '_build/test/upgrade/index.html': testJade,
           '_build/test/generator/index.html': testJade,
+          '_build/test/save_system/index.html': testJade,
         }
       }
     },
@@ -124,7 +125,7 @@ module.exports = function(grunt) {
           '<%= jshint.files %>',
           'src/css/*.css',
           'src/jade/*',
-          'test/*/index.jade',
+          'test/*/tests.js',
         ],
 				tasks: ['default']
 			}

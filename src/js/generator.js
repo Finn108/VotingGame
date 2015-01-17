@@ -210,7 +210,6 @@ var VotingGame = (function (VG) {
         votesPerSecond = eval(votesPerSecond + newVPS);
       }
       else {
-        console.log("couldn't update votes on " + generator.id);
         return;
       }
 

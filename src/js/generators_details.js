@@ -1,7 +1,7 @@
 var VotingGame = (function (VG) {
   "use strict";
 
-  var generatorsDetails = [
+  VG._generatorsDetails = [
     {
       id: "Voter",
       name: "מצביע",
@@ -99,25 +99,6 @@ var VotingGame = (function (VG) {
       picture: "owl.png",
     }
   ];
-
-  VG._createGenerators = function (generatorsState) {
-    var gensState = generatorsState || {};
-    var gensDiv = $("#generators");
-
-    generatorsDetails.forEach(function (genDetails) {
-      var genId = genDetails.id;
-      var level = 0;
-      if (genId in gensState) {
-        genDetails.level = gensState[genId].level;
-        genDetails.shown = gensState[genId].shown;
-      }
-
-      var gen = new VG._Generator(genDetails, VG.votesCounter, gensDiv);
-      VG._generators.push(gen);
-      $(gen).on("buy", VG._genBuyEvent);
-
-    });
-  };
 
   return VG;
 })(VotingGame || {});

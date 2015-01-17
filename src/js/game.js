@@ -4,15 +4,6 @@ var VotingGame = (function (VG) {
   // Some usefull constants (sometimes used in tests)
   VG._cMainPath = "./";
 
-  var defaultGameState = {
-    level: 0,
-    votes: 0,
-    skipIntro: false,
-    noteTitle: "",
-    noteDesc: "",
-    generators: {},
-    upgrades: {},
-  };
   
   var updateInterval = -1;
 
@@ -24,11 +15,15 @@ var VotingGame = (function (VG) {
     Creates all the different elements in the game according to the gameState.
     */
     clearInterval(updateInterval);
-    gameState = gameState || defaultGameState;
+    gameState = VG._gameState = VG._validateGameState(gameState);
     VG.clickValue = 1;
     VG._generators = [];
     VG._upgrades = [];
-    VG._level = gameState.level || 0;
+    VG._level = gameState.level;
+
+    // Return the number of votes to the given game state
+    VG.votesCounter.reset();
+    VG.votesCounter.addVotes(gameState.votes);
 
     if (! gameState.skipIntro) {
       var nameDetails = VG._opening();
@@ -39,7 +34,8 @@ var VotingGame = (function (VG) {
     else {
       VG._openingSkip(gameState.noteTitle, gameState.noteDesc);
     }
-    
+
+
     // Increase the votes on each click
     $("#note").click(function () {
       VG.votesCounter.addVotes(VG.clickValue);
@@ -48,10 +44,9 @@ var VotingGame = (function (VG) {
     VG._createGenerators(gameState.generators);
     VG._createUpgrades(gameState.upgrades);
 
-    // Return the number of votes to the given game state
-    VG.votesCounter.reset();
-    VG.votesCounter.addVotes(gameState.votes || 0);
+
     VG.votesCounter.updateVotes(frameRate);
+    VG._save();
   };
 
   VG.start = function () {
@@ -60,10 +55,10 @@ var VotingGame = (function (VG) {
 
 		updateInterval = setInterval(function () {
       VG.votesCounter.updateVotes(frameRate);
-      //TODO Write the save function!!!
-      //VG._save();
+      VG._save();
     }, miliseconds);
   };
+
 
   VG.getGenById = function (genId) {
 		/*

@@ -45,7 +45,6 @@ var VotingGame = (function (VG) {
       // Increase generators div size a bit to prevent scrollbar intervention
       vote: 45500000,
       func: function (game) {
-        console.log("got to new stuff maybe thingy");
         $("#generators").css({width: "362px"});
       }
     },

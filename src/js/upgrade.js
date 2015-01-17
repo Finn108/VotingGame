@@ -9,6 +9,7 @@ var VotingGame = (function (VG) {
     var bought = false;
     // Reference this in nested functions:
     var upgrade = this;
+
     // Public varriables
     this.id = details.id;
 
@@ -100,6 +101,15 @@ var VotingGame = (function (VG) {
       //$(game.votesCounter).off("votesChanged", checkPurchasable);
     }
 
+    this.activate = function () {
+      /*
+      Runs the upgrade function on the game. Removed from buy since it can
+      sometimes be activated without removing points (like in game reset)
+      */
+      upgradeFunc(game);
+      hide();
+    };
+
     this.buy = function() {
       /*
       Buys an instance of the upgrade and runs the upgrade function on the game
@@ -109,8 +119,8 @@ var VotingGame = (function (VG) {
       if (game.votesCounter.getVotes() < price) return;
       bought = true;
       game.votesCounter.removeVotes(price);
-      upgradeFunc(game);
-      hide();
+      $(upgrade).trigger("buy", upgrade);
+      upgrade.activate();
     };
 
     this.display = function(game) {

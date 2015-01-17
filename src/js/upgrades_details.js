@@ -25,18 +25,5 @@ var VotingGame = (function (VG) {
     },
   ];
 
-  VG._createUpgrades = function (upgradesState) {
-    var upgsState = upgradesState || {};
-		var upgsDiv = $("#upgrades");
-
-		VG._upgradesDetails.forEach(function (item) {
-      var upgrade = new VG._Upgrade(item, VG, upgsDiv);
-      VG._upgrades.push(upgrade);
-      if (item.id in upgsState && upgsState[item.id]) {
-        upgrade.activate();
-      }
-    });
-  };
-
   return VG;
 })(VotingGame || {});
