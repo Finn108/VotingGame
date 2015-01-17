@@ -186,8 +186,8 @@ body {
 }
 
 .genBtnLvl {
-  font-size: 72px;
-  top: -5px;
+  font-size: 68px;
+  top: -8px;
   left: 27px;
   opacity: 0.5;
   transform: translate(-40%,0);
@@ -195,10 +195,10 @@ body {
 
 .genBtnSummary {
   background-color: black;
-  opacity: 0.75;
+  opacity: 0.85;
   color: white;
   width: 285px;
-  height: 65px;
+  height: 58px;
   left: 0%;
   text-align: center;
   display: none;
@@ -206,7 +206,7 @@ body {
 
 .genBtnSummary > p {
   position: relative;
-  top: 10px;
+  top: 5px;
 }
 
 .genBtn:hover > .genBtnSummary {
@@ -252,11 +252,13 @@ body {
 }
 
 .upgrade.activated > div:hover {
-  background-color: #EFED4A;
+  background-color: #262626;
+  color: white;
 }
 
 .upgrade.activated > div:active {
   background-color: white;
+  color: black;
 }
 
 .upgrade > div > div {
@@ -297,4 +299,6 @@ First text div under upgrade button is the bolded price
 #footer > span {
   padding-left: 150px;
   padding-right: 150px;
+  font-size: 14px;
+  font-family: ariel;
 }
