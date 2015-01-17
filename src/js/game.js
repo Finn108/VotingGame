@@ -18,7 +18,7 @@ var VotingGame = (function (VG) {
     VG._generators = [];
     VG._upgrades = [];
     VG._level = gameState.level;
-    VG._currentVoteEvent = -1;
+    VG._currentVoteEvent = 0;
 
     if (! gameState.skipIntro) {
       var nameDetails = VG._opening();

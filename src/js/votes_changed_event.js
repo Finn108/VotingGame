@@ -12,13 +12,13 @@ var VotingGame = (function (VG) {
     var voteEvents = VG._events.voteEvents;
     var pointer = VG._currentVoteEvent;
 
-    if (pointer <= voteEvents.length) {
+    if (pointer > voteEvents.length) {
 			return;
 		}
 
 		while (pointer <= voteEvents.length &&
            currentVotes >= voteEvents[pointer].vote) {
-			var currentEvent = voteEvents[poiner];
+			var currentEvent = voteEvents[pointer];
       VG._currentVoteEvent = ++pointer;
 			currentEvent.func(VG);
 		}
