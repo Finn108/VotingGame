@@ -11,10 +11,17 @@ var VotingGame = (function (VG) {
         game.votesCounter.revealCounter();
       }
     },
-    {
-      vote: 20,
+	{
+      vote: 50,
       func: function (game) {
-        var upgrade = game.getUpgById("VoterEachSecond");
+        var upgrade = game.getUpgById("Clicker2");
+        upgrade.display();
+      }
+    },
+	{
+      vote: 100,
+      func: function (game) {
+        var upgrade = game.getUpgById("Clicker3");
         upgrade.display();
       }
     },
@@ -62,11 +69,105 @@ var VotingGame = (function (VG) {
         Display the upgrades sidebar + add the first upgrade
         */
         $("#upgrades").toggle("drop", {direction:"down"}, 1000);
-        var upgrade = game.getUpgById("ClickPlus1");
+        var upgrade = game.getUpgById("Clicker1");
+		var upgrade2 = game.getUpgById("Voter1");
         // wait for the upgrades bar to load
         setTimeout(upgrade.display, 1500);
+		upgrade2.display();
+      },
+	  6: function (game) {
+        var upgrade = game.getUpgById("Voter2");
+        upgrade.display();
+      },
+	  20: function (game) {
+        var upgrade = game.getUpgById("Voter3");
+        upgrade.display();
+      },
+	  40: function (game) {
+        var upgrade = game.getUpgById("Voter4");
+        upgrade.display();
+      },
+      50: function (game) {
+        var upgrade = game.getUpgById("Voter5");
+        upgrade.display();
+      },
+      55: function (game) {
+        var upgrade = game.getUpgById("Voter6");
+        upgrade.display();
       }
     },
+  	Cookie: {
+		1: function (game) {
+			var upgrade = game.getUpgById("Cookie1");
+			upgrade.display();
+		},
+		5: function (game) {
+			var upgrade = game.getUpgById("Cookie2");
+			upgrade.display();
+		},
+		10: function (game) {
+			var upgrade = game.getUpgById("Cookie3");
+			upgrade.display();
+		},
+		15: function (game) {
+			var upgrade = game.getUpgById("Cookie4");
+			upgrade.display();
+		},
+		25: function (game) {
+			var upgrade = game.getUpgById("Cookie5");
+			upgrade.display();
+		},
+		35: function (game) {
+			var upgrade = game.getUpgById("Cookie6");
+			upgrade.display();
+		},
+		45: function (game) {
+			var upgrade = game.getUpgById("Cookie7");
+			upgrade.display();
+		},
+		50: function (game) {
+			var upgrade = game.getUpgById("Cookie8");
+			upgrade.display();
+		},
+		55: function (game) {
+			var upgrade = game.getUpgById("Cookie9");
+			upgrade.display();
+		}
+	},
+  	Campaign: {
+		1: function (game) {
+			var upgrade = game.getUpgById("Campaign1");
+			upgrade.display();
+		},
+		5: function (game) {
+			var upgrade = game.getUpgById("Campaign2");
+			upgrade.display();
+		},
+		10: function (game) {
+			var upgrade = game.getUpgById("Campaign3");
+			upgrade.display();
+		},
+		15: function (game) {
+			var upgrade = game.getUpgById("Campaign4");
+			upgrade.display();
+		},
+		25: function (game) {
+			var upgrade = game.getUpgById("Campaign5");
+			upgrade.display();
+		},
+		35: function (game) {
+			var upgrade = game.getUpgById("Campaign6");
+			upgrade.display();
+		},
+		45: function (game) {
+			var upgrade = game.getUpgById("Campaign7");
+			upgrade.display();
+		},
+		50: function (game) {
+			var upgrade = game.getUpgById("Campaign8");
+			upgrade.display();
+		}
+	}
   };
 
   return VG;

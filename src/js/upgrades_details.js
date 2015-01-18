@@ -5,22 +5,263 @@
   // with them in tests)
   VG._upgradesDetails = VG._upgradesDetailsDefault = [
     {
-      id: "ClickPlus1",
-      name: "שדרוג קליק",
-      price: 10,
-      description: "כל קליק שווה פי 2",
+      id: "Clicker1",
+      name: "שתי ציפורים במכה אחת",
+      price: 50,
+      description: "כל הקלקה מביאה שני קולות.",
       func: function(game) {
         game.clickValue++;
       },
     },
-    {
-      id: "VoterEachSecond",
-      name: "שדרוג מצביע",
-      price: 9,
-      description: "מצביעים עכשיו הולכים לקלפי כל שנייה",
-      func: function (game) {
+	{
+      id: "Clicker2",
+      name: "אצבע משולשת",
+      price: 100,
+      description: "כל הקלקה מביאה שלוש קולות.",
+      func: function(game) {
+        game.clickValue++;
+      },
+    },
+	{
+      id: "Clicker3",
+      name: "פי 10 עוצמה לישראל",
+      price: 500,
+      description: "כל הקלקה מביאה 30 קולות.",
+      func: function(game) {
+        game.clickValue=30;
+      },
+    },
+	//=====LONE VOTER UPGRADES=====
+	{
+      id: "Voter1",
+      name: "הבטחות כוזבות",
+      price: 60,
+      description: "גורמות למצביעים שלך להצביע כל 2.5 שניות",
+      func: function(game) {
+        var voterGen = game.getGenById("Voter");
+        voterGen.updateVotesPerSecond(0.4);
+      },
+    },
+	{
+      id: "Voter2",
+      name: "נאום מרגש",
+      price: 240,
+      description: "הנאום שכתבת גורם למצביעים בודדים להזדרז ולהצביע כל שנייה.",
+      func: function(game) {
         var voterGen = game.getGenById("Voter");
         voterGen.updateVotesPerSecond(1);
+      },
+    },
+	{
+      id: "Voter3",
+      name: "העלאת הארנונה",
+      price: 1010,
+      description: "יותר כסף לבזבז על שוחד. 50% הנחה על מצביעים בודדים.",
+      func: function(game) {
+        var voterGen = game.getGenById("Voter");
+        voterGen.updatePrice("/2");
+      },
+    },
+	{
+      id: "Voter4",
+      name: "העלאת מיסים",
+      price: 5050,
+      description: "שנה הבאה לא נעלה. מבטיחים. 90% הנחה על מצביעים בודדים.",
+      func: function(game) {
+        var voterGen = game.getGenById("Voter");
+        voterGen.updatePrice("/10");
+      },
+    },
+	{
+      id: "Voter5",
+      name: "מעבר לשעון חורף",
+      price: 50500,
+      description: "מצביעים בודדים מצביעים פי 3 יותר מהר.",
+      func: function(game) {
+        var voterGen = game.getGenById("Voter");
+        voterGen.updateVotesPerSecond("*3");
+      },
+    },
+	{
+      id: "Voter6",
+      name: "העלאת מיסים",
+      price: 105000,
+      description: "לא אמרנו שום דבר כזה. שקרן. 90% הנחה על מצביעים בודדים.",
+      func: function(game) {
+        var voterGen = game.getGenById("Voter");
+        voterGen.updatePrice("/10");
+      },
+    },
+	//=====COOKIES UPGRADES=====
+	{
+	  id: "Cookie1",
+      name: "עוגיות חשיש",
+      price: 420,
+      description: "קהלים אחרים מביאים פי 2 קולות מעוגיות.",
+      func: function(game) {
+        var voterGen = game.getGenById("Cookie");
+        voterGen.updateVotesPerSecond("*2");
+      },
+    },
+	{
+	  id: "Cookie2",
+      name: "שוקולד בלגי",
+      price: 1000,
+      description: "העוגיות טעימות פי 2, והן מעניקות לך פי 2 קולות.",
+      func: function(game) {
+        var voterGen = game.getGenById("Cookie");
+        voterGen.updateVotesPerSecond("*2");
+      },
+    },
+	{
+	  id: "Cookie3",
+      name: "תחליף סוכר",
+      price: 5000,
+      description: "זול, טעים ורק 7% סיכוי לסרטן. הנחה של 90% בקניית עוגיות.",
+      func: function(game) {
+        var voterGen = game.getGenById("Cookie");
+        voterGen.updatePrice("/10");
+      },
+    },
+	{
+	  id: "Cookie4",
+      name: "מילקשייק",
+      price: 25000,
+      description: "הוא מביא את כל הבנים לחצר ופי 2 קולות מעוגיות.",
+      func: function(game) {
+        var voterGen = game.getGenById("Cookie");
+        voterGen.updateVotesPerSecond("*2");
+      },
+    },
+	{
+	  id: "Cookie5",
+      name: "עוגיות חמאה",
+      price: 130000,
+      description: "חוסכים בשוקולד. 50% הנחה על עוגיות.",
+      func: function(game) {
+        var voterGen = game.getGenById("Cookie");
+        voterGen.updatePrice("/2");
+      },
+    },
+	{
+	  id: "Cookie6",
+      name: "עוגיות כשרות לפסח",
+      price: 1300000,
+      description: "מדם כשר של גויים. פי 5 קולות מעוגיות.",
+      func: function(game) {
+        var voterGen = game.getGenById("Cookie");
+        voterGen.updateVotesPerSecond("*5");
+      },
+    },
+	{
+	  id: "Cookie7",
+      name: "עוגיות כריסטמס",
+      price: 13000000,
+      description: "גם לנוצרים יש זכות הצבעה. 1.98% יותר קולות מעוגיות.",
+      func: function(game) {
+        var voterGen = game.getGenById("Cookie");
+        voterGen.updateVotesPerSecond("*1.02");
+      },
+    },
+	{
+	  id: "Cookie8",
+      name: "עוגיות טחינה",
+      price: 130000000,
+      description: "עלה תאנה בעולם האפייה. פי 2 קולות מעוגיות.",
+      func: function(game) {
+        var voterGen = game.getGenById("Cookie");
+        voterGen.updateVotesPerSecond("*2");
+      },
+    },
+	{
+	  id: "Cookie9",
+      name: "עוגיות מקרון",
+      price: 1300000000,
+      description: "אליטיסטים והיפסטרים אוהבים אותך. פי 2 קולות מעוגיות.",
+      func: function(game) {
+        var voterGen = game.getGenById("Cookie");
+        voterGen.updateVotesPerSecond("*2");
+      },
+    },
+	//=====CAMPAIGN UPGRADES=====
+	{
+	  id: "Campaign1",
+      name: "כותב נאומים",
+      price: 700,
+      description: "תכבוש אותם עם המילים שלך (עדיין לא עושה כלום).",
+      func: function(game) {
+        var voterGen = game.getGenById("Campaign");
+        voterGen.updateVotesPerSecond("*1");
+      },
+    },
+	{
+	  id: "Campaign2",
+      name: "ג'ינגל ממכר",
+      price: 2600,
+      description: "If you wanna be my leader... פי 2 קולות מקמפיינים.",
+      func: function(game) {
+        var voterGen = game.getGenById("Campaign");
+        voterGen.updateVotesPerSecond("*2");
+      },
+    },
+	{
+	  id: "Campaign3",
+      name: "פוסטרים",
+      price: 12500,
+      description: "פרצופך על כל שלט בארץ. חוץ מירושלים. קצת צניעות. פי 2 קולות מקמפיינים.",
+      func: function(game) {
+        var voterGen = game.getGenById("Campaign");
+        voterGen.updateVotesPerSecond("*2");
+      },
+    },
+	{
+	  id: "Campaign4",
+      name: "סטטוס מצייץ",
+      price: 72500,
+      description: "אה, חשבתם שמישהו 'סתם' משתף את זה? פי 10 קולות מקמפיינים.",
+      func: function(game) {
+        var voterGen = game.getGenById("Campaign");
+        voterGen.updateVotesPerSecond("*10");
+      },
+    },
+	{
+	  id: "Campaign5",
+      name: "סרטון וויראלי",
+      price: 725000,
+      description: "דמיין חתול נושך את האצבע של זמר קוריאני. פי 2 קולות מקמפיינים.",
+      func: function(game) {
+        var voterGen = game.getGenById("Campaign");
+        voterGen.updateVotesPerSecond("*2");
+      },
+    },
+	{
+	  id: "Campaign6",
+      name: "תשדיר ספינאוף",
+      price: 7250000,
+      description: "ישווק כספינאוף של בית הקלפים. פי 2 קולות מקמפיינים.",
+      func: function(game) {
+        var voterGen = game.getGenById("Campaign");
+        voterGen.updateVotesPerSecond("*2");
+      },
+    },
+	{
+	  id: "Campaign7",
+      name: "עיתון משלך",
+      price: 72500000,
+      description: "זה חוקי כל עוד הוא לא מצליח. פי 1.99 קולות מקמפיינים.",
+      func: function(game) {
+        var voterGen = game.getGenById("Campaign");
+        voterGen.updateVotesPerSecond("*2");
+      },
+    },
+	{
+	  id: "Campaign8",
+      name: "פרופגנדה",
+      price: 725000000,
+      description: "הכלי החביב על גבלס בשירותך. פי 10 קולות מקמפיינים.",
+      func: function(game) {
+        var voterGen = game.getGenById("Campaign");
+        voterGen.updateVotesPerSecond("*10");
       },
     },
   ];
