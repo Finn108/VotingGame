@@ -9,6 +9,7 @@ var VotingGame = (function (VG) {
     */
     var genId = gen.id;
     var level = gen.getLevel();
+    var price = gen.getPrice();
     var genBuyEvents = VG._events.genBuyEvents;
     if (genId in genBuyEvents && level in genBuyEvents[genId]) {
       genBuyEvents[genId][level](VG);
@@ -17,11 +18,13 @@ var VotingGame = (function (VG) {
     // Add to gameState
     if (genId in VG._gameState.generators) {
       VG._gameState.generators[genId].level = level;
+      VG._gameState.generators[genId].price = price;
     }
     else {
       VG._gameState.generators[genId] = {
         level: level,
-        shown: true // We assume they only bought it after they saw it...
+        shown: true, // We assume they only bought it after they saw it...
+        price: price,
       };
     }
   }
@@ -47,6 +50,7 @@ var VotingGame = (function (VG) {
       var gen = VG.getGenById(genId);
       var state = gensState[genId];
       gen.reachTargetLevel(state.level);
+      gen.updatePrice(state.price);
       if (state.shown) gen.showButton();
     }
   };
@@ -58,7 +62,7 @@ var VotingGame = (function (VG) {
       var genId = genDetails.id;
       var targetLevel = 0;
 
-      var gen = new VG._Generator(genDetails, VG.votesCounter, gensDiv);
+      var gen = new VG._Generator(genDetails, gensDiv);
       VG._generators.push(gen);
       $(gen).on("buy", genBuyEvent);
       $(gen).on("reveal", genRevealedEvent);

@@ -35,7 +35,8 @@ module.exports = function(grunt) {
           }
         },
         files: {
-          '_build/main/index.dbg.html': 'src/jade/index.jade'
+          '_build/main/index.dbg.html': 'src/jade/index.jade',
+          '_build/main/index.pre.html': 'src/jade/index_pre_start.jade',
         }
       },
       dist: {

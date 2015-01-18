@@ -54,9 +54,10 @@
       id: "Army",
       name: "מבצע צבאי",
       votesPerSec: 122181,
-      description: "תראו שם! הסחת דעת!",
-      price: 6700000,
+      description: "תראו שם! הסחת דעת! - מחיר במצביעים",
+      price: 72,
       picture: "army.png",
+      currency: "Voter",
     },
     {
       id: "Duck",

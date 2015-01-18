@@ -91,6 +91,11 @@ QUnit.test("generator appearing at load", function (assert) {
     }
   };
 
+  VotingGame._events = {
+    voteEvents: [],
+    genBuyEvents: {},
+  };
+
   $.cookie("GS", gameState);
   VotingGame.reset(VotingGame.load());
 
@@ -119,7 +124,10 @@ QUnit.test("upgrades that were bought shouldn't appear", function (assert) {
 
   VotingGame._upgradesDetails = upgradeDetails;
   // Remove vote events to prevent annoying problems
-  VotingGame._events.voteEvents = [];
+  VotingGame._events = {
+    voteEvents: [],
+    genBuyEvents: {},
+  };
   var gameState = {
     skipIntro: true,
     upgrades: {
