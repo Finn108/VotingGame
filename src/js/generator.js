@@ -195,8 +195,8 @@ var VotingGame = (function (VG) {
       If we're buying other generators - check availability according to their
       status
       */
-      generator = VG.getGenById(currency);
-      $(generator).on("buy", function (event, gen) {
+      var currencyGen = VG.getGenById(currency);
+      $(currencyGen).on("buy", function (event, gen) {
         var currentLevel = gen.getLevel();
         checkAvailability(currentLevel);
       });
@@ -260,6 +260,9 @@ var VotingGame = (function (VG) {
       */
       level = VG.updateNumber(level, newLevel);
       updateDisplay();
+      // Even though the generator isn't bought, it's price changes so we
+      // trigger a buy event
+      $(generator).trigger("buy", generator);
     };
 
     this.showButton = function () {
