@@ -113,15 +113,15 @@ var VotingGame = (function (VG) {
 			var upgrade = game.getUpgById("Cookie4");
 			upgrade.display();
 		},
-		25: function (game) {
+		20: function (game) {
 			var upgrade = game.getUpgById("Cookie5");
 			upgrade.display();
 		},
-		35: function (game) {
+		30: function (game) {
 			var upgrade = game.getUpgById("Cookie6");
 			upgrade.display();
 		},
-		45: function (game) {
+		40: function (game) {
 			var upgrade = game.getUpgById("Cookie7");
 			upgrade.display();
 		},
@@ -129,7 +129,7 @@ var VotingGame = (function (VG) {
 			var upgrade = game.getUpgById("Cookie8");
 			upgrade.display();
 		},
-		55: function (game) {
+		60: function (game) {
 			var upgrade = game.getUpgById("Cookie9");
 			upgrade.display();
 		}
@@ -151,20 +151,50 @@ var VotingGame = (function (VG) {
 			var upgrade = game.getUpgById("Campaign4");
 			upgrade.display();
 		},
-		25: function (game) {
+		20: function (game) {
 			var upgrade = game.getUpgById("Campaign5");
 			upgrade.display();
 		},
-		35: function (game) {
+		30: function (game) {
 			var upgrade = game.getUpgById("Campaign6");
 			upgrade.display();
 		},
-		45: function (game) {
+		40: function (game) {
 			var upgrade = game.getUpgById("Campaign7");
 			upgrade.display();
 		},
 		50: function (game) {
 			var upgrade = game.getUpgById("Campaign8");
+			upgrade.display();
+		}
+	},
+	  	Rabi: {
+		1: function (game) {
+			var upgrade = game.getUpgById("Rabi1");
+			upgrade.display();
+		},
+		5: function (game) {
+			var upgrade = game.getUpgById("Rabi2");
+			upgrade.display();
+		},
+		10: function (game) {
+			var upgrade = game.getUpgById("Rabi3");
+			upgrade.display();
+		},
+		15: function (game) {
+			var upgrade = game.getUpgById("Rabi4");
+			upgrade.display();
+		},
+		20: function (game) {
+			var upgrade = game.getUpgById("Rabi5");
+			upgrade.display();
+		},
+		30: function (game) {
+			var upgrade = game.getUpgById("Rabi6");
+			upgrade.display();
+		},
+		40: function (game) {
+			var upgrade = game.getUpgById("Rabi7");
 			upgrade.display();
 		}
 	}

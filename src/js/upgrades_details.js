@@ -55,7 +55,7 @@
 	{
       id: "Voter3",
       name: "העלאת הארנונה",
-      price: 1010,
+      price: 2010,
       description: "יותר כסף לבזבז על שוחד. 50% הנחה על מצביעים בודדים.",
       func: function(game) {
         var voterGen = game.getGenById("Voter");
@@ -248,10 +248,10 @@
 	  id: "Campaign7",
       name: "עיתון משלך",
       price: 72500000,
-      description: "זה חוקי כל עוד הוא לא מצליח. פי 1.99 קולות מקמפיינים.",
+      description: "זה חוקי כל עוד הוא לא מצליח. פי 9.99 קולות מקמפיינים.",
       func: function(game) {
         var voterGen = game.getGenById("Campaign");
-        voterGen.updateVotesPerSecond("*2");
+        voterGen.updateVotesPerSecond("*10");
       },
     },
 	{
@@ -261,6 +261,77 @@
       description: "הכלי החביב על גבלס בשירותך. פי 10 קולות מקמפיינים.",
       func: function(game) {
         var voterGen = game.getGenById("Campaign");
+        voterGen.updateVotesPerSecond("*10");
+      },
+    },
+	//=====RABI UPGRADES=====
+	{
+	  id: "Rabi1",
+      name: "קריאת שופר",
+      price: 54000,
+      description: "קוראת לבני מינו (זה פוגעני? מקווה שלא). פי 2 קולות מרביז.",
+      func: function(game) {
+        var voterGen = game.getGenById("Rabi");
+        voterGen.updateVotesPerSecond("*2");
+      },
+    },
+	{
+	  id: "Rabi2",
+      name: "מכונות גילוח",
+      price: 405000,
+      description: "הופכות את הזקן של רביז לזקן היפסטרים סקסי שמניב פי 5 קולות.",
+      func: function(game) {
+        var voterGen = game.getGenById("Rabi");
+        voterGen.updateVotesPerSecond("*5");
+      },
+    },
+	{
+	  id: "Rabi3",
+      name: "אנטישמיות!",
+      price: 4000000,
+      description: "כולם אנטישמים בגולה. תבוא לארץ. תלמדו תורה. תצביעו לי. 50% הנחה על רביז.",
+      func: function(game) {
+        var voterGen = game.getGenById("Rabi");
+        voterGen.updatePrice("/2");
+      },
+    },
+	{
+	  id: "Rabi4",
+      name: "סגירת מרכולים בשבת",
+      price: 41000000,
+      description: "אם אנחנו לא יכולים ליהנות. אף אחד לא יכול. פי 2 קולות מרביז.",
+      func: function(game) {
+        var voterGen = game.getGenById("Rabi");
+        voterGen.updateVotesPerSecond("*2");
+      },
+    },
+	{
+	  id: "Rabi5",
+      name: "גיוס בני ישיבות*",
+      price: 405000000,
+      description: "*לחמש דקות במתן הטבות ל-10 שנים פלוס רכב חברה. פי 2 קולות מרביז.",
+      func: function(game) {
+        var voterGen = game.getGenById("Rabi");
+        voterGen.updateVotesPerSecond("*2");
+      },
+    },
+	{
+	  id: "Rabi6",
+      name: "ניתוח המוני לשינוי מין",
+      price: 4050000000,
+      description: "נשים לא יכולות להיות רביז. פי 2 קולות מטרנס-רביז.",
+      func: function(game) {
+        var voterGen = game.getGenById("Rabi");
+        voterGen.updateVotesPerSecond("*2");
+      },
+    },
+	{
+	  id: "Rabi7",
+      name: "רובו רייבה",
+      price: 40500000000,
+      description: "ויהפנט אותם, באותות ובמופתים, להצביע לך. פי 10 קולות ממגה-רביז.",
+      func: function(game) {
+        var voterGen = game.getGenById("Rabi");
         voterGen.updateVotesPerSecond("*10");
       },
     },
