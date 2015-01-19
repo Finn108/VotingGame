@@ -37,7 +37,7 @@
       price: 10000,
       description: "כל הקלקה מביאה 1000 קולות.",
       func: function(game) {
-        game.clickValue=10000;
+        game.clickValue=1000;
       },
     },
 	//=====LONE VOTER UPGRADES=====
@@ -200,7 +200,7 @@
       description: "תכבוש אותם עם המילים שלך (עדיין לא עושה כלום).",
       func: function(game) {
         var voterGen = game.getGenById("Campaign");
-        voterGen.updateVotesPerSecond("*1");
+        voterGen.updateVotesPerSecond("*2");
       },
     },
 	{
