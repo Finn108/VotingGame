@@ -120,12 +120,13 @@ var VotingGame = (function (VG) {
       totalVotes and numberOfGenerators.
       If the currency is not just vote - it updates the relevant generator
       */
-      if (votesCounter.getVotes() < price) return;
       if (currency === "vote") {
+        if (votesCounter.getVotes() < price) return;
         votesCounter.removeVotes(price);
       }
       else {
         var currencyGen = VG.getGenById(currency);
+        if (currencyGen.getLevel() < price) return;
         currencyGen.updateLevel("-" + price);
       }
       increaseLevel();
