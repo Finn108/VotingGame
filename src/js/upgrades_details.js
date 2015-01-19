@@ -24,11 +24,20 @@
     },
 	{
       id: "Clicker3",
-      name: "פי 10 עוצמה לישראל",
+      name: "מספיק למניין",
       price: 500,
-      description: "כל הקלקה מביאה 30 קולות.",
+      description: "כל הקלקה מביאה 10 קולות.",
       func: function(game) {
-        game.clickValue=30;
+        game.clickValue=10;
+      },
+    },
+	{
+      id: "Clicker4",
+      name: "פי 1000 עוצמה לישראל",
+      price: 10000,
+      description: "כל הקלקה מביאה 1000 קולות.",
+      func: function(game) {
+        game.clickValue=10000;
       },
     },
 	//=====LONE VOTER UPGRADES=====
@@ -332,6 +341,67 @@
       description: "ויהפנט אותם, באותות ובמופתים, להצביע לך. פי 10 קולות ממגה-רביז.",
       func: function(game) {
         var voterGen = game.getGenById("Rabi");
+        voterGen.updateVotesPerSecond("*10");
+      },
+    },
+	//=====GAYS UPGRADES=====
+	{
+	  id: "Gays1",
+      name: "מצעד גאווה",
+      price: 825000,
+      description: "מעורר מודעות... לגופים הלוהטים שלנו! פי 2 קולות מתאים גאים!",
+      func: function(game) {
+        var voterGen = game.getGenById("Gays");
+        voterGen.updateVotesPerSecond("*2");
+      },
+    },
+	{
+	  id: "Gays2",
+      name: "ג. ג. אוחובסקי ובניו",
+      price: 8000000,
+      description: "מנקי ארונות מאז 1992! 50% הנחה על תאים גאים.",
+      func: function(game) {
+        var voterGen = game.getGenById("Gays");
+        voterGen.updatePrice("/2");
+      },
+    },
+	{
+	  id: "Gays3",
+      name: "פתיחת הכניסה האחורית",
+      price: 80000000,
+      description: "הידעת? עד 1988 היה איסור בחוק על מין אנאלי. פי 5 קולות מתאים גאים.",
+      func: function(game) {
+        var voterGen = game.getGenById("Gays");
+        voterGen.updateVotesPerSecond("*5");
+      },
+    },
+	{
+	  id: "Gays4",
+      name: "חוק נישואים גאים*",
+      price: 800000000,
+      description: "*לא כולל תרומות דם, פונדקאות, או שוויון זכויות. 50% הנחה.",
+      func: function(game) {
+        var voterGen = game.getGenById("Gays");
+        voterGen.updatePrice("/2");
+      },
+    },
+	{
+	  id: "Gays5",
+      name: "הומודלת",
+      price: 8000000000,
+      description: "יום חג נוסף מוביל תנופה כלכלית ופי 2 קולות מתאים גאים.",
+      func: function(game) {
+        var voterGen = game.getGenById("Gays");
+        voterGen.updateVotesPerSecond("*2");
+      },
+    },
+	{
+	  id: "Gays6",
+      name: "כיבוש אורנוס",
+      price: 80000000000,
+      description: "באנגלית זה יותר מצחיק. פי 10 קולות מתאים גאים.",
+      func: function(game) {
+        var voterGen = game.getGenById("Gays");
         voterGen.updateVotesPerSecond("*10");
       },
     },

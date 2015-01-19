@@ -31,6 +31,13 @@ var VotingGame = (function (VG) {
         game.goUpLevel();
       }
     },
+	{
+      vote: 500,
+      func: function (game) {
+        var upgrade = game.getUpgById("Clicker4");
+        upgrade.display();
+      }
+    },
     {
       vote: 26216,
       func: function (game) {
@@ -168,7 +175,7 @@ var VotingGame = (function (VG) {
 			upgrade.display();
 		}
 	},
-	  	Rabi: {
+	Rabi: {
 		1: function (game) {
 			var upgrade = game.getUpgById("Rabi1");
 			upgrade.display();
@@ -195,6 +202,32 @@ var VotingGame = (function (VG) {
 		},
 		40: function (game) {
 			var upgrade = game.getUpgById("Rabi7");
+			upgrade.display();
+		}
+	},
+	Gays: {
+		1: function (game) {
+			var upgrade = game.getUpgById("Gays1");
+			upgrade.display();
+		},
+		5: function (game) {
+			var upgrade = game.getUpgById("Gays2");
+			upgrade.display();
+		},
+		10: function (game) {
+			var upgrade = game.getUpgById("Gays3");
+			upgrade.display();
+		},
+		15: function (game) {
+			var upgrade = game.getUpgById("Gays4");
+			upgrade.display();
+		},
+		20: function (game) {
+			var upgrade = game.getUpgById("Gays5");
+			upgrade.display();
+		},
+		30: function (game) {
+			var upgrade = game.getUpgById("Gays6");
 			upgrade.display();
 		}
 	}
