@@ -43,8 +43,8 @@ var VotingGame = (function (VG) {
   };
 
   VC.removeVotes = function (numOfVotes) {
-      currentVotes -= numOfVotes;
-      refreshDisplay();
+    currentVotes -= numOfVotes;
+    refreshDisplay();
   };
 
   VC.updateVotes = function (frameRate) {

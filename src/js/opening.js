@@ -59,7 +59,6 @@ var VotingGame = (function (VG) {
         // Save the note title to the gameState
         VG._gameState.noteTitle = noteTitle.val();
 
-        $(this).disableSelection();
         clearTimeout(titleHintTimeout);
         clearHint();
 
@@ -71,6 +70,9 @@ var VotingGame = (function (VG) {
 
 
         this.readOnly = true;
+        $(this).disableSelection();
+        // Make it unselectable in firefox
+        $(this).focus(function () { this.blur(); });
         
 
         noteDesc.focus();
@@ -97,6 +99,8 @@ var VotingGame = (function (VG) {
         
         this.readOnly = true;
         $(this).disableSelection();
+        // Make it unselectable in firefox
+        $(this).focus(function () { this.blur(); } );
 
         note.addClass("anim tilt");
         note.on("click", clearClickHint);
@@ -118,7 +122,9 @@ var VotingGame = (function (VG) {
     var details = VG.getLevelDetails();
 
     noteTitle.val(titleText || "שקר");
+    noteTitle.focus(function () { this.blur(); } );
     noteDesc.val(descText || "מפלגת הכול שקרים");
+    noteDesc.focus(function () { this.blur(); } );
     note.addClass("noanim tilt");
     note.children().attr("readonly", true);
     note.children().disableSelection();
