@@ -206,7 +206,6 @@ body {
 
 .genBtnSummary > p {
   position: relative;
-  top: 5px;
 }
 
 .genBtn:hover > .genBtnSummary {

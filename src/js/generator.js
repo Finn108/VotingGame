@@ -97,7 +97,19 @@ var VotingGame = (function (VG) {
 
     function updateDisplay() {
       var priceStr = VG.numNames(price);
-      var totalVotesPerSecond = votesPerSecond * (level + 1);
+      var totalVotesPerSecond = votesPerSecond * (level + 0);
+      var vpsText = VG.numNames(votesPerSecond) + " הצבעות ליחיד";
+      var totalVpsText = "כרגע מניב " + VG.numNames(totalVotesPerSecond) +
+                         " הצבעות לשנייה";
+
+      // Change the votes per second text
+      if (votesPerSecond < 1) {
+        var waitTime = 1 / votesPerSecond;
+        vpsText = "הצבעה כל " + waitTime + " שניות";
+      }
+
+      var summaryText = vpsText + "<br/>" + totalVpsText;
+      button.find(".genBtnSummary > p").html(summaryText);
       button.find(".genBtnPrice").text(name + " - " + priceStr + "₪");
       button.find(".genBtnLvl").text(level);
     }
@@ -277,7 +289,6 @@ var VotingGame = (function (VG) {
     this.getLevel = function () {
       return level;
     };
-
 
   };
 
