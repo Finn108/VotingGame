@@ -230,6 +230,32 @@ var VotingGame = (function (VG) {
 			var upgrade = game.getUpgById("Gays6");
 			upgrade.display();
 		}
+	},
+	Survey: {
+		1: function (game) {
+			var upgrade = game.getUpgById("Survey1");
+			upgrade.display();
+		},
+		5: function (game) {
+			var upgrade = game.getUpgById("Survey2");
+			upgrade.display();
+		},
+		10: function (game) {
+			var upgrade = game.getUpgById("Survey3");
+			upgrade.display();
+		},
+		15: function (game) {
+			var upgrade = game.getUpgById("Survey4");
+			upgrade.display();
+		},
+		20: function (game) {
+			var upgrade = game.getUpgById("Survey5");
+			upgrade.display();
+		},
+		30: function (game) {
+			var upgrade = game.getUpgById("Survey6");
+			upgrade.display();
+		}
 	}
   };
 
