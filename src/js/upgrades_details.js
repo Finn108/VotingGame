@@ -28,16 +28,16 @@
       price: 500,
       description: "כל הקלקה מביאה 10 קולות.",
       func: function(game) {
-        game.clickValue=10;
+        game.clickValue=+7;
       },
     },
 	{
       id: "Clicker4",
       name: "פי 1000 עוצמה לישראל",
-      price: 10000,
+      price: 20000,
       description: "כל הקלקה מביאה 1000 קולות.",
       func: function(game) {
-        game.clickValue=1000;
+        game.clickValue=+990;
       },
     },
 	//=====LONE VOTER UPGRADES=====
@@ -245,7 +245,7 @@
     },
 	{
 	  id: "Campaign6",
-      name: "תשדיר ספינאוף",
+      name: "תשדיר טלוויזיה",
       price: 7250000,
       description: "ישווק כספינאוף של בית הקלפים. פי 2 קולות מקמפיינים.",
       func: function(game) {
@@ -260,7 +260,7 @@
       description: "זה חוקי כל עוד הוא לא מצליח. פי 9.99 קולות מקמפיינים.",
       func: function(game) {
         var voterGen = game.getGenById("Campaign");
-        voterGen.updateVotesPerSecond("*10");
+        voterGen.updateVotesPerSecond("*9.99");
       },
     },
 	{
@@ -278,7 +278,7 @@
 	  id: "Rabi1",
       name: "קריאת שופר",
       price: 54000,
-      description: "קוראת לבני מינו (זה פוגעני? מקווה שלא). פי 2 קולות מרביז.",
+      description: "קוראת לבני מינו (זה פוגעני? מקווה שלא). פי 2 קולות מרבים.",
       func: function(game) {
         var voterGen = game.getGenById("Rabi");
         voterGen.updateVotesPerSecond("*2");
@@ -288,7 +288,7 @@
 	  id: "Rabi2",
       name: "מכונות גילוח",
       price: 405000,
-      description: "הופכות את הזקן של רביז לזקן היפסטרים סקסי שמניב פי 5 קולות.",
+      description: "הופכות את הזקן של רבים לזקן היפסטרים סקסי שמניב פי 5 קולות.",
       func: function(game) {
         var voterGen = game.getGenById("Rabi");
         voterGen.updateVotesPerSecond("*5");
@@ -298,7 +298,7 @@
 	  id: "Rabi3",
       name: "אנטישמיות!",
       price: 4000000,
-      description: "כולם אנטישמים בגולה. תבוא לארץ. תלמדו תורה. תצביעו לי. 50% הנחה על רביז.",
+      description: "כולם אנטישמים בגולה. תבוא לארץ. תלמדו תורה. תצביעו לי. 50% הנחה על רבים.",
       func: function(game) {
         var voterGen = game.getGenById("Rabi");
         voterGen.updatePrice("/2");
@@ -308,7 +308,7 @@
 	  id: "Rabi4",
       name: "סגירת מרכולים בשבת",
       price: 41000000,
-      description: "אם אנחנו לא יכולים ליהנות. אף אחד לא יכול. פי 2 קולות מרביז.",
+      description: "אם אנחנו לא יכולים ליהנות. אף אחד לא יכול. פי 2 קולות מרבים.",
       func: function(game) {
         var voterGen = game.getGenById("Rabi");
         voterGen.updateVotesPerSecond("*2");
@@ -318,7 +318,7 @@
 	  id: "Rabi5",
       name: "גיוס בני ישיבות*",
       price: 405000000,
-      description: "*לחמש דקות במתן הטבות ל-10 שנים פלוס רכב חברה. פי 2 קולות מרביז.",
+      description: "*לחמש דקות במתן הטבות ל-10 שנים פלוס רכב חברה. פי 2 קולות מרבים.",
       func: function(game) {
         var voterGen = game.getGenById("Rabi");
         voterGen.updateVotesPerSecond("*2");
@@ -328,7 +328,7 @@
 	  id: "Rabi6",
       name: "ניתוח המוני לשינוי מין",
       price: 4050000000,
-      description: "נשים לא יכולות להיות רביז. פי 2 קולות מטרנס-רביז.",
+      description: "נשים לא יכולות להיות רבים. פי 2 קולות מטרנס-רבים.",
       func: function(game) {
         var voterGen = game.getGenById("Rabi");
         voterGen.updateVotesPerSecond("*2");
@@ -338,7 +338,7 @@
 	  id: "Rabi7",
       name: "רובו רייבה",
       price: 40500000000,
-      description: "ויהפנט אותם, באותות ובמופתים, להצביע לך. פי 10 קולות ממגה-רביז.",
+      description: "ויהפנט אותם, באותות ובמופתים, להצביע לך. פי 10 קולות ממגה-רבים.",
       func: function(game) {
         var voterGen = game.getGenById("Rabi");
         voterGen.updateVotesPerSecond("*10");
@@ -348,7 +348,7 @@
 	{
 	  id: "Gays1",
       name: "מצעד גאווה",
-      price: 825000,
+      price: 550000,
       description: "מעורר מודעות... לגופים הלוהטים שלנו! פי 2 קולות מתאים גאים!",
       func: function(game) {
         var voterGen = game.getGenById("Gays");
@@ -358,7 +358,7 @@
 	{
 	  id: "Gays2",
       name: "ג. ג. אוחובסקי ובניו",
-      price: 8000000,
+      price: 5000000,
       description: "מנקי ארונות מאז 1992! 50% הנחה על תאים גאים.",
       func: function(game) {
         var voterGen = game.getGenById("Gays");
@@ -368,7 +368,7 @@
 	{
 	  id: "Gays3",
       name: "פתיחת הכניסה האחורית",
-      price: 80000000,
+      price: 50000000,
       description: "הידעת? עד 1988 היה איסור בחוק על מין אנאלי. פי 5 קולות מתאים גאים.",
       func: function(game) {
         var voterGen = game.getGenById("Gays");
@@ -378,7 +378,7 @@
 	{
 	  id: "Gays4",
       name: "חוק נישואים גאים*",
-      price: 800000000,
+      price: 500000000,
       description: "*לא כולל תרומות דם, פונדקאות, או שוויון זכויות. 50% הנחה.",
       func: function(game) {
         var voterGen = game.getGenById("Gays");
@@ -388,7 +388,7 @@
 	{
 	  id: "Gays5",
       name: "הומודלת",
-      price: 8000000000,
+      price: 5000000000,
       description: "יום חג נוסף מוביל תנופה כלכלית ופי 2 קולות מתאים גאים.",
       func: function(game) {
         var voterGen = game.getGenById("Gays");
@@ -398,10 +398,71 @@
 	{
 	  id: "Gays6",
       name: "כיבוש אורנוס",
-      price: 80000000000,
+      price: 50000000000,
       description: "באנגלית זה יותר מצחיק. פי 10 קולות מתאים גאים.",
       func: function(game) {
         var voterGen = game.getGenById("Gays");
+        voterGen.updateVotesPerSecond("*10");
+      },
+    },
+	//=====GAYS UPGRADES=====
+	{
+	  id: "Survey1",
+      name: "הרחבת קבוצות מדגם",
+      price: 7800000,
+      description: "מינה צמח נותנת תוצאות מדויקות יותר. פי 2 קולות מסקרים.",
+      func: function(game) {
+        var voterGen = game.getGenById("Survey");
+        voterGen.updateVotesPerSecond("*2");
+      },
+    },
+	{
+	  id: "Survey2",
+      name: "דוח מיוחד",
+      price: 70000000,
+      description: "הסקרים שלך חוזים את העתיד. פי 2 קולות מסקרים.",
+      func: function(game) {
+        var voterGen = game.getGenById("Survey");
+        voterGen.updateVotesPerSecond("*2");
+      },
+    },
+	{
+	  id: "Survey3",
+      name: "בוטוקס",
+      price: 700000000,
+      description: "מינה צמח מעולם לא נראתה אמינה יותר. פי 5 קולות מסקרים.",
+      func: function(game) {
+        var voterGen = game.getGenById("Survey");
+        voterGen.updateVotesPerSecond("*5");
+      },
+    },
+	{
+	  id: "Survey4",
+      name: "העלאת גיל הפנסיה",
+      price: 7000000000,
+      description: "היא לא תוכל לפרוש גם אם תרצה. פי 5 קולות מסקרים.",
+      func: function(game) {
+        var voterGen = game.getGenById("Survey");
+        voterGen.updateVotesPerSecond("*5");
+      },
+    },
+	{
+	  id: "Survey5",
+      name: "חיי נצח",
+      price: 70000000000,
+      description: "מינה צמח שלך לעד. 90% הנחה על סקרים.",
+      func: function(game) {
+        var voterGen = game.getGenById("Survey");
+        voterGen.updatePrice("/10");
+      },
+    },
+	{
+	  id: "Survey6",
+      name: "שיבוט",
+      price: 700000000000,
+      description: "כולנו מינה צמח. כולנו אחת. פי 10 קולות מסקרים.",
+      func: function(game) {
+        var voterGen = game.getGenById("Survey");
         voterGen.updateVotesPerSecond("*10");
       },
     },
