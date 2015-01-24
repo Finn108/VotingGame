@@ -1,4 +1,4 @@
-var VotingGame = (function (VG) {
+﻿var VotingGame = (function (VG) {
   "use strict";
 
   function randomRange(min, max) {
@@ -24,7 +24,7 @@ var VotingGame = (function (VG) {
     var rotation = randomRange(0, 360);
     miniNote.css({
       transform: "scale(0.2, 0.2) rotate(" + rotation + "deg)",
-      top: "0%",
+      top: "100px",
       left: horizontalPos,
     });
 
@@ -43,8 +43,12 @@ var VotingGame = (function (VG) {
     /******************/
     var popupTexts = [
       "השפעתי!",
-      "אני אזרח טוב",
+      "אני אזרח טוב!",
       "דמוקרטיה!",
+      "*קליק*",
+      "פטריוטי זה הכי אחי!",
+      "לניצחון!",
+      "!CHANGE",
     ];
     var popup = $("<span>").text(randomChoice(popupTexts));
     popup.disableSelection();
@@ -53,7 +57,7 @@ var VotingGame = (function (VG) {
     popup.css({ top: yPos, left: xPos, position: "fixed"});
     $("#clickAlerts").append(popup);
 
-    popup.animate({top: "-=80px", opacity: 0}, 2000, "swing", function () {
+    popup.animate({top: "-=100px", opacity: 0}, 2000, "swing", function () {
       popup.remove();
     }); 
   });
