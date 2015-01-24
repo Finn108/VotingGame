@@ -7,11 +7,24 @@ var VotingGame = (function (VG) {
   
   var VC = VG.votesCounter = {};
 
-	var currentVotes = 0;
-	var previousVotes = currentVotes; // Used for event triggers
-	var votesPerSecond = 0;
-	var votesDisplay = $("#votesNumText");
-	var votesPSDisplay = $("#votesPerSecText");
+	var currentVotes;
+	var previousVotes; // Used for event triggers
+	var votesPerSecond;
+	var votesDisplay;
+	var votesPSDisplay;
+
+  VC.reset = function () {
+    /*
+    Resets all the parameters. Necessary for VotingGame.reset method
+    */
+    currentVotes = 0;
+    previousVotes = currentVotes;
+    votesPerSecond = 0;
+    votesDisplay = $("#votingBox").find("div > div").first();
+    votesPSDisplay = $("#votingBox").find("div > div").last();
+  };
+
+  VC.reset();
 
 	function refreshDisplay() {
 		/*
@@ -26,16 +39,6 @@ var VotingGame = (function (VG) {
 
 	}
   
-  VC.reset = function () {
-    /*
-    Resets all the parameters. Necessary for VotingGame.reset method
-    */
-    currentVotes = 0;
-    previousVotes = currentVotes;
-    votesPerSecond = 0;
-    votesDisplay = $("#votesNumText");
-    votesPSDisplay = $("#votesPerSecText");
-  };
   
   VC.addVotes = function (numOfVotes) {
 		currentVotes += numOfVotes || 0;

@@ -28,11 +28,6 @@ var VotingGame = (function (VG) {
       VG._openingSkip(gameState.noteTitle, gameState.noteDesc);
     }
 
-    // Increase the votes on each click
-    $("#note").click(function () {
-      VG.votesCounter.addVotes(VG.clickValue);
-    });
-
     // Return the number of votes to the given game state
     VG.votesCounter.reset();
 

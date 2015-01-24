@@ -29,6 +29,8 @@ var VotingGame = (function (VG) {
     dropZone.append(miniNote);
 
     miniNote.animate({ top: "100%" }, 700, "easeInCirc", function () {
+      // Increase the votes amount only after it reaches the box
+      VG.votesCounter.addVotes(VG.clickValue);
       miniNote.remove();
     });
 
