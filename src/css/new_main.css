@@ -149,6 +149,7 @@ body {
   /* Top and bottom will make it appear between the note and the box */
   top: 100px;
   bottom: 275px;
+  overflow: hidden;
 }
 
 /*****************/
