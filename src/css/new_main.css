@@ -152,6 +152,21 @@ body {
   overflow: hidden;
 }
 
+/********************/
+/* Note Popup alert */
+/********************/
+
+#clickAlerts {
+  /* prevents words interfearing with clicks */
+  pointer-events: none;
+}
+
+#clickAlerts > span {
+  font-size: 25px;
+  color: white;
+  text-shadow: -1.5px 0 black, 0 2px black, 1px 0 black, 0 -1px black;
+}
+
 /*****************/
 /* Opening hints */
 /*****************/

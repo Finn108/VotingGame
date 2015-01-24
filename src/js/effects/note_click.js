@@ -9,6 +9,28 @@ var VotingGame = (function (VG) {
     return arr[Math.floor(Math.random() * arr.length)];
   }
 
+  function addTextPopup(pageX, pageY) {
+    var popupTexts = [
+      "השפעתי!",
+      "אני אזרח טוב",
+      "דמוקרטיה!",
+      "אתה תותח!",
+      "תורם למדינה!",
+      "מימשתי את זכותי!",
+    ];
+    var popup = $("<span>").text(randomChoice(popupTexts));
+    popup.disableSelection();
+    var popupWidth = popup.text().length * 8;
+    var yPos = pageY - 30;
+    var xPos = pageX + randomRange(-popupWidth, -5);
+    popup.css({ top: yPos, left: xPos, position: "fixed"});
+    $("#clickAlerts").append(popup);
+
+    popup.animate({top: "-=80px", opacity: 0}, 2000, "swing", function () {
+      popup.remove();
+    }); 
+  }
+
   $("#mainNote").click(function (event) {
     if (! VG.started) return;
     var bigNote = $(this);
@@ -24,7 +46,7 @@ var VotingGame = (function (VG) {
     var rotation = randomRange(0, 360);
     miniNote.css({
       transform: "scale(0.2, 0.2) rotate(" + rotation + "deg)",
-      top: "0%",
+      top: "20%",
       left: horizontalPos,
     });
 
@@ -37,25 +59,9 @@ var VotingGame = (function (VG) {
       VG.votesCounter.addVotes(VG.clickValue);
       miniNote.remove();
     });
+    
+    addTextPopup(event.pageX, event.pageY);
 
-    /******************/
-    /* Add text popup */
-    /******************/
-    var popupTexts = [
-      "השפעתי!",
-      "אני אזרח טוב",
-      "דמוקרטיה!",
-    ];
-    var popup = $("<span>").text(randomChoice(popupTexts));
-    popup.disableSelection();
-    var yPos = event.pageY - 20; // prevent blocking the note
-    var xPos = event.pageX + randomRange(-60, 0);
-    popup.css({ top: yPos, left: xPos, position: "fixed"});
-    $("#clickAlerts").append(popup);
-
-    popup.animate({top: "-=80px", opacity: 0}, 2000, "swing", function () {
-      popup.remove();
-    }); 
   });
 
   return VG;
