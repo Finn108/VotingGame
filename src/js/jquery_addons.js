@@ -10,6 +10,8 @@ Some small additions to jquery for the game
 		return this
 				 .attr('unselectable', 'on')
 				 .css('user-select', 'none')
-				 .on('selectstart', false);
+				 .on('selectstart', false)
+				 // Used for firefox bug
+				 .focus(function () { this.blur(); });
 	};
 })(jQuery);

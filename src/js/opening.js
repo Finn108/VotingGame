@@ -73,7 +73,7 @@ var VotingGame = (function (VG) {
         $(this).disableSelection();
         // Make it unselectable in firefox
         $(this).focus(function () { this.blur(); });
-        
+
 
         noteDesc.focus();
       }
@@ -86,24 +86,31 @@ var VotingGame = (function (VG) {
         // Save the party name to the gameState
         VG._gameState.noteDesc = noteDesc.val();
 
+        // Remove hint and hint show function
         clearTimeout(descHintTimeout);
         clearHint();
 
+        // Show the click hint
         clickHintTimeout = setTimeout(
           showHint,
           500,
           "לחץ כדי להצביע"
         );
 
+        // Remove the click hint after click
+        note.on("click", clearClickHint);
+
+        // Prepare title in a bit
         setTimeout(showTitle, 1300);
-        
+
+        // Don't allow selection
         this.readOnly = true;
         $(this).disableSelection();
-        // Make it unselectable in firefox
-        $(this).focus(function () { this.blur(); } );
 
+        // Tilt the note
         note.addClass("anim tilt");
-        note.on("click", clearClickHint);
+
+        $("#votingBox").toggle("drop", {direction: "down"}, 700);
       }
     });
 
@@ -112,7 +119,7 @@ var VotingGame = (function (VG) {
     noteDesc.val("");
     setTimeout(fadeNoteIn, 600);
   };
-  
+
   // Skip the crap and start the game with the given note
   VG._openingSkip = function (titleText, descText) {
     var note = $("#note");
@@ -122,9 +129,7 @@ var VotingGame = (function (VG) {
     var details = VG.getLevelDetails();
 
     noteTitle.val(titleText || "שקר");
-    noteTitle.focus(function () { this.blur(); } );
     noteDesc.val(descText || "מפלגת הכול שקרים");
-    noteDesc.focus(function () { this.blur(); } );
     note.addClass("noanim tilt");
     note.children().attr("readonly", true);
     note.children().disableSelection();
