@@ -3,7 +3,7 @@ var VotingGame = (function (VG) {
 
   // Start the dramatic note and hints appearance
   VG._opening = function () {
-    var note = $("#note");
+    var note = $("#mainNote");
     var noteTitle = note.children().first();
     var noteDesc = note.children().last();
     var hintBox = $("#hintBox");
@@ -122,7 +122,7 @@ var VotingGame = (function (VG) {
 
   // Skip the crap and start the game with the given note
   VG._openingSkip = function (titleText, descText) {
-    var note = $("#note");
+    var note = $("#mainNote");
     var noteTitle = note.children().first();
     var noteDesc = note.children().last();
     var titleBox = $("#levelTitle");
