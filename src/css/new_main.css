@@ -1,0 +1,114 @@
+/*********/
+/* Fonts */
+/*********/
+
+@font-face {
+  font-family: carmela;
+  src: url(../assets/carmela.ttf);
+}
+@font-face {
+  font-family: frankruehl;
+  src: url(../assets/frankruehlclm-medium-webfont.woff);
+}
+
+
+/********************/
+/* Background setup */
+/********************/
+
+body {
+  background: url(../assets/bg.svg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  overflow: hidden; // Prevent scrollbars
+}
+
+/*******************/
+/* Main Containers */
+/*******************/
+
+.main {
+  float: left;
+  height: 100vh;
+  position: relative;
+  font-family: carmela;
+  direction: rtl;
+}
+
+.main.left,
+.main.right {
+  width: 32vw;
+}
+
+.main.middle {
+  width:36vw;
+  text-align: center;
+}
+
+/**************/
+/* Voting Box */
+/**************/
+
+#votingBox > img {
+  bottom: -10px;
+  position: absolute;
+  width: 280px;
+  left: 50%;
+  transform: translate(-50%);
+}
+
+#votingBox > div {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 175px;
+  color: white;
+  font-size: 30px;
+}
+
+#votingBox > div > div:first-child {
+  font-size: 44px;
+  padding-bottom: 3px;
+}
+
+#votingBox > div > div:last-child {
+  font-size: 14px;
+  padding-top: 14px;
+}
+
+/********/
+/* Note */
+/********/
+
+#note {
+  width: 208px;
+  height: 296px;
+  background-color: white;
+  outline-style: solid;
+  outline-width: 1px;
+  position: absolute;
+}
+
+#note > input,
+#note > textarea {
+  font-family: frankruehl;
+  width: 200px;
+  direction: rtl;
+  position: absolute;
+  text-align: center;
+  border-style: none;
+  overflow: hidden;
+}
+
+#note > input {
+  font-size: 120px;
+  top: 20%;
+  left: 4px;
+}
+
+#note > textarea {
+  font-size: 25px;
+  bottom: 10px;
+  resize: none;
+  left: 2px;
+}

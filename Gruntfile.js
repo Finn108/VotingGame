@@ -106,7 +106,7 @@ module.exports = function(grunt) {
       build: {
         files: [
           { expand: true, src: ['assets/**'], dest: '_build/main/' },
-          { 
+          {
             expand: true,
             cwd: 'src',
             src: ['css/*.css'],
