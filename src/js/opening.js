@@ -137,6 +137,7 @@ var VotingGame = (function (VG) {
     titleBox.children().first().text("במרוץ ל" + details.title);
     titleBox.children().last().text(details.targetDesc);
     titleBox.fadeIn();
+    $("#votingBox").toggle("drop", {direction: "down"}, 700);
   };
 
   return VG;
