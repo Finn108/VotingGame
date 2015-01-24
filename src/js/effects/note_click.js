@@ -1,4 +1,4 @@
-var VotingGame = (function (VG) {
+﻿var VotingGame = (function (VG) {
   "use strict";
 
   function randomRange(min, max) {
@@ -17,6 +17,10 @@ var VotingGame = (function (VG) {
       "אתה תותח!",
       "תורם למדינה!",
       "מימשתי את זכותי!",
+      "*קליק*",
+      "פטריוטי זה הכי אחי!",
+      "לניצחון!",
+      "!CHANGE",
     ];
     var popup = $("<span>").text(randomChoice(popupTexts));
     popup.disableSelection();
@@ -61,7 +65,6 @@ var VotingGame = (function (VG) {
     });
     
     addTextPopup(event.pageX, event.pageY);
-
   });
 
   return VG;
