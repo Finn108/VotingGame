@@ -5,7 +5,11 @@ var VotingGame = (function (VG) {
     return Math.random() * (max - min) + min;
   }
 
-  $("#mainNote").click(function () {
+  function randomChoice(arr) {
+    return arr[Math.floor(Math.random() * arr.length)];
+  }
+
+  $("#mainNote").click(function (event) {
     if (! VG.started) return;
     var bigNote = $(this);
   	var miniNote = bigNote.clone();
@@ -34,6 +38,24 @@ var VotingGame = (function (VG) {
       miniNote.remove();
     });
 
+    /******************/
+    /* Add text popup */
+    /******************/
+    var popupTexts = [
+      "השפעתי!",
+      "אני אזרח טוב",
+      "דמוקרטיה!",
+    ];
+    var popup = $("<span>").text(randomChoice(popupTexts));
+    popup.disableSelection();
+    var yPos = event.pageY - 20; // prevent blocking the note
+    var xPos = event.pageX + randomRange(-60, 0);
+    popup.css({ top: yPos, left: xPos, position: "fixed"});
+    $("#clickAlerts").append(popup);
+
+    popup.animate({top: "-=80px", opacity: 0}, 2000, "swing", function () {
+      popup.remove();
+    }); 
   });
 
   return VG;
