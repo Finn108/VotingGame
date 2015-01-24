@@ -6,6 +6,7 @@ var VotingGame = (function (VG) {
   }
 
   $("#mainNote").click(function () {
+    if (! VG.started) return;
     var bigNote = $(this);
   	var miniNote = bigNote.clone();
   	// Add the textarea data (jquery doesn't clone this by default)

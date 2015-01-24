@@ -1,6 +1,8 @@
 var VotingGame = (function (VG) {
   "use strict";
 
+  VG.started = false;
+
   // Start the dramatic note and hints appearance
   VG._opening = function () {
     var note = $("#mainNote");
@@ -111,6 +113,7 @@ var VotingGame = (function (VG) {
         note.addClass("anim tilt");
 
         $("#votingBox").toggle("drop", {direction: "down"}, 700);
+        VG.started = true;
       }
     });
 
@@ -138,6 +141,7 @@ var VotingGame = (function (VG) {
     titleBox.children().last().text(details.targetDesc);
     titleBox.fadeIn();
     $("#votingBox").toggle("drop", {direction: "down"}, 700);
+    VG.started = true;
   };
 
   return VG;
