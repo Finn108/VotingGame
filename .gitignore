@@ -5,3 +5,5 @@ build
 _build
 bower_components
 js/*.js
+*.sublime-workspace
+.sublime-grunt.cache

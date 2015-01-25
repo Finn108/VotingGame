@@ -1,7 +1,9 @@
 var VotingGame = (function (VG) {
   "use strict";
+  
+  if (! VG._gens) VG._gens = {};
 
-  VG._Generator = function (details, generatorsDiv) {
+  VG._gens.Generator = VG._Generator = function (details, generatorsDiv) {
     /*
     A purchasable item that constantly generates votes.
 
@@ -25,7 +27,7 @@ var VotingGame = (function (VG) {
 
     // Private attributes
     var votesCounter = VG.votesCounter;
-    var button = initElement();
+    var button = VG._gens.createElement(details, generatorsDiv);
     var price = details.price;
     var currency = details.currency || "vote";
     var name = details.name;
@@ -40,60 +42,7 @@ var VotingGame = (function (VG) {
     // Public attributes
     this.id = details.id;
 
-    function initElement() {
-      /*
-      Creates the html element for the generator. Returns the button element
-      as a jQuery object.
-      */
-      var btnElem = document.createElement("div");
-      var imgElem = document.createElement("img");
-      var priceElem = document.createElement("div");
-      var descElem = document.createElement("div");
-      var levelElem = document.createElement("div");
-      var summaryElem = document.createElement("div");
-      var summaryTextElem = document.createElement("p");
-      var priceStr = VG.numNames(price);
-      var vpsText = VG.numNames(details.votesPerSec) + " הצבעות לשנייה";
 
-      // Change the votes per second text
-      if (votesPerSecond < 1) {
-        var waitTime = 1 / votesPerSecond;
-        vpsText = "הצבעה כל " + waitTime + " שניות";
-      }
-
-      btnElem.id = "gen" + details.id;
-      btnElem.className = "genBtn";
-
-
-      // Used for testing
-      if (details.picture.indexOf("assets") === -1) {
-        imgElem.src = VG._cMainPath + "assets/" + details.picture;
-      }
-      else {
-        imgElem.src = details.picture;
-      }
-      imgElem.className = "genBtnPic";
-
-      priceElem.className = "genBtnPrice";
-      priceElem.textContent = details.name + " - " + priceStr + "₪";
-
-      descElem.className = "genBtnDesc";
-      descElem.innerHTML = details.description;
-
-      levelElem.className = "genBtnLvl";
-      levelElem.textContent = 0;
-
-      summaryElem.className = "genBtnSummary";
-      summaryTextElem.textContent = vpsText;
-      summaryElem.appendChild(summaryTextElem);
-
-      var jqBtn = $(btnElem);
-      jqBtn.append([imgElem, priceElem, descElem, levelElem, summaryElem]);
-      // Prevent annoying selection markers on generators
-      jqBtn.disableSelection();
-      generatorsDiv.append(jqBtn);
-      return jqBtn;
-    }
 
     function updateDisplay() {
       var priceStr = VG.numNames(price);

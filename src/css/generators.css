@@ -1,0 +1,46 @@
+#generatorsContainer {
+  top: 50px;
+  position: relative;
+}
+
+.generator {
+  height: 85px;
+  width: 300px;
+  background: linear-gradient(#a1cfe5, #65a8c9);
+  box-shadow: 14px -3px 39px -1px rgba(0,0,0,0.75);
+  color: white;
+  transform: rotate(15deg) translate(-91px, -7px);
+}
+
+.generator > img {
+  /* Get the button size */
+  height: inherit;
+}
+
+/* Generator's name */
+.generator > div:nth-child(2) {
+  position: absolute;
+  top: 11px;
+  right: 91px;
+  font-size: 30px;
+}
+
+/* Contains the price in notes */
+.generator > div:last {
+  position: absolute;
+  bottom: 7px;
+  right: 91px;
+}
+
+.generator > span {
+  font-size: 21px;
+  position: absolute;
+  bottom: 7px;
+  right: 91px;
+}
+
+.generator > .note {
+  transform: scale(0.115) rotate(5deg);
+  top: -86px;
+  right: 43px;
+}
