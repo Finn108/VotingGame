@@ -44,25 +44,30 @@ var VotingGame = (function (VG) {
     this.id = details.id;
 
 
-
     function updateDisplay() {
       var priceStr = VG.numNames(price);
-      var totalVotesPerSecond = votesPerSecond * (level + 0);
-      var vpsText = VG.numNames(votesPerSecond) + " הצבעות ליחיד";
-      var totalVpsText = "כרגע מניב " + VG.numNames(totalVotesPerSecond) +
-                         " הצבעות לשנייה";
-
-      // Change the votes per second text
-      if (votesPerSecond < 1) {
-        var waitTime = 1 / votesPerSecond;
-        vpsText = "הצבעה כל " + waitTime + " שניות";
-      }
-
-      var summaryText = vpsText + "<br/>" + totalVpsText;
-      button.find(".genBtnSummary > p").html(summaryText);
-      button.find(".genBtnPrice").text(name + " - " + priceStr + "₪");
-      button.find(".genBtnLvl").text(level);
+      button.find("span").text(price + " x");
     }
+
+
+    // function updateDisplay() {
+    //   var priceStr = VG.numNames(price);
+    //   var totalVotesPerSecond = votesPerSecond * (level + 0);
+    //   var vpsText = VG.numNames(votesPerSecond) + " הצבעות ליחיד";
+    //   var totalVpsText = "כרגע מניב " + VG.numNames(totalVotesPerSecond) +
+    //                      " הצבעות לשנייה";
+
+    //   // Change the votes per second text
+    //   if (votesPerSecond < 1) {
+    //     var waitTime = 1 / votesPerSecond;
+    //     vpsText = "הצבעה כל " + waitTime + " שניות";
+    //   }
+
+    //   var summaryText = vpsText + "<br/>" + totalVpsText;
+    //   button.find(".genBtnSummary > p").html(summaryText);
+    //   button.find(".genBtnPrice").text(name + " - " + priceStr + "₪");
+    //   button.find(".genBtnLvl").text(level);
+    // }
 
     function increaseLevel() {
       /*
@@ -101,11 +106,11 @@ var VotingGame = (function (VG) {
       */
       if (currentVotes >= price) {
         button.find(".overlay").fadeOut();
-        //button.addClass("available");
+        button.addClass("available");
       }
       else {
         button.find(".overlay").fadeIn();
-        //button.removeClass("unavailable");
+        button.removeClass("available");
       }
 
       // The rest is not relevant if we're already on the screen
