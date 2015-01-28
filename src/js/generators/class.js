@@ -97,6 +97,10 @@ var VotingGame = (function (VG) {
         currencyGen.updateLevel("-" + price);
       }
       increaseLevel();
+
+      if (level === 1) {
+        setInterval(VG.effects.genNoteToss, 200, generator);
+      }
     }
 
     function checkAvailability (currentVotes) {
@@ -132,6 +136,7 @@ var VotingGame = (function (VG) {
       VG._gens.addNoteToBtn(button);
       button.animate({left: "+=82px"}, 1000, "easeOutCubic");
       peekedIn = true;
+      checkAvailability(votesCounter.getVotes());
     }
 
     function reveal () {

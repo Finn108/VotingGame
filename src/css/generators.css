@@ -1,3 +1,7 @@
+/*******************/
+/* Generators area */
+/*******************/
+
 #generators {
   top: 50px;
   position: relative;
@@ -60,4 +64,19 @@
 .generator.available:hover {
   cursor: pointer;
   cursor: hand;
+}
+
+
+/******************/
+/* Note Toss Zone */
+/******************/
+
+#noteTossZone {
+  width: 100%;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  bottom: 275px;
+  overflow: hidden;
+  pointer-events: none;
 }
