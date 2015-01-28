@@ -37,12 +37,7 @@
 
   $("#mainNote").click(function (event) {
     if (! VG.started) return;
-    var bigNote = $(this);
-  	var miniNote = bigNote.clone();
-  	// Add the textarea data (jquery doesn't clone this by default)
-  	miniNote.children().last().val(bigNote.children().last().val());
-  	miniNote.removeClass("noanim anim tilt");
-    miniNote.attr("id", "");
+    var miniNote = VG.effects.cloneNote();
     // Place the note on a random horizontal position
     var minLeft = -75;
     var maxLeft = 25;

@@ -27,7 +27,8 @@ var VotingGame = (function (VG) {
 
     // Private attributes
     var votesCounter = VG.votesCounter;
-    var button = VG._gens.createElement(details, generatorsDiv);
+    var button = VG._gens.createElement(details);
+    generatorsDiv.append(button);
     var price = details.price;
     var currency = details.currency || "vote";
     var name = details.name;
@@ -99,10 +100,12 @@ var VotingGame = (function (VG) {
       can be.
       */
       if (currentVotes >= price) {
-        button.addClass("genBtnAvailable");
+        button.find(".overlay").fadeOut();
+        //button.addClass("available");
       }
       else {
-        button.removeClass("genBtnAvailable");
+        button.find(".overlay").fadeIn();
+        //button.removeClass("unavailable");
       }
 
       // The rest is not relevant if we're already on the screen
@@ -120,8 +123,9 @@ var VotingGame = (function (VG) {
       /*
       Moves the button to the screen just a tiny bit
       */
-      button.show();
-      button.animate({left: "+=20px"}, 1000, "easeOutCubic");
+      // Redoing the create element to have the new note
+      VG._gens.addNoteToBtn(button);
+      button.animate({left: "+=82px"}, 1000, "easeOutCubic");
       peekedIn = true;
     }
 

@@ -31,7 +31,7 @@ var VotingGame = (function (VG) {
     // Return the number of votes to the given game state
     VG.votesCounter.reset();
 
-    VG._createGenerators();
+    VG._gens.createAll();
     VG._createUpgrades(gameState.upgrades);
     VG._updateGeneratorsToState(gameState.generators);
 

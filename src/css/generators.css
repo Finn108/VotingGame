@@ -1,4 +1,4 @@
-#generatorsContainer {
+#generators {
   top: 50px;
   position: relative;
 }
@@ -10,6 +10,9 @@
   box-shadow: 14px -3px 39px -1px rgba(0,0,0,0.75);
   color: white;
   transform: rotate(15deg) translate(-91px, -7px);
+  position: absolute;
+  /* left: 0; */
+  left: -245px;
 }
 
 .generator > img {
@@ -43,4 +46,13 @@
   transform: scale(0.115) rotate(5deg);
   top: -86px;
   right: 43px;
+}
+
+.generator > .overlay {  
+  width: inherit;
+  height: inherit;
+  position: absolute;
+  top: 0;
+  background-color: black;
+  opacity: 0.3;
 }

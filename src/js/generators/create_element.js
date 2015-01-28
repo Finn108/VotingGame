@@ -1,59 +1,44 @@
 var VotingGame = (function (VG) {
   "use strict";
   
-  VG._gens.createElement = function (details, generatorsDiv) {
+  if (! VG._gens) VG._gens = {};
+
+  VG._gens.createElement = function (details) {
     /*
     Creates the html element for the generator. Returns the button element
     as a jQuery object.
+    details include:
+      - id
+      - name
+      - price
+      - picture
     */
-    var btnElem = document.createElement("div");
-    var imgElem = document.createElement("img");
-    var priceElem = document.createElement("div");
-    var descElem = document.createElement("div");
-    var levelElem = document.createElement("div");
-    var summaryElem = document.createElement("div");
-    var summaryTextElem = document.createElement("p");
-    var priceStr = VG.numNames(details.price);
-    var vpsText = VG.numNames(details.votesPerSec) + " הצבעות לשנייה";
+    var btn = $("<div>");
+    btn.attr("id", "gen" + details.id);
+    btn.addClass("generator");
 
-    // Change the votes per second text
-    if (details.votesPerSecond < 1) {
-      var waitTime = 1 / details.votesPerSecond;
-      vpsText = "הצבעה כל " + waitTime + " שניות";
-    }
+    var img = $("<img>");
+    img.attr("src", VG._cMainPath + "assets/" + details.picture);
+    img.appendTo(btn);
 
-    btnElem.id = "gen" + details.id;
-    btnElem.className = "genBtn";
+    // Voter name
+    $("<div>").text(details.name).appendTo(btn);
 
+    // Price mark
+    $("<span>").text(details.price + " x").appendTo(btn);
 
-    // Used for testing
-    if (details.picture.indexOf("assets") === -1) {
-      imgElem.src = VG._cMainPath + "assets/" + details.picture;
-    }
-    else {
-      imgElem.src = details.picture;
-    }
-    imgElem.className = "genBtnPic";
+    return btn;
+  };
 
-    priceElem.className = "genBtnPrice";
-    priceElem.textContent = details.name + " - " + priceStr + "₪";
-
-    descElem.className = "genBtnDesc";
-    descElem.innerHTML = details.description;
-
-    levelElem.className = "genBtnLvl";
-    levelElem.textContent = 0;
-
-    summaryElem.className = "genBtnSummary";
-    summaryTextElem.textContent = vpsText;
-    summaryElem.appendChild(summaryTextElem);
-
-    var jqBtn = $(btnElem);
-    jqBtn.append([imgElem, priceElem, descElem, levelElem, summaryElem]);
-    // Prevent annoying selection markers on generators
-    jqBtn.disableSelection();
-    generatorsDiv.append(jqBtn);
-    return jqBtn;
+  VG._gens.addNoteToBtn = function (button) {
+    /*
+    Receives the button element and adds the note clone to it.
+    Done outside of create function since note might not be complete at this
+    point.
+    */
+    VG.effects.cloneNote(false).appendTo(button);
+    // Also add the overlay class
+    $("<div>").addClass("overlay").appendTo(button);
   };
 
   return VG;
