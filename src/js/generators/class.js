@@ -80,7 +80,7 @@ var VotingGame = (function (VG) {
       level += 1;
       updateDisplay();
       if (level >= 1) {
-        var interval = (level * votesPerSecond) / 1000;
+        var interval = 1000 / (level * votesPerSecond);
         console.log("toss interval: " + interval);
         clearInterval(tossInterval);
         tossInterval = setInterval(
