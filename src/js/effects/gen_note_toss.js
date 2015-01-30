@@ -24,7 +24,7 @@ var VotingGame = (function (VG) {
       top: votingBox.offset().top,
     };
 
-    miniNote.animate(targetPosition, 600, "swing", function (){
+    miniNote.animate(targetPosition, 650, "swing", function (){
       miniNote.remove();
     });
 

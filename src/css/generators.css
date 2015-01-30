@@ -5,6 +5,8 @@
 #generators {
   top: 50px;
   position: relative;
+  /* Need to be higher than the toss zone */
+  z-index: 10;
 }
 
 .generator {
@@ -79,4 +81,5 @@
   bottom: 275px;
   overflow: hidden;
   pointer-events: none;
+  z-index: 9; 
 }
