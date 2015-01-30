@@ -21,7 +21,6 @@ var VotingGame = (function (VG) {
         // it will reduce the number of that generator
         currency: "Cookie",
       }
-    - votesCounter: The votes counter object that the generator will update
     - generatorsDiv: jQuery of the generators container div - $("#geneartors")
     */
 
@@ -69,6 +68,8 @@ var VotingGame = (function (VG) {
     //   button.find(".genBtnLvl").text(level);
     // }
 
+    var tossInterval = 0;
+
     function increaseLevel() {
       /*
       Increases the generator's level, change the VPS and triggers a "buy"
@@ -78,6 +79,16 @@ var VotingGame = (function (VG) {
       price = Math.floor(price * 1.3);
       level += 1;
       updateDisplay();
+      if (level >= 1) {
+        var interval = (level * votesPerSecond) / 1000;
+        console.log("toss interval: " + interval);
+        clearInterval(tossInterval);
+        tossInterval = setInterval(
+          VG.effects.genNoteToss,
+          interval,
+          generator
+        );
+      }
       $(generator).trigger("buy", generator);
     }
 
@@ -97,10 +108,6 @@ var VotingGame = (function (VG) {
         currencyGen.updateLevel("-" + price);
       }
       increaseLevel();
-
-      if (level === 1) {
-        setInterval(VG.effects.genNoteToss, 200, generator);
-      }
     }
 
     function checkAvailability (currentVotes) {
