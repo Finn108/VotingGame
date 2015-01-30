@@ -16,6 +16,7 @@ var VotingGame = (function (VG) {
     var btn = $("<div>");
     btn.attr("id", "gen" + details.id);
     btn.addClass("generator");
+    btn.hide();
 
     var img = $("<img>");
     img.attr("src", VG._cMainPath + "assets/" + details.picture);

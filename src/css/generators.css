@@ -16,9 +16,9 @@
   box-shadow: 14px -3px 39px -1px rgba(0,0,0,0.75);
   color: white;
   transform: rotate(15deg) translate(-91px, -7px);
-  position: absolute;
-  /* left: 0; */
-  left: -245px;
+  position: relative;
+  top: 3px;
+  left: -390px;
 }
 
 .generator > img {

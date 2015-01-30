@@ -141,7 +141,8 @@ var VotingGame = (function (VG) {
       */
       // Redoing the create element to have the new note
       VG._gens.addNoteToBtn(button);
-      button.animate({left: "+=82px"}, 1000, "easeOutCubic");
+      button.show();
+      button.animate({left: "+=103px"}, 1000, "easeOutCubic");
       peekedIn = true;
       checkAvailability(votesCounter.getVotes());
     }
@@ -150,7 +151,7 @@ var VotingGame = (function (VG) {
       /*
       Moves the entire button to the screen
       */
-      button.animate({left: "0%"}, 2000, "easeOutCubic");
+      button.animate({left: "-30%"}, 2000, "easeOutCubic");
       visible = true;
       $(generator).trigger("revealed", generator);
     }
